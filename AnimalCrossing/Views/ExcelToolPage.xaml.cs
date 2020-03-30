@@ -6,6 +6,8 @@ using NPOI.SS.UserModel;
 using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 using AnimalCrossing.Models;
+using System.Threading.Tasks;
+using Windows.UI.Xaml;
 
 namespace AnimalCrossing.Views
 {
@@ -23,13 +25,9 @@ namespace AnimalCrossing.Views
             InitializeComponent();
         }
 
-        private async void InputButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async Task ReadFile()
         {
-            //var fileOpenPicker = new FileOpenPicker();
-            //fileOpenPicker.FileTypeFilter.Add(".xls");
-            //fileOpenPicker.FileTypeFilter.Add(".xlsx");
-            //var file = await fileOpenPicker.PickSingleFileAsync();
-            //var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/W020190617630075964590.xls"));
+            Progress = "开始读取excel文件...";
             var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Data/data.xlsx"));
 
             var column = new List<int>();
@@ -44,10 +42,18 @@ namespace AnimalCrossing.Views
             {
                 Cells.Add(Services.ExcelService.GetCellValue(item));
             }
+            await Task.CompletedTask.ConfigureAwait(true);
         }
 
-        private void InsectButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void InsectButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            if (SheetName.Text != "insect")
+            {
+                Progress = "Sheet Name Wrong!";
+                return;
+            }
+            await ReadFile();
+            Progress = "开始写入数据库...";
             for (int i = 0; i < Ret.Count; i++)
             {
                 if (!string.IsNullOrEmpty(Services.ExcelService.GetCellValue(Ret[i])))
@@ -85,7 +91,6 @@ namespace AnimalCrossing.Views
 
                     var json = Newtonsoft.Json.JsonConvert.SerializeObject(insect);
                     Services.SQLiteService.AddInsectData(name,json);
-                
                     i = i + 31;
                 }
                 else
@@ -93,10 +98,18 @@ namespace AnimalCrossing.Views
                     i = i + 31;
                 }
             }
+            Progress = "写入数据完成";
         }
 
-        private void FishButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void FishButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            if(SheetName.Text != "fish")
+            {
+                Progress = "Sheet Name Wrong!";
+                return;
+            }
+            await ReadFile();
+            Progress = "开始写入数据库...";
             for (int i = 0; i < Ret.Count; i++)
             {
                 if (!string.IsNullOrEmpty(Services.ExcelService.GetCellValue(Ret[i])))
@@ -134,7 +147,7 @@ namespace AnimalCrossing.Views
 
                     var json = Newtonsoft.Json.JsonConvert.SerializeObject(fish);
                     Services.SQLiteService.AddFishData(name, json);
-
+     
                     i = i + 31;
                 }
                 else
@@ -142,6 +155,21 @@ namespace AnimalCrossing.Views
                     i = i + 31;
                 }
             }
+            Progress = "写入数据完成";
         }
+
+
+
+        public string Progress
+        {
+            get { return (string)GetValue(ProgressProperty); }
+            set { SetValue(ProgressProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Progress.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ProgressProperty =
+            DependencyProperty.Register("Progress", typeof(string), typeof(ExcelToolPage), new PropertyMetadata(null));
+
+            
     }
 }

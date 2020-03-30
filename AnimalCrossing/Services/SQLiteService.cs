@@ -39,7 +39,7 @@ namespace AnimalCrossing.Services
             using (var con = GetDbConnection())
             {
                 var animal = new AnimalsFish { Name = name, Data = json };
-                con.Insert(animal);
+                con.InsertOrReplace(animal);
             }
         }
         //public static void DeleteSingle(string id)
