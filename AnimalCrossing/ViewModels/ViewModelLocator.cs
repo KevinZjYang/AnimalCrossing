@@ -20,7 +20,13 @@ namespace AnimalCrossing.ViewModels
             Register<MainViewModel, MainPage>();
             Register<HomeViewModel, HomePage>();
             Register<ExcelToolViewModel, ExcelToolPage>();
+            Register<FishViewModel, FishPage>();
+            Register<InsectViewModel, InsectPage>();
         }
+
+        public InsectViewModel InsectViewModel => SimpleIoc.Default.GetInstance<InsectViewModel>();
+
+        public FishViewModel FishViewModel => SimpleIoc.Default.GetInstance<FishViewModel>();
 
         public ExcelToolViewModel ExcelToolViewModel => SimpleIoc.Default.GetInstance<ExcelToolViewModel>();
 

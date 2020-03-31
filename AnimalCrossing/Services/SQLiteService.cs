@@ -8,25 +8,22 @@ namespace AnimalCrossing.Services
 {
     public class SQLiteService
     {
-        /// <summary>
-        /// 数据库文件所在路径，这里使用 RoamingFolder，数据库文件名叫 Fav.db。
-        /// </summary>
+        #region 图鉴数据库
+
         public readonly static string DbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "Animals.db");
 
         public static SQLiteConnection GetDbConnection()
         {
-            // 连接数据库，如果数据库文件不存在则创建一个空数据库。
             var option = new SQLiteConnectionString(DbPath, true, key: "pCBR8Jg7n6lHPcwh");
             //var option = new SQLiteConnectionString(DbPath);
             var liteConnection = new SQLiteConnection(option);
 
-            // 创建 Person 模型对应的表，如果已存在，则忽略该操作。
             liteConnection.CreateTable<AnimalsInsect>();
             liteConnection.CreateTable<AnimalsFish>();
             return liteConnection;
         }
 
-        public static void AddInsectData(string name,string json)
+        public static void AddInsectData(string name, string json)
         {
             using (var con = GetDbConnection())
             {
@@ -34,6 +31,7 @@ namespace AnimalCrossing.Services
                 con.InsertOrReplace(animal);
             }
         }
+
         public static void AddFishData(string name, string json)
         {
             using (var con = GetDbConnection())
@@ -42,6 +40,60 @@ namespace AnimalCrossing.Services
                 con.InsertOrReplace(animal);
             }
         }
+
+        #endregion 图鉴数据库
+
+        #region 用户信息数据库
+
+        public readonly static string UserDbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "User.db");
+
+        public static SQLiteConnection GetUserDbConnection()
+        {
+            var option = new SQLiteConnectionString(DbPath, true, key: "pCBR8Jg7n6lHPcwh");
+            //var option = new SQLiteConnectionString(DbPath);
+            var liteConnection = new SQLiteConnection(option);
+
+            liteConnection.CreateTable<UserInsect>();
+            liteConnection.CreateTable<UserFish>();
+            return liteConnection;
+        }
+
+        public static void AddUserInsect(string name)
+        {
+            using (var con = GetDbConnection())
+            {
+                var animal = new UserInsect { Name = name };
+                con.InsertOrReplace(animal);
+            }
+        }
+
+        public static void AddUserFish(string name, string json)
+        {
+            using (var con = GetDbConnection())
+            {
+                var animal = new UserFish { Name = name };
+                con.InsertOrReplace(animal);
+            }
+        }
+
+        public static void DeleteUserFish(string name)
+        {
+            using (var con = GetDbConnection())
+            {
+                con.Delete<UserFish>(name);
+            }
+        }
+
+        public static void DeleteUserInsect(string name)
+        {
+            using (var con = GetDbConnection())
+            {
+                con.Delete<UserInsect>(name);
+            }
+        }
+
+        #endregion 用户信息数据库
+
         //public static void DeleteSingle(string id)
         //{
         //    using (var con = GetDbConnection())

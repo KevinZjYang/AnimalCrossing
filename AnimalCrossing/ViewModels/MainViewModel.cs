@@ -16,11 +16,12 @@ namespace AnimalCrossing.ViewModels
         public ObservableCollection<NavItem> NavItems { get; private set; } = new ObservableCollection<NavItem>();
 
         private ICommand _itemClick;
+
         public ICommand ItemClickCommand
         {
             get
             {
-                if(_itemClick == null)
+                if (_itemClick == null)
                 {
                     _itemClick = new RelayCommand<ItemClickEventArgs>(ItemClick);
                 }
@@ -33,12 +34,13 @@ namespace AnimalCrossing.ViewModels
             var item = obj.ClickedItem as NavItem;
             if (item == null) return;
             Nav(item.PageFullName);
-           
         }
 
         public MainViewModel()
         {
             NavItems.Add(new NavItem { Name = "Home", PageFullName = typeof(HomePage).FullName });
+            NavItems.Add(new NavItem { Name = "Fish", PageFullName = typeof(FishPage).FullName });
+            NavItems.Add(new NavItem { Name = "Insect", PageFullName = typeof(InsectPage).FullName });
             NavItems.Add(new NavItem { Name = "Excel", PageFullName = typeof(ExcelToolPage).FullName });
         }
 
@@ -57,7 +59,9 @@ namespace AnimalCrossing.ViewModels
         /// <summary>
         /// 导航到页面
         /// </summary>
-        /// <param name="pageFullName">页面的全称</param>
+        /// <param name="pageFullName">
+        /// 页面的全称
+        /// </param>
         private void Nav(string pageFullName)
         {
             var pageType = Type.GetType(pageFullName);

@@ -153,4 +153,12 @@
     <value>ExcelTool</value>
     <comment>Page title for ExcelToolPage</comment>
   </data>
+  <data name="Fish_Title.Text" xml:space="preserve">
+    <value>Fish</value>
+    <comment>Page title for FishPage</comment>
+  </data>
+  <data name="Insect_Title.Text" xml:space="preserve">
+    <value>Insect</value>
+    <comment>Page title for InsectPage</comment>
+  </data>
 </root>

@@ -7,14 +7,14 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AnimalCrossing.Views
 {
-    public sealed partial class HomePage : Page
+    public sealed partial class InsectPage : Page
     {
-        private HomeViewModel ViewModel
+        private InsectViewModel ViewModel
         {
-            get { return ViewModelLocator.Current.HomeViewModel; }
+            get { return ViewModelLocator.Current.InsectViewModel; }
         }
 
-        public HomePage()
+        public InsectPage()
         {
             InitializeComponent();
         }
