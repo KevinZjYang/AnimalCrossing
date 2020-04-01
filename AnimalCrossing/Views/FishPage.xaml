@@ -5,6 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:model="using:AnimalCrossing.Models"
       xmlns:usercontrol="using:AnimalCrossing.UserControls"
+      xmlns:control="using:Microsoft.Toolkit.Uwp.UI.Controls"
       Style="{StaticResource PageStyle}"
       mc:Ignorable="d">
 
@@ -19,7 +20,84 @@
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
-        <ListView ItemsSource="{x:Bind ViewModel.Fishes,Mode=OneWay}">
+        <control:DataGrid AutoGenerateColumns="False"
+                          GridLinesVisibility="All"  
+                          CanUserSortColumns="True"
+                          Margin="12"
+                          IsReadOnly="True"
+                          HorizontalScrollBarVisibility="Auto"
+                          Sorting="{x:Bind ViewModel.OnSorting}"
+                          ItemsSource="{x:Bind ViewModel.Fishes,Mode=OneWay}">
+            <control:DataGrid.Columns>
+                <control:DataGridTextColumn Header="编号"
+                                            Tag="Number"
+                                            Binding="{Binding Number}"/>
+                <control:DataGridTextColumn Header="名称"
+                                            Tag="Name"
+                                            Binding="{Binding Name}" />
+                <control:DataGridTemplateColumn Header="图片" Tag="Icon" CanUserSort="False">
+                    <control:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Height="48" Source="{Binding Icon}" Margin="4"/>
+                        </DataTemplate>
+                    </control:DataGridTemplateColumn.CellTemplate>
+                </control:DataGridTemplateColumn>
+                <control:DataGridTemplateColumn Header="拥有" Tag="Owned">
+                    <control:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <FontIcon FontFamily="Segoe MDL2 Assets"
+                                          Glyph="&#xE10B;" Visibility="{Binding Owned}"
+                                          />
+                                <FontIcon FontFamily="Segoe MDL2 Assets"
+                                          Glyph="&#xE106;"
+                                          Foreground="Red"
+                                          Visibility="{Binding Owned,Converter={StaticResource UnBoolToVisibilityConverter}}" />
+                            </Grid>
+                            
+                        </DataTemplate>
+                    </control:DataGridTemplateColumn.CellTemplate>
+                </control:DataGridTemplateColumn>
+                <control:DataGridTemplateColumn Header="博物馆" Tag="MuseumHave">
+                    <control:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <FontIcon FontFamily="Segoe MDL2 Assets"
+                                          Glyph="&#xE10B;"
+                                          Visibility="{Binding MuseumHave}" />
+                                <FontIcon FontFamily="Segoe MDL2 Assets"
+                                          Glyph="&#xE106;"
+                                          Foreground="Red"
+                                          Visibility="{Binding MuseumHave,Converter={StaticResource UnBoolToVisibilityConverter}}" />
+                            </Grid>
+                        </DataTemplate>
+                    </control:DataGridTemplateColumn.CellTemplate>
+                </control:DataGridTemplateColumn>
+      
+                <control:DataGridTextColumn Header="价格"
+                                            Tag="Price"
+                                            Binding="{Binding Price}" />
+                <control:DataGridTextColumn Header="地点"
+                                            Tag="Position"
+                                            Binding="{Binding Position}" />
+                <control:DataGridTextColumn Header="形状"
+                                            Tag="ShapeOrWeather"
+                                            Binding="{Binding ShapeOrWeather}" />
+                <control:DataGridTextColumn Header="时间"
+                                            Tag="Time"                                   
+                                            Binding="{Binding Time}" />
+                <control:DataGridTemplateColumn Header="出现月份"
+                                                CanUserSort="False"
+                                                Tag="AppearMonth">
+                    <control:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <usercontrol:AppearMonthControl AppearMonth="{Binding AppearMonth}" Margin="0,0,4,0"/>
+                        </DataTemplate>
+                    </control:DataGridTemplateColumn.CellTemplate>
+                </control:DataGridTemplateColumn>
+            </control:DataGrid.Columns>
+        </control:DataGrid>
+        <!--<ListView ItemsSource="{x:Bind ViewModel.Fishes,Mode=OneWay}">
             <ListView.Header>
                 <TextBlock Text="{x:Bind ViewModel.Fishes.Count,Mode=OneWay}" />
             </ListView.Header>
@@ -38,11 +116,11 @@
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0"
                               Style="{StaticResource GridStyle}">
-                            <!--<Image Height="100">
+                            --><!--<Image Height="100">
                             <Image.Source>
                                 <BitmapImage UriSource="{x:Bind English,Converter={StaticResource EnglishToIconConverter}}" />
                             </Image.Source>
-                        </Image>-->
+                        </Image>--><!--
                             <TextBlock Text="{x:Bind Name}" />
                         </Grid>
                         <Grid Grid.Column="1"
@@ -82,6 +160,6 @@
                             Value="Stretch" />
                 </Style>
             </ListView.ItemContainerStyle>
-        </ListView>
+        </ListView>-->
     </Grid>
 </Page>

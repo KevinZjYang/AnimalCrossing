@@ -19,10 +19,10 @@ namespace AnimalCrossing.Views
             InitializeComponent();
         }
 
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            await ViewModel.LoadDataAsync();
+            ViewModel.LoadData();
         }
     }
 }

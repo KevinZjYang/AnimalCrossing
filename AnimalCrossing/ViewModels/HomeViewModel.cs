@@ -19,7 +19,7 @@ namespace AnimalCrossing.ViewModels
         {
         }
 
-        public async Task LoadDataAsync()
+        public void LoadDataAsync()
         {
             ThisMonthInsects.Clear();
             using (var con = SQLiteService.GetDbConnection())

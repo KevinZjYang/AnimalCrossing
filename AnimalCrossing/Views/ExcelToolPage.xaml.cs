@@ -56,47 +56,40 @@ namespace AnimalCrossing.Views
             Progress = "开始写入数据库...";
             for (int i = 0; i < Ret.Count; i++)
             {
-                if (!string.IsNullOrEmpty(Services.ExcelService.GetCellValue(Ret[i])))
+                var name = Services.ExcelService.GetCellValue(Ret[i]);
+                var number = Services.ExcelService.GetCellValue(Ret[i + 1]);
+                var eng = Services.ExcelService.GetCellValue(Ret[i + 2]);
+                var jap = Services.ExcelService.GetCellValue(Ret[i + 3]);
+                var price = Services.ExcelService.GetCellValue(Ret[i + 4]);
+                var position = Services.ExcelService.GetCellValue(Ret[i + 5]);
+                var weather = Services.ExcelService.GetCellValue(Ret[i + 6]);
+                var time = Services.ExcelService.GetCellValue(Ret[i + 7]);
+                //北半球
+                var Nappear = new List<string>();
+                for (int j = 1; j < 13; j++)
                 {
-                    var name = Services.ExcelService.GetCellValue(Ret[i]);
-                    var number = Services.ExcelService.GetCellValue(Ret[i + 1]);
-                    var eng = Services.ExcelService.GetCellValue(Ret[i + 2]);
-                    var jap = Services.ExcelService.GetCellValue(Ret[i + 3]);
-                    var price = Services.ExcelService.GetCellValue(Ret[i + 4]);
-                    var position = Services.ExcelService.GetCellValue(Ret[i + 5]);
-                    var weather = Services.ExcelService.GetCellValue(Ret[i + 6]);
-                    var time = Services.ExcelService.GetCellValue(Ret[i + 7]);
-                    //北半球
-                    var Nappear = new List<string>();
-                    for (int j = 1; j < 13; j++)
-                    {
-                        var value = Services.ExcelService.GetCellValue(Ret[i + 7+j]);
-                        Nappear.Add(value);
-                    }
-                    var Nmonth = new Month { AppearMonth = Nappear };
-                    var north = new North { Month = Nmonth };
-
-                    //南半球
-                    var Sappear = new List<string>();
-                    for (int j = 1; j < 13; j++)
-                    {
-                        var value = Services.ExcelService.GetCellValue(Ret[i + 19 + j]);
-                        Sappear.Add(value);
-                    }
-                    var Smonth = new Month { AppearMonth = Sappear };
-                    var south = new South { Month = Smonth };
-
-                    //汇总
-                    var insect = new Insect { Name = name, Number = number, English = eng, Japanese = jap, Price = price, Position = position, Weather = weather, Time = time, Hemisphere = new Hemisphere { North = north, South = south } };
-
-                    var json = Newtonsoft.Json.JsonConvert.SerializeObject(insect);
-                    Services.SQLiteService.AddInsectData(name,json);
-                    i = i + 31;
+                    var value = Services.ExcelService.GetCellValue(Ret[i + 7 + j]);
+                    Nappear.Add(value);
                 }
-                else
+                var Nmonth = new Month { AppearMonth = Nappear };
+                var north = new North { Month = Nmonth };
+
+                //南半球
+                var Sappear = new List<string>();
+                for (int j = 1; j < 13; j++)
                 {
-                    i = i + 31;
+                    var value = Services.ExcelService.GetCellValue(Ret[i + 19 + j]);
+                    Sappear.Add(value);
                 }
+                var Smonth = new Month { AppearMonth = Sappear };
+                var south = new South { Month = Smonth };
+
+                //汇总
+                var insect = new Insect { Name = name, Number = Convert.ToInt32(number), English = eng, Japanese = jap, Price = Convert.ToInt32(price), Position = position, Weather = weather, Time = time, Hemisphere = new Hemisphere { North = north, South = south } };
+
+                var json = Newtonsoft.Json.JsonConvert.SerializeObject(insect);
+                Services.SQLiteService.AddInsectData(name, json);
+                i = i + 31;
             }
             Progress = "写入数据完成";
         }
@@ -143,7 +136,7 @@ namespace AnimalCrossing.Views
                     var south = new South { Month = Smonth };
 
                     //汇总
-                    var fish = new Fish { Name = name, Number = number, English = eng, Japanese = jap, Price = price, Position = position,Shape=shape, Time = time, Hemisphere = new Hemisphere { North = north, South = south } };
+                    var fish = new Fish { Name = name, Number = Convert.ToInt32(number), English = eng, Japanese = jap, Price = Convert.ToInt32(price), Position = position,Shape=shape, Time = time, Hemisphere = new Hemisphere { North = north, South = south } };
 
                     var json = Newtonsoft.Json.JsonConvert.SerializeObject(fish);
                     Services.SQLiteService.AddFishData(name, json);

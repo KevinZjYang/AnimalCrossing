@@ -49,8 +49,8 @@ namespace AnimalCrossing.Services
 
         public static SQLiteConnection GetUserDbConnection()
         {
-            var option = new SQLiteConnectionString(DbPath, true, key: "pCBR8Jg7n6lHPcwh");
-            //var option = new SQLiteConnectionString(DbPath);
+            //var option = new SQLiteConnectionString(DbPath, true, key: "pCBR8Jg7n6lHPcwh");
+            var option = new SQLiteConnectionString(UserDbPath);
             var liteConnection = new SQLiteConnection(option);
 
             liteConnection.CreateTable<UserInsect>();

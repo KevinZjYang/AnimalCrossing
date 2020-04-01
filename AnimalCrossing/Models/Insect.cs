@@ -10,10 +10,10 @@ namespace AnimalCrossing.Models
     public class Insect
     {       
         public string Name { get; set; }
-        public string Number { get; set; }
+        public int Number { get; set; }
         public string English { get; set; }
         public string Japanese { get; set; }
-        public string Price { get; set; }
+        public int Price { get; set; }
         public string Position { get; set; }
         public string Weather { get; set; }
         public string Time { get; set; }

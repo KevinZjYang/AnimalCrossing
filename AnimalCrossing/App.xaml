@@ -1,7 +1,8 @@
 ﻿<Application x:Class="AnimalCrossing.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:converter="using:AnimalCrossing.Converters">
+             xmlns:converter="using:AnimalCrossing.Converters"
+             xmlns:MuxConverter="using:Microsoft.Toolkit.Uwp.UI.Converters">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -16,6 +17,10 @@
 
             <converter:EnglishToIconConverter x:Key="EnglishToIconConverter" />
             <converter:ZeroToVisibilityConverter x:Key="ZeroToVisibilityConverter" />
+           
+            <MuxConverter:BoolToVisibilityConverter FalseValue="Visible"
+                                                    TrueValue="Collapsed"
+                                                    x:Key="UnBoolToVisibilityConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
