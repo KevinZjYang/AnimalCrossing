@@ -5,27 +5,35 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:model="using:AnimalCrossing.Models"
       xmlns:usercontrol="using:AnimalCrossing.UserControls"
+      xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
       Style="{StaticResource PageStyle}"
       mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">
-        <ListView ItemsSource="{x:Bind ViewModel.ThisMonthInsects,Mode=OneWay}">
-            <ListView.Header>
+        <controls:AdaptiveGridView  ItemsSource="{x:Bind ViewModel.ThisMonthInsects,Mode=OneWay}">
+            <!--<GridView.Header>
                 <TextBlock Text="{x:Bind ViewModel.ThisMonthInsects.Count,Mode=OneWay}" />
-            </ListView.Header>
-            <ListView.ItemTemplate>
+            </GridView.Header>-->
+            <controls:AdaptiveGridView.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="本月出现" FontSize="20"/>
+                    <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.ThisMonthInsects.Count,Mode=OneWay}" />
+                    
+                </StackPanel>
+            </controls:AdaptiveGridView.Header>
+            <controls:AdaptiveGridView.ItemTemplate>
                 <DataTemplate x:DataType="model:Insect">
-                    <StackPanel Orientation="Horizontal">
-                        <!--<Image Height="100">
-                            <Image.Source>
-                                <BitmapImage UriSource="{x:Bind English,Converter={StaticResource EnglishToIconConverter}}" />
-                            </Image.Source>
-                        </Image>-->
-                        <TextBlock Text="{x:Bind Name}" />
-                        <usercontrol:AppearMonthControl AppearMonth="{x:Bind Hemisphere.North.Month.AppearMonth}" />
+                    <StackPanel Orientation="Vertical">
+                        <controls:ImageEx Height="64" Source="{x:Bind English,Converter={StaticResource EnglishToIconConverter}}" />
+                        <TextBlock Text="{x:Bind Name}"
+                                   HorizontalAlignment="Center" />
+                        <TextBlock HorizontalAlignment="Center">
+                            <Run>￥</Run>
+                            <Run Text="{x:Bind Price}" />
+                        </TextBlock>
                     </StackPanel>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </controls:AdaptiveGridView.ItemTemplate>
+        </controls:AdaptiveGridView>
     </Grid>
 </Page>

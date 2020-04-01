@@ -3,6 +3,7 @@
 using AnimalCrossing.ViewModels;
 
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace AnimalCrossing.Views
@@ -23,6 +24,7 @@ namespace AnimalCrossing.Views
         {
             base.OnNavigatedTo(e);
             await ViewModel.LoadDataAsync();
+            
         }
     }
 }

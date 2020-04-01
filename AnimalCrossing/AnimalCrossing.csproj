@@ -119,6 +119,9 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.9</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>6.0.0</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>2.0.1</Version>
     </PackageReference>
@@ -242,6 +245,168 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icons\Agrias butterfly.jpg" />
+    <Content Include="Icons\Anchovy.jpg" />
+    <Content Include="Icons\Angelfish.jpg" />
+    <Content Include="Icons\Ant.jpg" />
+    <Content Include="Icons\Arapaima.jpg" />
+    <Content Include="Icons\Arowana.jpg" />
+    <Content Include="Icons\Atlas moth.jpg" />
+    <Content Include="Icons\Bagworm.jpg" />
+    <Content Include="Icons\Banded dragonfly.jpg" />
+    <Content Include="Icons\Barred knifejaw.jpg" />
+    <Content Include="Icons\Barreleye.jpg" />
+    <Content Include="Icons\Bell cricket.jpg" />
+    <Content Include="Icons\Betta.jpg" />
+    <Content Include="Icons\Bitterling.jpg" />
+    <Content Include="Icons\Black bass.jpg" />
+    <Content Include="Icons\Blowfish.jpg" />
+    <Content Include="Icons\Blue marlin.jpg" />
+    <Content Include="Icons\Blue weevil beetle.jpg" />
+    <Content Include="Icons\Bluegill.jpg" />
+    <Content Include="Icons\Brown Cicada.jpg" />
+    <Content Include="Icons\Butterfly fish.jpg" />
+    <Content Include="Icons\Carp.jpg" />
+    <Content Include="Icons\Catfish.jpg" />
+    <Content Include="Icons\Centipede.jpg" />
+    <Content Include="Icons\Char.jpg" />
+    <Content Include="Icons\Cherry salmon.jpg" />
+    <Content Include="Icons\Cicada shell.jpg" />
+    <Content Include="Icons\Citrus Long-horned Beetle.jpg" />
+    <Content Include="Icons\Clownfish.jpg" />
+    <Content Include="Icons\Coelacanth.jpg" />
+    <Content Include="Icons\Common bluebottle.jpg" />
+    <Content Include="Icons\Common butterfly.jpg" />
+    <Content Include="Icons\Crawfish.jpg" />
+    <Content Include="Icons\Cricket.jpg" />
+    <Content Include="Icons\Crucian carp.jpg" />
+    <Content Include="Icons\Cyclommatus stag.jpg" />
+    <Content Include="Icons\Dab.jpg" />
+    <Content Include="Icons\Dace.jpg" />
+    <Content Include="Icons\Damselfly.jpg" />
+    <Content Include="Icons\Darner dragonfly.jpg" />
+    <Content Include="Icons\Diving beetle.jpg" />
+    <Content Include="Icons\Dorado.jpg" />
+    <Content Include="Icons\Drone beetle.jpg" />
+    <Content Include="Icons\Dung beetle.jpg" />
+    <Content Include="Icons\Earth-boring Dung Beetle.jpg" />
+    <Content Include="Icons\Emperor butterfly.jpg" />
+    <Content Include="Icons\Evening Cicada.jpg" />
+    <Content Include="Icons\Firefly.jpg" />
+    <Content Include="Icons\fish.jpg" />
+    <Content Include="Icons\Flea.jpg" />
+    <Content Include="Icons\Fly.jpg" />
+    <Content Include="Icons\Football fish.jpg" />
+    <Content Include="Icons\Freshwater goby.jpg" />
+    <Content Include="Icons\Frog.jpg" />
+    <Content Include="Icons\Gar.jpg" />
+    <Content Include="Icons\Giant Cicada.jpg" />
+    <Content Include="Icons\Giant snakehead.jpg" />
+    <Content Include="Icons\Giant stag.jpg" />
+    <Content Include="Icons\Giant trevally.jpg" />
+    <Content Include="Icons\Giant water bug.jpg" />
+    <Content Include="Icons\Giraffe stag.jpg" />
+    <Content Include="Icons\Golden stag.jpg" />
+    <Content Include="Icons\Golden trout.jpg" />
+    <Content Include="Icons\Goldfish.jpg" />
+    <Content Include="Icons\Goliath beetle.jpg" />
+    <Content Include="Icons\Grasshopper.jpg" />
+    <Content Include="Icons\Great purple emperor.jpg" />
+    <Content Include="Icons\Great white shark.jpg" />
+    <Content Include="Icons\Guppy.jpg" />
+    <Content Include="Icons\Hammerhead shark.jpg" />
+    <Content Include="Icons\Hermit crab.jpg" />
+    <Content Include="Icons\Honeybee.jpg" />
+    <Content Include="Icons\Horned atlas.jpg" />
+    <Content Include="Icons\Horned dynastid.jpg" />
+    <Content Include="Icons\Horned elephant.jpg" />
+    <Content Include="Icons\Horned hercules.jpg" />
+    <Content Include="Icons\Horse mackerel.jpg" />
+    <Content Include="Icons\insect.jpg" />
+    <Content Include="Icons\Jewel beetle.jpg" />
+    <Content Include="Icons\Killifish.jpg" />
+    <Content Include="Icons\King salmon.jpg" />
+    <Content Include="Icons\Koi.jpg" />
+    <Content Include="Icons\Ladybug.jpg" />
+    <Content Include="Icons\Loach.jpg" />
+    <Content Include="Icons\Long locust.jpg" />
+    <Content Include="Icons\Madagascan sunset moth.jpg" />
+    <Content Include="Icons\Mahi-mahi.jpg" />
+    <Content Include="Icons\Man-faced stink bug.jpg" />
+    <Content Include="Icons\Mantis.jpg" />
+    <Content Include="Icons\Migratory locust.jpg" />
+    <Content Include="Icons\Mitten crab.jpg" />
+    <Content Include="Icons\Miyama stag.jpg" />
+    <Content Include="Icons\Mole cricket.jpg" />
+    <Content Include="Icons\Monarch butterfly.jpg" />
+    <Content Include="Icons\Moray eel.jpg" />
+    <Content Include="Icons\Mosquito.jpg" />
+    <Content Include="Icons\Moth.jpg" />
+    <Content Include="Icons\Napoleonfish.jpg" />
+    <Content Include="Icons\Neon tetra.jpg" />
+    <Content Include="Icons\Nibble fish.jpg" />
+    <Content Include="Icons\Oarfish.jpg" />
+    <Content Include="Icons\Ocean sunfish.jpg" />
+    <Content Include="Icons\Olive flounder.jpg" />
+    <Content Include="Icons\Orchid mantis.jpg" />
+    <Content Include="Icons\Pale chub.jpg" />
+    <Content Include="Icons\Paper kite butterfly.jpg" />
+    <Content Include="Icons\Peacock butterfly.jpg" />
+    <Content Include="Icons\Pike.jpg" />
+    <Content Include="Icons\Pill bug.jpg" />
+    <Content Include="Icons\Piranha.jpg" />
+    <Content Include="Icons\Pond smelt.jpg" />
+    <Content Include="Icons\Pondskater.jpg" />
+    <Content Include="Icons\Pop-eyed goldfish.jpg" />
+    <Content Include="Icons\Puffer fish.jpg" />
+    <Content Include="Icons\Queen Alexandra%27s birdwing.jpg" />
+    <Content Include="Icons\Rainbow stag.jpg" />
+    <Content Include="Icons\Rainbowfish.jpg" />
+    <Content Include="Icons\Rajah Brooke%27s birdwing.jpg" />
+    <Content Include="Icons\Ranchu goldfish.jpg" />
+    <Content Include="Icons\Ray.jpg" />
+    <Content Include="Icons\Red dragonfly.jpg" />
+    <Content Include="Icons\Red snapper.jpg" />
+    <Content Include="Icons\Ribbon eel.jpg" />
+    <Content Include="Icons\Rice grasshopper.jpg" />
+    <Content Include="Icons\Robust Cicada.jpg" />
+    <Content Include="Icons\Rosalia batesi beetle.jpg" />
+    <Content Include="Icons\Saddled bichir.jpg" />
+    <Content Include="Icons\Salmon.jpg" />
+    <Content Include="Icons\Saw shark.jpg" />
+    <Content Include="Icons\Saw stag.jpg" />
+    <Content Include="Icons\Scarab beetle.jpg" />
+    <Content Include="Icons\Scorpion.jpg" />
+    <Content Include="Icons\Sea bass.jpg" />
+    <Content Include="Icons\Sea butterfly.jpg" />
+    <Content Include="Icons\Seahorse.jpg" />
+    <Content Include="Icons\Snail.jpg" />
+    <Content Include="Icons\Snapping turtle.jpg" />
+    <Content Include="Icons\Soft-shelled turtle.jpg" />
+    <Content Include="Icons\Spider.jpg" />
+    <Content Include="Icons\Squid.jpg" />
+    <Content Include="Icons\Stinkbug.jpg" />
+    <Content Include="Icons\Stringfish.jpg" />
+    <Content Include="Icons\Sturgeon.jpg" />
+    <Content Include="Icons\Suckerfish.jpg" />
+    <Content Include="Icons\Surgeonfish.jpg" />
+    <Content Include="Icons\Sweetfish.jpg" />
+    <Content Include="Icons\Tadpole.jpg" />
+    <Content Include="Icons\Tarantula.jpg" />
+    <Content Include="Icons\Tiger beetle.jpg" />
+    <Content Include="Icons\Tiger butterfly.jpg" />
+    <Content Include="Icons\Tilapia.jpg" />
+    <Content Include="Icons\Tuna.jpg" />
+    <Content Include="Icons\Violin beetle.jpg" />
+    <Content Include="Icons\Walker cicada.jpg" />
+    <Content Include="Icons\Walking leaf.jpg" />
+    <Content Include="Icons\Walking stick.jpg" />
+    <Content Include="Icons\Wasp.jpg" />
+    <Content Include="Icons\Whale shark.jpg" />
+    <Content Include="Icons\Wharf roach.jpg" />
+    <Content Include="Icons\Yellow butterfly.jpg" />
+    <Content Include="Icons\Yellow perch.jpg" />
+    <Content Include="Icons\Zebra turkeyfish.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -262,9 +427,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Icons\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
