@@ -15,6 +15,9 @@ namespace AnimalCrossing.ViewModels
 {
     public class InsectViewModel : ViewModelBase
     {
+        private bool _beforeEditOwned;
+        private bool _beforeEditMuseum;
+
         public List<PictorialBook> Pictorials { get; private set; }
         public List<Museum> Museums { get; private set; }
         public ObservableCollection<NormalAnimals> Insects { get; private set; } = new ObservableCollection<NormalAnimals>();
@@ -73,6 +76,9 @@ namespace AnimalCrossing.ViewModels
             if (obj.Column.Tag.ToString() == "Owned" || obj.Column.Tag.ToString() == "MuseumHave")
             {
                 obj.Cancel = false;
+                var normal = (obj.Row as FrameworkElement).DataContext as NormalAnimals;
+                _beforeEditOwned = normal.Owned;
+                _beforeEditMuseum = normal.MuseumHave;
             }
             else
             {
@@ -97,7 +103,43 @@ namespace AnimalCrossing.ViewModels
         {
             var normal = (obj.Row as FrameworkElement).DataContext as NormalAnimals;
             SQLiteService.AddUserInsect(new UserInsect { Name = normal.Name, Owned = normal.Owned, MuseumHave = normal.MuseumHave });
+            if (_beforeEditOwned == false && normal.Owned == true)
+            {
+                BookCount += 1;
+            }
+            if (_beforeEditOwned == true && normal.Owned == false)
+            {
+                BookCount -= 1;
+            }
+
+            if (_beforeEditMuseum == false && normal.MuseumHave == true)
+            {
+                MuseumCount += 1;
+            }
+            if (_beforeEditMuseum == true && normal.MuseumHave == false)
+            {
+                MuseumCount -= 1;
+            }
         }
+
+        private ICommand _sendEmail;
+        public ICommand SendEmailCommand
+        {
+            get
+            {
+                if (_sendEmail == null)
+                {
+                    _sendEmail = new RelayCommand(SendEmail);
+                }
+                return _sendEmail;
+            }
+        }
+
+        private async void SendEmail()
+        {
+            await Helpers.EmailHelper.UniversallyEmail("kevin.zj.yang@outlook.com", "动森图鉴问题反馈", "请输入要反馈的内容.如果关于数据错误的问题,请提交对应的证明材料.");
+        }
+
 
         private bool _isNorthCheck;
         public bool IsNorthCheck
@@ -111,6 +153,20 @@ namespace AnimalCrossing.ViewModels
         {
             get { return _isSouthCheck; }
             set { Set(ref _isSouthCheck, value); }
+        }
+
+        private int _bookCount;
+        public int BookCount
+        {
+            get { return _bookCount; }
+            set { Set(ref _bookCount, value); }
+        }
+
+        private int _museumCount;
+        public int MuseumCount
+        {
+            get { return _museumCount; }
+            set { Set(ref _museumCount, value); }
         }
 
         public InsectViewModel()
@@ -297,6 +353,9 @@ namespace AnimalCrossing.ViewModels
         private void LoadSouthData()
         {
             Insects.Clear();
+            BookCount = 0;
+            MuseumCount = 0;
+
             using (var con = SQLiteService.GetDbConnection())
             {
                 var animals = con.Table<AnimalsInsect>().ToList();
@@ -311,7 +370,13 @@ namespace AnimalCrossing.ViewModels
                     }
                     if (userInsect.Count > 0)
                     {
-                        var normal = new NormalAnimals { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Weather, Time = obj.Time, AppearMonth = obj.Hemisphere.South.Month.AppearMonth, Owned = userInsect[0].Owned, MuseumHave = userInsect[0].MuseumHave };
+                        var owned = userInsect[0].Owned;
+                        var museumHave = userInsect[0].MuseumHave;
+
+                        if (owned) BookCount += 1;
+                        if (museumHave) MuseumCount += 1;
+
+                        var normal = new NormalAnimals { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Weather, Time = obj.Time, AppearMonth = obj.Hemisphere.South.Month.AppearMonth, Owned = owned, MuseumHave = museumHave };
                         Insects.Add(normal);
 
                     }
@@ -331,6 +396,9 @@ namespace AnimalCrossing.ViewModels
         private void LoadNorthData()
         {
             Insects.Clear();
+            BookCount = 0;
+            MuseumCount = 0;
+
             using (var con = SQLiteService.GetDbConnection())
             {
                 var animals = con.Table<AnimalsInsect>().ToList();
@@ -345,7 +413,13 @@ namespace AnimalCrossing.ViewModels
                     }
                     if (userInsect.Count > 0)
                     {
-                        var normal = new NormalAnimals { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Weather, Time = obj.Time, AppearMonth = obj.Hemisphere.North.Month.AppearMonth, Owned = userInsect[0].Owned, MuseumHave = userInsect[0].MuseumHave };
+                        var owned = userInsect[0].Owned;
+                        var museumHave = userInsect[0].MuseumHave;
+
+                        if (owned) BookCount += 1;
+                        if (museumHave) MuseumCount += 1;
+
+                        var normal = new NormalAnimals { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Weather, Time = obj.Time, AppearMonth = obj.Hemisphere.North.Month.AppearMonth, Owned = owned, MuseumHave = museumHave };
                         Insects.Add(normal);
 
                     }

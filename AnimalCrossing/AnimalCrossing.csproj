@@ -154,6 +154,7 @@
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="Converters\EnglishToIconConverter.cs" />
     <Compile Include="Converters\ZeroToVisibilityConverter.cs" />
+    <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />

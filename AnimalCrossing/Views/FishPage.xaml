@@ -19,7 +19,15 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <muxc:RadioButtons MaxColumns="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="鱼类图鉴" Margin="12,12,0,0" FontSize="16" FontWeight="SemiBold"/>
+            <muxc:RadioButtons MaxColumns="2"
+                               Grid.Column="1"
+                               Margin="8,8,0,0"
+                               HorizontalAlignment="Right">
                 <RadioButton Content="北半球"
                              Tag="North"
                              IsChecked="{x:Bind ViewModel.IsNorthCheck,Mode=OneWay}">
@@ -108,6 +116,24 @@
                 </control:DataGridTemplateColumn>
             </control:DataGrid.Columns>
         </control:DataGrid>
-     
+        <Grid Grid.Row="3" x:DefaultBindMode="OneWay">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="12,4,0,4" Grid.Column="0">
+                <Run Text="共有鱼类"/>
+                <Run Text="{x:Bind ViewModel.Fishes.Count}" Foreground="{ThemeResource SystemAccentColor}"/>
+                <Run Text="种,其中图鉴已开启" />
+                <Run Text="{x:Bind ViewModel.BookCount}"
+                     Foreground="{ThemeResource SystemAccentColor}" />
+                <Run Text="种,博物馆已捐赠" />
+                <Run Text="{x:Bind ViewModel.MuseumCount}"
+                     Foreground="{ThemeResource SystemAccentColor}" />
+                <Run Text="种." />
+            </TextBlock>
+            <Button Grid.Column="1" Content="有数据错误或者其他问题欢迎反馈"
+                    Style="{StaticResource TextBlockButtonStyle}" Command="{x:Bind ViewModel.SendEmailCommand}"/>
+        </Grid>
     </Grid>
 </Page>

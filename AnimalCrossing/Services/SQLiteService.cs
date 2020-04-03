@@ -62,7 +62,6 @@ namespace AnimalCrossing.Services
         {
             using (var con = GetUserDbConnection())
             {
-               
                 con.InsertOrReplace(userInsect);
             }
         }
@@ -75,38 +74,7 @@ namespace AnimalCrossing.Services
             }
         }
 
-        //public static void DeleteUserFish(string name)
-        //{
-        //    using (var con = GetDbConnection())
-        //    {
-        //        con.Delete<UserFish>(name);
-        //    }
-        //}
-
-        //public static void DeleteUserInsect(string name)
-        //{
-        //    using (var con = GetDbConnection())
-        //    {
-        //        con.Delete<UserInsect>(name);
-        //    }
-        //}
-
         #endregion 用户信息数据库
 
-        //public static void DeleteSingle(string id)
-        //{
-        //    using (var con = GetDbConnection())
-        //    {
-        //        con.Delete<FavoriteImage>(id);
-        //    }
-        //}
-
-        //public static void DeleteAll()
-        //{
-        //    using (var con = GetDbConnection())
-        //    {
-        //        con.DeleteAll<FavoriteImage>();
-        //    }
-        //}
     }
 }
