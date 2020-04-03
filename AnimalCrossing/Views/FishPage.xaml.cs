@@ -25,6 +25,5 @@ namespace AnimalCrossing.Views
             ViewModel.LoadData();
         }
 
-        
     }
 }

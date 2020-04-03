@@ -22,7 +22,10 @@ namespace AnimalCrossing.ViewModels
             Register<ExcelToolViewModel, ExcelToolPage>();
             Register<FishViewModel, FishPage>();
             Register<InsectViewModel, InsectPage>();
+            Register<SettingsViewModel, SettingsPage>();
         }
+
+        public SettingsViewModel SettingsViewModel => SimpleIoc.Default.GetInstance<SettingsViewModel>();
 
         public InsectViewModel InsectViewModel => SimpleIoc.Default.GetInstance<InsectViewModel>();
 

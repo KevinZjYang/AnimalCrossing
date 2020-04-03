@@ -58,39 +58,38 @@ namespace AnimalCrossing.Services
             return liteConnection;
         }
 
-        public static void AddUserInsect(string name)
+        public static void AddUserInsect(UserInsect userInsect)
         {
-            using (var con = GetDbConnection())
+            using (var con = GetUserDbConnection())
             {
-                var animal = new UserInsect { Name = name };
-                con.InsertOrReplace(animal);
+               
+                con.InsertOrReplace(userInsect);
             }
         }
 
-        public static void AddUserFish(string name, string json)
+        public static void AddUserFish(UserFish userFish)
         {
-            using (var con = GetDbConnection())
+            using (var con = GetUserDbConnection())
             {
-                var animal = new UserFish { Name = name };
-                con.InsertOrReplace(animal);
+                con.InsertOrReplace(userFish);
             }
         }
 
-        public static void DeleteUserFish(string name)
-        {
-            using (var con = GetDbConnection())
-            {
-                con.Delete<UserFish>(name);
-            }
-        }
+        //public static void DeleteUserFish(string name)
+        //{
+        //    using (var con = GetDbConnection())
+        //    {
+        //        con.Delete<UserFish>(name);
+        //    }
+        //}
 
-        public static void DeleteUserInsect(string name)
-        {
-            using (var con = GetDbConnection())
-            {
-                con.Delete<UserInsect>(name);
-            }
-        }
+        //public static void DeleteUserInsect(string name)
+        //{
+        //    using (var con = GetDbConnection())
+        //    {
+        //        con.Delete<UserInsect>(name);
+        //    }
+        //}
 
         #endregion 用户信息数据库
 

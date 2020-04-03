@@ -6,74 +6,85 @@
       xmlns:model="using:AnimalCrossing.Models"
       xmlns:usercontrol="using:AnimalCrossing.UserControls"
       xmlns:control="using:Microsoft.Toolkit.Uwp.UI.Controls"
+      xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+      xmlns:i="using:Microsoft.Xaml.Interactivity"
+      xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
       Style="{StaticResource PageStyle}"
       mc:Ignorable="d">
 
-    <Page.Resources>
-        <Style TargetType="Grid"
-               x:Key="GridStyle">
-            <!--<Setter Property="BorderBrush"
-                    Value="Black" />
-            <Setter Property="BorderThickness"
-                    Value="1,1,0.5,1" />-->
-        </Style>
-    </Page.Resources>
-
     <Grid x:Name="ContentArea">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <muxc:RadioButtons MaxColumns="2">
+                <RadioButton Content="北半球"
+                             Tag="North"
+                             IsChecked="{x:Bind ViewModel.IsNorthCheck,Mode=OneWay}">
+                    <i:Interaction.Behaviors>
+                        <ic:EventTriggerBehavior EventName="Checked">
+                            <ic:InvokeCommandAction Command="{x:Bind ViewModel.NorthCheckedCommand}" />
+                        </ic:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                </RadioButton>
+                <RadioButton Content="南半球"
+                             Tag="South"
+                             IsChecked="{x:Bind ViewModel.IsSouthCheck,Mode=OneWay}">
+                    <i:Interaction.Behaviors>
+                        <ic:EventTriggerBehavior EventName="Checked">
+                            <ic:InvokeCommandAction Command="{x:Bind ViewModel.SouthCheckedCommand}" />
+                        </ic:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                </RadioButton>
+            </muxc:RadioButtons>
+        </Grid>
         <control:DataGrid AutoGenerateColumns="False"
                           GridLinesVisibility="All"  
                           CanUserSortColumns="True"
                           Margin="12"
-                          IsReadOnly="True"
+                          Grid.Row="1"
+                          IsReadOnly="False"
                           HorizontalScrollBarVisibility="Auto"
-                          Sorting="{x:Bind ViewModel.OnSorting}"
+                          Sorting="{x:Bind ViewModel.OnSorting}"                       
                           ItemsSource="{x:Bind ViewModel.Fishes,Mode=OneWay}">
+            <i:Interaction.Behaviors>
+                <ic:EventTriggerBehavior EventName="BeginningEdit">
+                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.BeginningEditCommand}" />
+                </ic:EventTriggerBehavior>
+                <ic:EventTriggerBehavior EventName="CellEditEnded">
+                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.CellEditEndedCommand}" />
+                </ic:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
             <control:DataGrid.Columns>
                 <control:DataGridTextColumn Header="编号"
                                             Tag="Number"
-                                            Binding="{Binding Number}"/>
-                <control:DataGridTextColumn Header="名称"
-                                            Tag="Name"
-                                            Binding="{Binding Name}" />
-                <control:DataGridTemplateColumn Header="图片" Tag="Icon" CanUserSort="False">
+                                            Binding="{Binding Number}" />
+                <control:DataGridTemplateColumn Header="名称"
+                                                Tag="Name"
+                                                CanUserSort="False">
                     <control:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Height="48" Source="{Binding Icon}" Margin="4"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="36"
+                                       Source="{Binding Icon}"
+                                       Margin="4" />
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" />
+                            </StackPanel>
                         </DataTemplate>
                     </control:DataGridTemplateColumn.CellTemplate>
                 </control:DataGridTemplateColumn>
-                <control:DataGridTemplateColumn Header="拥有" Tag="Owned">
-                    <control:DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <FontIcon FontFamily="Segoe MDL2 Assets"
-                                          Glyph="&#xE10B;" Visibility="{Binding Owned}"
-                                          />
-                                <FontIcon FontFamily="Segoe MDL2 Assets"
-                                          Glyph="&#xE106;"
-                                          Foreground="Red"
-                                          Visibility="{Binding Owned,Converter={StaticResource UnBoolToVisibilityConverter}}" />
-                            </Grid>
-                            
-                        </DataTemplate>
-                    </control:DataGridTemplateColumn.CellTemplate>
-                </control:DataGridTemplateColumn>
-                <control:DataGridTemplateColumn Header="博物馆" Tag="MuseumHave">
-                    <control:DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <FontIcon FontFamily="Segoe MDL2 Assets"
-                                          Glyph="&#xE10B;"
-                                          Visibility="{Binding MuseumHave}" />
-                                <FontIcon FontFamily="Segoe MDL2 Assets"
-                                          Glyph="&#xE106;"
-                                          Foreground="Red"
-                                          Visibility="{Binding MuseumHave,Converter={StaticResource UnBoolToVisibilityConverter}}" />
-                            </Grid>
-                        </DataTemplate>
-                    </control:DataGridTemplateColumn.CellTemplate>
-                </control:DataGridTemplateColumn>
-      
+                <control:DataGridComboBoxColumn Header="图鉴"
+                                                Binding="{Binding Owned}"
+                                                ItemsSource="{x:Bind ViewModel.Pictorials,Mode=OneWay}"
+                                                Tag="Owned"
+                                                DisplayMemberPath="DisplayName" />
+                <control:DataGridComboBoxColumn Header="博物馆"
+                                                Binding="{Binding MuseumHave}"
+                                                ItemsSource="{x:Bind ViewModel.Museums,Mode=OneWay}"
+                                                Tag="MuseumHave"
+                                                DisplayMemberPath="DisplayName" />
                 <control:DataGridTextColumn Header="价格"
                                             Tag="Price"
                                             Binding="{Binding Price}" />
@@ -97,69 +108,6 @@
                 </control:DataGridTemplateColumn>
             </control:DataGrid.Columns>
         </control:DataGrid>
-        <!--<ListView ItemsSource="{x:Bind ViewModel.Fishes,Mode=OneWay}">
-            <ListView.Header>
-                <TextBlock Text="{x:Bind ViewModel.Fishes.Count,Mode=OneWay}" />
-            </ListView.Header>
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:Fish">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0"
-                              Style="{StaticResource GridStyle}">
-                            --><!--<Image Height="100">
-                            <Image.Source>
-                                <BitmapImage UriSource="{x:Bind English,Converter={StaticResource EnglishToIconConverter}}" />
-                            </Image.Source>
-                        </Image>--><!--
-                            <TextBlock Text="{x:Bind Name}" />
-                        </Grid>
-                        <Grid Grid.Column="1"
-                              Style="{StaticResource GridStyle}">
-                            <TextBlock Text="{x:Bind English}" />
-                        </Grid>
-                        <Grid Grid.Column="2"
-                              Style="{StaticResource GridStyle}">
-                            <TextBlock Text="{x:Bind Japanese}" />
-                        </Grid>
-                        <Grid Grid.Column="3"
-                              Style="{StaticResource GridStyle}">
-                            <TextBlock Text="{x:Bind Price}" />
-                        </Grid>
-                        <Grid Grid.Column="4"
-                              Style="{StaticResource GridStyle}">
-                            <TextBlock Text="{x:Bind Position}" />
-                        </Grid>
-                        <Grid Grid.Column="5"
-                              Style="{StaticResource GridStyle}">
-                            <TextBlock Text="{x:Bind Shape}" />
-                        </Grid>
-                        <Grid Grid.Column="6"
-                              Style="{StaticResource GridStyle}">
-                            <TextBlock Text="{x:Bind Time}" />
-                        </Grid>
-                        <Grid Grid.Column="7"
-                              Style="{StaticResource GridStyle}">
-                            <usercontrol:AppearMonthControl AppearMonth="{x:Bind Hemisphere.North.Month.AppearMonth}" />
-                        </Grid>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment"
-                            Value="Stretch" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>-->
+     
     </Grid>
 </Page>

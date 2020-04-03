@@ -10,7 +10,7 @@ namespace AnimalCrossing.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
-        private List<Insect> _insects;
+        //private List<Insect> _insects;
 
         public ObservableCollection<Insect> ThisMonthInsects { get; private set; } = new ObservableCollection<Insect>();
         public ObservableCollection<Insect> NextMonthInsects { get; private set; } = new ObservableCollection<Insect>();

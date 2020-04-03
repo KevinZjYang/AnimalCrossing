@@ -5,28 +5,111 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:model="using:AnimalCrossing.Models"
       xmlns:usercontrol="using:AnimalCrossing.UserControls"
+      xmlns:control="using:Microsoft.Toolkit.Uwp.UI.Controls"
+      xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+      xmlns:i="using:Microsoft.Xaml.Interactivity"
+      xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
       Style="{StaticResource PageStyle}"
       mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">
-        <ListView ItemsSource="{x:Bind ViewModel.Insects,Mode=OneWay}">
-            <ListView.Header>
-                <TextBlock Text="{x:Bind ViewModel.Insects.Count,Mode=OneWay}" />
-            </ListView.Header>
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:Insect">
-                    <StackPanel Orientation="Horizontal">
-                        <!--<Image Height="100">
-                            <Image.Source>
-                                <BitmapImage UriSource="{x:Bind English,Converter={StaticResource EnglishToIconConverter}}" />
-                            </Image.Source>
-                        </Image>-->
-                        <TextBlock Text="{x:Bind Name}" />
-                        <TextBlock Text="{x:Bind Name}" />
-                        <usercontrol:AppearMonthControl AppearMonth="{x:Bind Hemisphere.North.Month.AppearMonth}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <muxc:RadioButtons MaxColumns="2">
+                <RadioButton Content="北半球"
+                             Tag="North"
+                             IsChecked="{x:Bind ViewModel.IsNorthCheck,Mode=OneWay}">
+                    <i:Interaction.Behaviors>
+                        <ic:EventTriggerBehavior EventName="Checked">
+                            <ic:InvokeCommandAction Command="{x:Bind ViewModel.NorthCheckedCommand}" />
+                        </ic:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                </RadioButton>
+                <RadioButton Content="南半球"
+                             Tag="South"
+                             IsChecked="{x:Bind ViewModel.IsSouthCheck,Mode=OneWay}">
+                    <i:Interaction.Behaviors>
+                        <ic:EventTriggerBehavior EventName="Checked">
+                            <ic:InvokeCommandAction Command="{x:Bind ViewModel.SouthCheckedCommand}" />
+                        </ic:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                </RadioButton>
+            </muxc:RadioButtons>
+        </Grid>
+        <control:DataGrid AutoGenerateColumns="False"
+                          GridLinesVisibility="All"
+                          CanUserSortColumns="True"
+                          Margin="12"
+                          Grid.Row="1"
+                          IsReadOnly="False"
+                          HorizontalScrollBarVisibility="Auto"
+                          Sorting="{x:Bind ViewModel.OnSorting}"
+                          ItemsSource="{x:Bind ViewModel.Insects,Mode=OneWay}">
+            <i:Interaction.Behaviors>
+                <ic:EventTriggerBehavior EventName="BeginningEdit">
+                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.BeginningEditCommand}" />
+                </ic:EventTriggerBehavior>
+                <ic:EventTriggerBehavior EventName="CellEditEnded">
+                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.CellEditEndedCommand}" />
+                </ic:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
+            <control:DataGrid.Columns>
+                <control:DataGridTextColumn Header="编号"
+                                            Tag="Number"
+                                            Binding="{Binding Number}" />
+                <control:DataGridTemplateColumn Header="名称"
+                                                Tag="Name"
+                                                CanUserSort="False">
+                    <control:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="36"
+                                       Source="{Binding Icon}"
+                                       Margin="4" />
+                                <TextBlock Text="{Binding Name}"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </control:DataGridTemplateColumn.CellTemplate>
+                </control:DataGridTemplateColumn>
+                <control:DataGridComboBoxColumn Header="图鉴"
+                                                Binding="{Binding Owned}"
+                                                ItemsSource="{x:Bind ViewModel.Pictorials,Mode=OneWay}"
+                                                Tag="Owned"
+                                                DisplayMemberPath="DisplayName" />
+                <control:DataGridComboBoxColumn Header="博物馆"
+                                                Binding="{Binding MuseumHave}"
+                                                ItemsSource="{x:Bind ViewModel.Museums,Mode=OneWay}"
+                                                Tag="MuseumHave"
+                                                DisplayMemberPath="DisplayName" />
+                <control:DataGridTextColumn Header="价格"
+                                            Tag="Price"
+                                            Binding="{Binding Price}" />
+                <control:DataGridTextColumn Header="地点"
+                                            Tag="Position"
+                                            Binding="{Binding Position}" />
+                <control:DataGridTextColumn Header="天气"
+                                            Tag="ShapeOrWeather"
+                                            Binding="{Binding ShapeOrWeather}" />
+                <control:DataGridTextColumn Header="时间"
+                                            Tag="Time"
+                                            Binding="{Binding Time}" />
+                <control:DataGridTemplateColumn Header="出现月份"
+                                                CanUserSort="False"
+                                                Tag="AppearMonth">
+                    <control:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <usercontrol:AppearMonthControl AppearMonth="{Binding AppearMonth}"
+                                                            Margin="0,0,4,0" />
+                        </DataTemplate>
+                    </control:DataGridTemplateColumn.CellTemplate>
+                </control:DataGridTemplateColumn>
+            </control:DataGrid.Columns>
+        </control:DataGrid>
+
     </Grid>
 </Page>

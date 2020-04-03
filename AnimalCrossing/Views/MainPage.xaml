@@ -38,7 +38,14 @@
                 </ListView.ItemTemplate>
             </ListView>
             <Grid Grid.Row="2">
-                <TextBlock Text="Settings"/>
+                <ListViewItem >
+                    <i:Interaction.Behaviors>
+                        <ic:EventTriggerBehavior EventName="Tapped">
+                            <ic:InvokeCommandAction Command="{x:Bind ViewModel.SettingsTapCommand}" />
+                        </ic:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                    <TextBlock Text="Settings" />
+                </ListViewItem>
 
             </Grid>
         </Grid>

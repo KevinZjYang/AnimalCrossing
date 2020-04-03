@@ -36,6 +36,25 @@ namespace AnimalCrossing.ViewModels
             Nav(item.PageFullName);
         }
 
+
+        private ICommand _settingsTap;
+        public ICommand SettingsTapCommand
+        {
+            get
+            {
+               if(_settingsTap == null)
+                {
+                    _settingsTap = new RelayCommand(SettingTapped);
+                }
+                return _settingsTap;
+            }
+        }
+
+        private void SettingTapped()
+        {
+            Nav(typeof(SettingsPage).FullName);
+        }
+
         public MainViewModel()
         {
             NavItems.Add(new NavItem { Name = "Home", PageFullName = typeof(HomePage).FullName });
