@@ -13,19 +13,12 @@
       mc:Ignorable="d">
 
     <Grid x:Name="ContentArea"
-          Padding="12">
+          Padding="12,0,12,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock Text="动物森友会图鉴"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="20"
-                   Visibility="Collapsed"
-                   Margin="0,0,0,12" />
-        <controls:AdaptiveGridView Grid.Row="2"
+        <controls:AdaptiveGridView Margin="0,32,0,0"
                                    IsItemClickEnabled="True"
                                    SelectionMode="Single"
                                    ItemsSource="{x:Bind ViewModel.ThisMonthAnimals,Mode=OneWay}">
@@ -141,5 +134,23 @@
                 </DataTemplate>
             </controls:AdaptiveGridView.ItemTemplate>
         </controls:AdaptiveGridView>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="12,4,0,4"
+                       Grid.Column="0">
+                <Run>目前页面共显示动物</Run>
+                <Run Text="{x:Bind ViewModel.ThisMonthAnimals.Count,Mode=OneWay}"
+                     Foreground="{ThemeResource SystemAccentColor}" />
+                <Run>个</Run>
+            </TextBlock>
+            <Button Grid.Column="1"
+                    Content="有数据错误或者其他问题欢迎反馈"
+                    Style="{StaticResource TextBlockButtonStyle}"
+                    Command="{x:Bind ViewModel.SendEmailCommand}" />
+        </Grid>
     </Grid>
 </Page>

@@ -36,13 +36,13 @@ namespace AnimalCrossing.ViewModels
             Nav(item.PageFullName);
         }
 
-
         private ICommand _settingsTap;
+
         public ICommand SettingsTapCommand
         {
             get
             {
-               if(_settingsTap == null)
+                if (_settingsTap == null)
                 {
                     _settingsTap = new RelayCommand(SettingTapped);
                 }
@@ -57,10 +57,10 @@ namespace AnimalCrossing.ViewModels
 
         public MainViewModel()
         {
-            NavItems.Add(new NavItem { Name = "Home", PageFullName = typeof(HomePage).FullName });
-            NavItems.Add(new NavItem { Name = "Fish", PageFullName = typeof(FishPage).FullName });
-            NavItems.Add(new NavItem { Name = "Insect", PageFullName = typeof(InsectPage).FullName });
-            NavItems.Add(new NavItem { Name = "Excel", PageFullName = typeof(ExcelToolPage).FullName });
+            NavItems.Add(new NavItem { Name = "主页", PageFullName = typeof(HomePage).FullName });
+            NavItems.Add(new NavItem { Name = "鱼类", PageFullName = typeof(FishPage).FullName });
+            NavItems.Add(new NavItem { Name = "昆虫", PageFullName = typeof(InsectPage).FullName });
+            //NavItems.Add(new NavItem { Name = "Excel", PageFullName = typeof(ExcelToolPage).FullName });
         }
 
         public void Initialize(Frame frame)

@@ -7,15 +7,17 @@ using AnimalCrossing.Activation;
 using AnimalCrossing.ViewModels;
 
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Core;
 using Windows.System;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
 namespace AnimalCrossing.Services
 {
-    // For more information on understanding and extending activation flow see
-    // https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
+    // For more information on understanding and extending activation flow see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
     internal class ActivationService
     {
         private readonly App _app;
@@ -41,12 +43,12 @@ namespace AnimalCrossing.Services
         {
             if (IsInteractive(activationArgs))
             {
-                // Initialize services that you need before app activation
-                // take into account that the splash screen is shown while this code runs.
+                // Initialize services that you need before app activation take into account that
+                // the splash screen is shown while this code runs.
                 await InitializeAsync();
 
-                // Do not repeat app initialization when the Window already has content,
-                // just ensure that the window is active
+                // Do not repeat app initialization when the Window already has content, just ensure
+                // that the window is active
                 if (Window.Current.Content == null)
                 {
                     // Create a Shell or Frame to act as the navigation context
@@ -68,9 +70,18 @@ namespace AnimalCrossing.Services
                 // Ensure the current window is active
                 Window.Current.Activate();
 
+                ExtendAcrylicIntoTitleBar();
                 // Tasks after activation
                 await StartupAsync();
             }
+        }
+
+        protected virtual void ExtendAcrylicIntoTitleBar()
+        {
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+            var view = ApplicationView.GetForCurrentView();
+            view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
+            //view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
         }
 
         private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)

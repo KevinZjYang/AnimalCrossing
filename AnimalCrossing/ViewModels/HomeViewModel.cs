@@ -251,6 +251,25 @@ namespace AnimalCrossing.ViewModels
             detail.Show();
         }
 
+        private ICommand _sendEmail;
+
+        public ICommand SendEmailCommand
+        {
+            get
+            {
+                if (_sendEmail == null)
+                {
+                    _sendEmail = new RelayCommand(SendEmail);
+                }
+                return _sendEmail;
+            }
+        }
+
+        private async void SendEmail()
+        {
+            await Helpers.EmailHelper.UniversallyEmail("kevin.zj.yang@outlook.com", "动森图鉴问题反馈", "请输入要反馈的内容.如果关于数据错误的问题,请提交对应的证明材料.");
+        }
+
         #region
         private bool _isNorthCheck;
 

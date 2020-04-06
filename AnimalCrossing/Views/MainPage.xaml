@@ -12,24 +12,31 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="NavColumn"
-                              Width="Auto" />
+                              Width="120" />
             <ColumnDefinition x:Name="FrameColumn"
                               Width="*" />
         </Grid.ColumnDefinitions>
         <!--#region Nav-->
         <Grid Grid.Column="0"
-              Background="AliceBlue">
+              Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0"
-                  Height="100" />
+                  Height="100">
+                <TextBlock Text="动物森友会图鉴"
+                           FontSize="20"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           TextWrapping="Wrap" />
+            </Grid>
             <ListView Grid.Row="1"
                       ItemsSource="{x:Bind ViewModel.NavItems,Mode=OneWay}"
                       IsItemClickEnabled="True"
-                      SelectionMode="Single">
+                      SelectionMode="Single"
+                      SelectedIndex="0">
                 <i:Interaction.Behaviors>
                     <ic:EventTriggerBehavior EventName="ItemClick">
                         <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemClickCommand}" />
@@ -41,14 +48,15 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="2"
+                  Visibility="Visible">
                 <ListViewItem>
                     <i:Interaction.Behaviors>
                         <ic:EventTriggerBehavior EventName="Tapped">
                             <ic:InvokeCommandAction Command="{x:Bind ViewModel.SettingsTapCommand}" />
                         </ic:EventTriggerBehavior>
                     </i:Interaction.Behaviors>
-                    <TextBlock Text="Settings" />
+                    <TextBlock Text="设置" />
                 </ListViewItem>
             </Grid>
         </Grid>

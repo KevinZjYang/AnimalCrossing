@@ -18,7 +18,8 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0"
+              Margin="0,32,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -27,10 +28,12 @@
                        Margin="12,12,0,0"
                        FontSize="16"
                        FontWeight="SemiBold" />
-            <muxc:RadioButtons MaxColumns="2" Grid.Column="1" 
-                               Margin="8,8,0,0" HorizontalAlignment="Right">
+            <muxc:RadioButtons MaxColumns="2"
+                               Grid.Column="1"
+                               Margin="8,8,0,0"
+                               HorizontalAlignment="Right">
                 <RadioButton Content="北半球"
-                             Tag="North"                           
+                             Tag="North"
                              IsChecked="{x:Bind ViewModel.IsNorthCheck,Mode=OneWay}">
                     <i:Interaction.Behaviors>
                         <ic:EventTriggerBehavior EventName="Checked">
@@ -52,7 +55,7 @@
         <control:DataGrid AutoGenerateColumns="False"
                           GridLinesVisibility="All"
                           CanUserSortColumns="True"
-                          Margin="12" 
+                          Margin="12"
                           Grid.Row="1"
                           IsReadOnly="False"
                           HorizontalScrollBarVisibility="Auto"
