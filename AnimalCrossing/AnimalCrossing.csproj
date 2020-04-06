@@ -168,6 +168,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
+    <Compile Include="Services\CommonDataService.cs" />
     <Compile Include="Services\ExcelService.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Services\SQLiteService.cs" />

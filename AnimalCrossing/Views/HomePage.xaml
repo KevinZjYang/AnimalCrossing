@@ -6,31 +6,122 @@
       xmlns:model="using:AnimalCrossing.Models"
       xmlns:usercontrol="using:AnimalCrossing.UserControls"
       xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+      xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+      xmlns:i="using:Microsoft.Xaml.Interactivity"
+      xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
       Style="{StaticResource PageStyle}"
       mc:Ignorable="d">
 
-    <Grid x:Name="ContentArea">
-        <controls:AdaptiveGridView  ItemsSource="{x:Bind ViewModel.ThisMonthInsects,Mode=OneWay}">
+    <Grid x:Name="ContentArea"
+          Padding="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="动物森友会图鉴"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   Visibility="Collapsed"
+                   Margin="0,0,0,12" />
+        <controls:AdaptiveGridView Grid.Row="2"
+                                   ItemsSource="{x:Bind ViewModel.ThisMonthAnimals,Mode=OneWay}">
             <!--<GridView.Header>
                 <TextBlock Text="{x:Bind ViewModel.ThisMonthInsects.Count,Mode=OneWay}" />
             </GridView.Header>-->
             <controls:AdaptiveGridView.Header>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="本月出现" FontSize="20"/>
-                    <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.ThisMonthInsects.Count,Mode=OneWay}" />
-                    
+                <StackPanel Orientation="Vertical"
+                            Margin="0,0,0,8">
+                    <TextBlock Text="本月出现"
+                               FontSize="20"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center" />
+                    <StackPanel Orientation="Horizontal">
+                        <muxc:RadioButtons MaxColumns="2"
+                                           VerticalAlignment="Center">
+                            <RadioButton Content="鱼类"
+                                         Tag="Fish"
+                                         GroupName="Animal"
+                                         IsChecked="{x:Bind ViewModel.IsFishCheck,Mode=OneWay}">
+                                <i:Interaction.Behaviors>
+                                    <ic:EventTriggerBehavior EventName="Checked">
+                                        <ic:InvokeCommandAction Command="{x:Bind ViewModel.FishCheckedCommand}" />
+                                    </ic:EventTriggerBehavior>
+                                </i:Interaction.Behaviors>
+                            </RadioButton>
+                            <RadioButton Content="昆虫"
+                                         Tag="Insect"
+                                         GroupName="Animal"
+                                         IsChecked="{x:Bind ViewModel.IsInsectCheck,Mode=OneWay}">
+                                <i:Interaction.Behaviors>
+                                    <ic:EventTriggerBehavior EventName="Checked">
+                                        <ic:InvokeCommandAction Command="{x:Bind ViewModel.InsectCheckedCommand}" />
+                                    </ic:EventTriggerBehavior>
+                                </i:Interaction.Behaviors>
+                            </RadioButton>
+                        </muxc:RadioButtons>
+                        <AppBarSeparator />
+                        <muxc:RadioButtons MaxColumns="2"
+                                           VerticalAlignment="Center">
+                            <RadioButton Content="北半球"
+                                         Tag="North"
+                                         GroupName="Hemisphere"
+                                         IsChecked="{x:Bind ViewModel.IsNorthCheck,Mode=OneWay}">
+                                <i:Interaction.Behaviors>
+                                    <ic:EventTriggerBehavior EventName="Checked">
+                                        <ic:InvokeCommandAction Command="{x:Bind ViewModel.NorthCheckedCommand}" />
+                                    </ic:EventTriggerBehavior>
+                                </i:Interaction.Behaviors>
+                            </RadioButton>
+                            <RadioButton Content="南半球"
+                                         Tag="South"
+                                         GroupName="Hemisphere"
+                                         IsChecked="{x:Bind ViewModel.IsSouthCheck,Mode=OneWay}">
+                                <i:Interaction.Behaviors>
+                                    <ic:EventTriggerBehavior EventName="Checked">
+                                        <ic:InvokeCommandAction Command="{x:Bind ViewModel.SouthCheckedCommand}" />
+                                    </ic:EventTriggerBehavior>
+                                </i:Interaction.Behaviors>
+                            </RadioButton>
+                        </muxc:RadioButtons>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="隐藏已开启图鉴动物"
+                                   VerticalAlignment="Center" />
+                        <ToggleSwitch Margin="12,0,0,0"
+                                      OffContent="关"
+                                      OnContent="开">
+                            <i:Interaction.Behaviors>
+                                <ic:EventTriggerBehavior EventName="Toggled">
+                                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.HideBookCommand}" />
+                                </ic:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ToggleSwitch>
+                        <Button Content="按价格由高到底排序"
+                                Style="{StaticResource ButtonRevealStyle}"
+                                CornerRadius="6"
+                                Command="{x:Bind ViewModel.SortPriceCommand}" />
+                    </StackPanel>
                 </StackPanel>
             </controls:AdaptiveGridView.Header>
             <controls:AdaptiveGridView.ItemTemplate>
-                <DataTemplate x:DataType="model:Insect">
-                    <StackPanel Orientation="Vertical">
-                        <controls:ImageEx Height="64" Source="{x:Bind English,Converter={StaticResource EnglishToIconConverter}}" />
+                <DataTemplate x:DataType="model:NormalAnimals">
+                    <StackPanel Orientation="Vertical"
+                                Padding="4">
+                        <controls:ImageEx Width="120"
+                                          Source="{x:Bind English,Converter={StaticResource EnglishToIconConverter}}" />
                         <TextBlock Text="{x:Bind Name}"
+                                   FontSize="16"
                                    HorizontalAlignment="Center" />
-                        <TextBlock HorizontalAlignment="Center">
-                            <Run>￥</Run>
+                        <TextBlock HorizontalAlignment="Center"
+                                   Foreground="{ThemeResource ThemeColor3}">
+
                             <Run Text="{x:Bind Price}" />
+                            <Run>铃钱</Run>
                         </TextBlock>
+                        <StackPanel Orientation="Vertical">
+                        </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </controls:AdaptiveGridView.ItemTemplate>

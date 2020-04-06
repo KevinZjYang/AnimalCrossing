@@ -23,11 +23,12 @@ namespace AnimalCrossing.ViewModels
         public ObservableCollection<NormalAnimals> Fishes { get; private set; } = new ObservableCollection<NormalAnimals>();
 
         private ICommand _southChecked;
+
         public ICommand SouthCheckedCommand
         {
             get
             {
-                if(_southChecked== null)
+                if (_southChecked == null)
                 {
                     _southChecked = new RelayCommand<RoutedEventArgs>(SouthChecked);
                 }
@@ -41,6 +42,7 @@ namespace AnimalCrossing.ViewModels
         }
 
         private ICommand _northChecked;
+
         public ICommand NorthCheckedCommand
         {
             get
@@ -59,11 +61,12 @@ namespace AnimalCrossing.ViewModels
         }
 
         private ICommand _beginningEdit;
+
         public ICommand BeginningEditCommand
         {
             get
             {
-                if(_beginningEdit == null)
+                if (_beginningEdit == null)
                 {
                     _beginningEdit = new RelayCommand<DataGridBeginningEditEventArgs>(BeginningEdit);
                 }
@@ -87,11 +90,12 @@ namespace AnimalCrossing.ViewModels
         }
 
         private ICommand _cellEditEnded;
+
         public ICommand CellEditEndedCommand
         {
             get
             {
-                if(_cellEditEnded == null)
+                if (_cellEditEnded == null)
                 {
                     _cellEditEnded = new RelayCommand<DataGridCellEditEndedEventArgs>(CellEditEnded);
                 }
@@ -112,7 +116,7 @@ namespace AnimalCrossing.ViewModels
                 BookCount -= 1;
             }
 
-            if (_beforeEditMuseum == false &&  normal.MuseumHave == true)
+            if (_beforeEditMuseum == false && normal.MuseumHave == true)
             {
                 MuseumCount += 1;
             }
@@ -123,11 +127,12 @@ namespace AnimalCrossing.ViewModels
         }
 
         private ICommand _sendEmail;
+
         public ICommand SendEmailCommand
         {
             get
             {
-                if(_sendEmail == null)
+                if (_sendEmail == null)
                 {
                     _sendEmail = new RelayCommand(SendEmail);
                 }
@@ -141,6 +146,7 @@ namespace AnimalCrossing.ViewModels
         }
 
         private bool _isNorthCheck;
+
         public bool IsNorthCheck
         {
             get { return _isNorthCheck; }
@@ -148,6 +154,7 @@ namespace AnimalCrossing.ViewModels
         }
 
         private bool _isSouthCheck;
+
         public bool IsSouthCheck
         {
             get { return _isSouthCheck; }
@@ -155,6 +162,7 @@ namespace AnimalCrossing.ViewModels
         }
 
         private int _bookCount;
+
         public int BookCount
         {
             get { return _bookCount; }
@@ -162,13 +170,13 @@ namespace AnimalCrossing.ViewModels
         }
 
         private int _museumCount;
+
         public int MuseumCount
         {
             get { return _museumCount; }
             set { Set(ref _museumCount, value); }
         }
 
-       
         public FishViewModel()
         {
             Pictorials = new List<PictorialBook>
@@ -180,44 +188,45 @@ namespace AnimalCrossing.ViewModels
             {
                 new Museum{MuseumHave = true,DisplayName="是"},
                 new Museum{MuseumHave=false,DisplayName="否"}
-            }; 
+            };
         }
 
         public void LoadData()
         {
-            IsSouthCheck =false;
+            IsSouthCheck = false;
             IsNorthCheck = true;
 
             LoadNorthData();
         }
-
 
         public void OnSorting(object sender, DataGridColumnEventArgs e)
         {
             var dg = sender as DataGrid;
 
             #region Sort Number
+
             if (e.Column.Tag.ToString() == "Number")
             {
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
                 {
                     dg.ItemsSource = new ObservableCollection<NormalAnimals>(from item in Fishes
                                                                              orderby item.Number ascending
-                                                                     select item);
+                                                                             select item);
                     e.Column.SortDirection = DataGridSortDirection.Ascending;
                 }
                 else
                 {
                     dg.ItemsSource = new ObservableCollection<NormalAnimals>(from item in Fishes
                                                                              orderby item.Number descending
-                                                                     select item);
+                                                                             select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
                 }
-                  
             }
-            #endregion
+
+            #endregion Sort Number
 
             #region Sort Owned
+
             if (e.Column.Tag.ToString() == "Owned")
             {
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
@@ -235,9 +244,11 @@ namespace AnimalCrossing.ViewModels
                     e.Column.SortDirection = DataGridSortDirection.Descending;
                 }
             }
-            #endregion
+
+            #endregion Sort Owned
 
             #region Sort MuseumHave
+
             if (e.Column.Tag.ToString() == "MuseumHave")
             {
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
@@ -254,11 +265,12 @@ namespace AnimalCrossing.ViewModels
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
                 }
-
             }
-            #endregion
+
+            #endregion Sort MuseumHave
 
             #region Sort Price
+
             if (e.Column.Tag.ToString() == "Price")
             {
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
@@ -275,11 +287,12 @@ namespace AnimalCrossing.ViewModels
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
                 }
-
             }
-            #endregion
+
+            #endregion Sort Price
 
             #region Sort Position
+
             if (e.Column.Tag.ToString() == "Position")
             {
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
@@ -296,11 +309,12 @@ namespace AnimalCrossing.ViewModels
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
                 }
-
             }
-            #endregion
+
+            #endregion Sort Position
 
             #region Sort ShapOrWeather
+
             if (e.Column.Tag.ToString() == "ShapeOrWeather")
             {
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
@@ -317,11 +331,12 @@ namespace AnimalCrossing.ViewModels
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
                 }
-
             }
-            #endregion
+
+            #endregion Sort ShapOrWeather
 
             #region Sort Time
+
             if (e.Column.Tag.ToString() == "Time")
             {
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
@@ -338,9 +353,9 @@ namespace AnimalCrossing.ViewModels
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
                 }
-
             }
-            #endregion
+
+            #endregion Sort Time
 
             foreach (var dgColumn in dg.Columns)
             {
@@ -349,7 +364,6 @@ namespace AnimalCrossing.ViewModels
                     dgColumn.SortDirection = null;
                 }
             }
-
         }
 
         private void LoadSouthData()
@@ -358,42 +372,14 @@ namespace AnimalCrossing.ViewModels
             BookCount = 0;
             MuseumCount = 0;
 
-            using (var con = SQLiteService.GetDbConnection())
+            var normalAnimals = CommonDataService.GetAllFishes(out int bookCount, out int museumCount, CommonDataService.Hemisphere.South);
+            BookCount = bookCount;
+            MuseumCount = museumCount;
+            foreach (var item in normalAnimals)
             {
-                var animals = con.Table<AnimalsFish>().ToList();
-                foreach (var item in animals)
-                {
-                    var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Fish>(item.Data);
-
-                    List<UserFish> userFish;
-                    using (var usercon = SQLiteService.GetUserDbConnection())
-                    {
-                        userFish = usercon.Table<UserFish>().Where(p => p.Name == item.Name).ToList();
-                    }
-                    if (userFish.Count > 0)
-                    {
-                        var owned = userFish[0].Owned;
-                        var museumHave = userFish[0].MuseumHave;
-
-                        if (owned) BookCount += 1;
-                        if (museumHave) MuseumCount += 1;
-
-                        var normal = new NormalAnimals { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Shape, Time = obj.Time, AppearMonth = obj.Hemisphere.South.Month.AppearMonth, Owned = owned, MuseumHave = museumHave };
-                        Fishes.Add(normal);
-                        
-                    }
-                    else
-                    {
-                        var normal = new NormalAnimals { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Shape, Time = obj.Time, AppearMonth = obj.Hemisphere.South.Month.AppearMonth, Owned = false, MuseumHave = false };
-                        Fishes.Add(normal);
-
-                    }
-
-                }
+                Fishes.Add(item);
             }
-
         }
-
 
         private void LoadNorthData()
         {
@@ -401,40 +387,13 @@ namespace AnimalCrossing.ViewModels
             BookCount = 0;
             MuseumCount = 0;
 
-            using (var con = SQLiteService.GetDbConnection())
+            var normalAnimals = CommonDataService.GetAllFishes(out int bookCount, out int museumCount, CommonDataService.Hemisphere.North);
+            BookCount = bookCount;
+            MuseumCount = museumCount;
+            foreach (var item in normalAnimals)
             {
-                var animals = con.Table<AnimalsFish>().ToList();
-                foreach (var item in animals)
-                {
-                    var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Fish>(item.Data);
-
-                    List<UserFish> userFish;
-                    using (var usercon = SQLiteService.GetUserDbConnection())
-                    {
-                        userFish = usercon.Table<UserFish>().Where(p => p.Name == item.Name).ToList();
-                    }
-                    if (userFish.Count > 0)
-                    {
-                        var owned = userFish[0].Owned;
-                        var museumHave = userFish[0].MuseumHave;
-
-                        if (owned) BookCount += 1;
-                        if (museumHave) MuseumCount += 1;
-
-                        var normal = new NormalAnimals { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Shape, Time = obj.Time, AppearMonth = obj.Hemisphere.North.Month.AppearMonth, Owned = owned, MuseumHave = museumHave };
-                        Fishes.Add(normal);
-
-                    }
-                    else
-                    {
-                        var normal = new NormalAnimals { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Shape, Time = obj.Time, AppearMonth = obj.Hemisphere.North.Month.AppearMonth, Owned = false, MuseumHave = false };
-                        Fishes.Add(normal);
-
-                    }
-
-                }
+                Fishes.Add(item);
             }
-
         }
     }
 }
