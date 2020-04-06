@@ -20,7 +20,7 @@ namespace AnimalCrossing.ViewModels
 
         public List<PictorialBook> Pictorials { get; private set; }
         public List<Museum> Museums { get; private set; }
-        public ObservableCollection<NormalAnimals> Fishes { get; private set; } = new ObservableCollection<NormalAnimals>();
+        public ObservableCollection<NormalAnimal> Fishes { get; private set; } = new ObservableCollection<NormalAnimal>();
 
         private ICommand _southChecked;
 
@@ -79,7 +79,7 @@ namespace AnimalCrossing.ViewModels
             if (obj.Column.Tag.ToString() == "Owned" || obj.Column.Tag.ToString() == "MuseumHave")
             {
                 obj.Cancel = false;
-                var normal = (obj.Row as FrameworkElement).DataContext as NormalAnimals;
+                var normal = (obj.Row as FrameworkElement).DataContext as NormalAnimal;
                 _beforeEditOwned = normal.Owned;
                 _beforeEditMuseum = normal.MuseumHave;
             }
@@ -105,7 +105,7 @@ namespace AnimalCrossing.ViewModels
 
         private void CellEditEnded(DataGridCellEditEndedEventArgs obj)
         {
-            var normal = (obj.Row as FrameworkElement).DataContext as NormalAnimals;
+            var normal = (obj.Row as FrameworkElement).DataContext as NormalAnimal;
             SQLiteService.AddUserFish(new UserFish { Name = normal.Name, Owned = normal.Owned, MuseumHave = normal.MuseumHave });
             if (_beforeEditOwned == false && normal.Owned == true)
             {
@@ -209,14 +209,14 @@ namespace AnimalCrossing.ViewModels
             {
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
                 {
-                    dg.ItemsSource = new ObservableCollection<NormalAnimals>(from item in Fishes
+                    dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Fishes
                                                                              orderby item.Number ascending
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Ascending;
                 }
                 else
                 {
-                    dg.ItemsSource = new ObservableCollection<NormalAnimals>(from item in Fishes
+                    dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Fishes
                                                                              orderby item.Number descending
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
@@ -231,14 +231,14 @@ namespace AnimalCrossing.ViewModels
             {
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
                 {
-                    dg.ItemsSource = new ObservableCollection<NormalAnimals>(from item in Fishes
+                    dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Fishes
                                                                              orderby item.Owned ascending
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Ascending;
                 }
                 else
                 {
-                    dg.ItemsSource = new ObservableCollection<NormalAnimals>(from item in Fishes
+                    dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Fishes
                                                                              orderby item.Owned descending
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
@@ -253,14 +253,14 @@ namespace AnimalCrossing.ViewModels
             {
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
                 {
-                    dg.ItemsSource = new ObservableCollection<NormalAnimals>(from item in Fishes
+                    dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Fishes
                                                                              orderby item.MuseumHave ascending
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Ascending;
                 }
                 else
                 {
-                    dg.ItemsSource = new ObservableCollection<NormalAnimals>(from item in Fishes
+                    dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Fishes
                                                                              orderby item.MuseumHave descending
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
@@ -275,14 +275,14 @@ namespace AnimalCrossing.ViewModels
             {
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
                 {
-                    dg.ItemsSource = new ObservableCollection<NormalAnimals>(from item in Fishes
+                    dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Fishes
                                                                              orderby item.Price ascending
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Ascending;
                 }
                 else
                 {
-                    dg.ItemsSource = new ObservableCollection<NormalAnimals>(from item in Fishes
+                    dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Fishes
                                                                              orderby item.Price descending
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
@@ -297,14 +297,14 @@ namespace AnimalCrossing.ViewModels
             {
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
                 {
-                    dg.ItemsSource = new ObservableCollection<NormalAnimals>(from item in Fishes
+                    dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Fishes
                                                                              orderby item.Position ascending
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Ascending;
                 }
                 else
                 {
-                    dg.ItemsSource = new ObservableCollection<NormalAnimals>(from item in Fishes
+                    dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Fishes
                                                                              orderby item.Position descending
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
@@ -319,14 +319,14 @@ namespace AnimalCrossing.ViewModels
             {
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
                 {
-                    dg.ItemsSource = new ObservableCollection<NormalAnimals>(from item in Fishes
+                    dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Fishes
                                                                              orderby item.ShapeOrWeather ascending
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Ascending;
                 }
                 else
                 {
-                    dg.ItemsSource = new ObservableCollection<NormalAnimals>(from item in Fishes
+                    dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Fishes
                                                                              orderby item.ShapeOrWeather descending
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
@@ -341,14 +341,14 @@ namespace AnimalCrossing.ViewModels
             {
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
                 {
-                    dg.ItemsSource = new ObservableCollection<NormalAnimals>(from item in Fishes
+                    dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Fishes
                                                                              orderby item.Time ascending
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Ascending;
                 }
                 else
                 {
-                    dg.ItemsSource = new ObservableCollection<NormalAnimals>(from item in Fishes
+                    dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Fishes
                                                                              orderby item.Time descending
                                                                              select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;

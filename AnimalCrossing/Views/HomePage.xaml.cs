@@ -24,7 +24,6 @@ namespace AnimalCrossing.Views
         {
             base.OnNavigatedTo(e);
             ViewModel.LoadDataAsync();
-            
         }
     }
 }

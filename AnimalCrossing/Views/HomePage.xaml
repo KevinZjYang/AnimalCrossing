@@ -26,10 +26,14 @@
                    Visibility="Collapsed"
                    Margin="0,0,0,12" />
         <controls:AdaptiveGridView Grid.Row="2"
+                                   IsItemClickEnabled="True"
+                                   SelectionMode="Single"
                                    ItemsSource="{x:Bind ViewModel.ThisMonthAnimals,Mode=OneWay}">
-            <!--<GridView.Header>
-                <TextBlock Text="{x:Bind ViewModel.ThisMonthInsects.Count,Mode=OneWay}" />
-            </GridView.Header>-->
+            <i:Interaction.Behaviors>
+                <ic:EventTriggerBehavior EventName="ItemClick">
+                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemClickCommand}" />
+                </ic:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
             <controls:AdaptiveGridView.Header>
                 <StackPanel Orientation="Vertical"
                             Margin="0,0,0,8">
@@ -91,10 +95,23 @@
                                    VerticalAlignment="Center" />
                         <ToggleSwitch Margin="12,0,0,0"
                                       OffContent="关"
-                                      OnContent="开">
+                                      OnContent="开"
+                                      IsOn="{x:Bind ViewModel.IsOwnedOn,Mode=TwoWay}">
                             <i:Interaction.Behaviors>
                                 <ic:EventTriggerBehavior EventName="Toggled">
                                     <ic:InvokeCommandAction Command="{x:Bind ViewModel.HideBookCommand}" />
+                                </ic:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ToggleSwitch>
+                        <TextBlock Text="只显示现在可获取的"
+                                   VerticalAlignment="Center" />
+                        <ToggleSwitch Margin="12,0,0,0"
+                                      IsOn="{x:Bind ViewModel.IsNowAvailableOn,Mode=TwoWay}"
+                                      OffContent="关"
+                                      OnContent="开">
+                            <i:Interaction.Behaviors>
+                                <ic:EventTriggerBehavior EventName="Toggled">
+                                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.NowAvailableCommand}" />
                                 </ic:EventTriggerBehavior>
                             </i:Interaction.Behaviors>
                         </ToggleSwitch>
@@ -106,7 +123,7 @@
                 </StackPanel>
             </controls:AdaptiveGridView.Header>
             <controls:AdaptiveGridView.ItemTemplate>
-                <DataTemplate x:DataType="model:NormalAnimals">
+                <DataTemplate x:DataType="model:NormalAnimal">
                     <StackPanel Orientation="Vertical"
                                 Padding="4">
                         <controls:ImageEx Width="120"
@@ -120,8 +137,6 @@
                             <Run Text="{x:Bind Price}" />
                             <Run>铃钱</Run>
                         </TextBlock>
-                        <StackPanel Orientation="Vertical">
-                        </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </controls:AdaptiveGridView.ItemTemplate>

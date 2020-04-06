@@ -8,7 +8,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-                
+
                 <ResourceDictionary Source="/Styles/_Colors.xaml" />
                 <ResourceDictionary Source="/Styles/_FontSizes.xaml" />
                 <ResourceDictionary Source="/Styles/_Thickness.xaml" />
@@ -19,10 +19,13 @@
 
             <converter:EnglishToIconConverter x:Key="EnglishToIconConverter" />
             <converter:ZeroToVisibilityConverter x:Key="ZeroToVisibilityConverter" />
-           
+
             <MuxConverter:BoolToVisibilityConverter FalseValue="Visible"
                                                     TrueValue="Collapsed"
-                                                    x:Key="UnBoolToVisibilityConverter"/>
+                                                    x:Key="UnBoolToVisibilityConverter" />
+            <MuxConverter:BoolToObjectConverter TrueValue="是"
+                                                FalseValue="否"
+                                                x:Key="BoolToShiFouConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

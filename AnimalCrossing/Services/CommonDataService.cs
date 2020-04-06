@@ -29,10 +29,10 @@ namespace AnimalCrossing.Services
         /// </param>
         /// <returns>
         /// </returns>
-        internal static List<NormalAnimals> GetAllFishes(out int bookCount, out int museumCount, Hemisphere hemisphere)
+        internal static List<NormalAnimal> GetAllFishes(out int bookCount, out int museumCount, Hemisphere hemisphere)
         {
             bookCount = 0; museumCount = 0;
-            List<NormalAnimals> normalAnimals = new List<NormalAnimals>();
+            List<NormalAnimal> normalAnimals = new List<NormalAnimal>();
             using (var con = SQLiteService.GetDbConnection())
             {
                 var animals = con.Table<AnimalsFish>().ToList();
@@ -77,10 +77,10 @@ namespace AnimalCrossing.Services
         /// </param>
         /// <returns>
         /// </returns>
-        internal static List<NormalAnimals> GetThisMonthFishes(out int bookCount, out int museumCount, Hemisphere hemisphere)
+        internal static List<NormalAnimal> GetThisMonthFishes(out int bookCount, out int museumCount, Hemisphere hemisphere)
         {
             bookCount = 0; museumCount = 0;
-            List<NormalAnimals> normalAnimals = new List<NormalAnimals>();
+            List<NormalAnimal> normalAnimals = new List<NormalAnimal>();
             var animals = GetAllFishes(out int book, out int museum, hemisphere);
             foreach (var item in animals)
             {
@@ -110,10 +110,10 @@ namespace AnimalCrossing.Services
         /// </param>
         /// <returns>
         /// </returns>
-        internal static List<NormalAnimals> GetAllInsects(out int bookCount, out int museumCount, Hemisphere hemisphere)
+        internal static List<NormalAnimal> GetAllInsects(out int bookCount, out int museumCount, Hemisphere hemisphere)
         {
             bookCount = 0; museumCount = 0;
-            List<NormalAnimals> normalAnimals = new List<NormalAnimals>();
+            List<NormalAnimal> normalAnimals = new List<NormalAnimal>();
             using (var con = SQLiteService.GetDbConnection())
             {
                 var animals = con.Table<AnimalsInsect>().ToList();
@@ -161,10 +161,10 @@ namespace AnimalCrossing.Services
         /// </param>
         /// <returns>
         /// </returns>
-        internal static List<NormalAnimals> GetThisMonthInsects(out int bookCount, out int museumCount, Hemisphere hemisphere)
+        internal static List<NormalAnimal> GetThisMonthInsects(out int bookCount, out int museumCount, Hemisphere hemisphere)
         {
             bookCount = 0; museumCount = 0;
-            List<NormalAnimals> normalAnimals = new List<NormalAnimals>();
+            List<NormalAnimal> normalAnimals = new List<NormalAnimal>();
             var animals = GetAllInsects(out int book, out int museum, hemisphere);
             foreach (var item in animals)
             {
@@ -180,30 +180,30 @@ namespace AnimalCrossing.Services
             return normalAnimals;
         }
 
-        private static NormalAnimals SelectHemisphereAndConstructFish(Hemisphere hemisphere, Fish obj, bool owned, bool museumHave)
+        private static NormalAnimal SelectHemisphereAndConstructFish(Hemisphere hemisphere, Fish obj, bool owned, bool museumHave)
         {
             if (hemisphere == Hemisphere.North)
             {
-                var normal = new NormalAnimals { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Shape, Time = obj.Time, AppearMonth = obj.Hemisphere.North.Month.AppearMonth, Owned = owned, MuseumHave = museumHave };
+                var normal = new NormalAnimal { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Shape, Time = obj.Time, AppearMonth = obj.Hemisphere.North.Month.AppearMonth, Owned = owned, MuseumHave = museumHave };
                 return normal;
             }
             else
             {
-                var normal = new NormalAnimals { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Shape, Time = obj.Time, AppearMonth = obj.Hemisphere.South.Month.AppearMonth, Owned = owned, MuseumHave = museumHave };
+                var normal = new NormalAnimal { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Shape, Time = obj.Time, AppearMonth = obj.Hemisphere.South.Month.AppearMonth, Owned = owned, MuseumHave = museumHave };
                 return normal;
             }
         }
 
-        private static NormalAnimals SelectHemisphereAndConstructInsect(Hemisphere hemisphere, Insect obj, bool owned, bool museumHave)
+        private static NormalAnimal SelectHemisphereAndConstructInsect(Hemisphere hemisphere, Insect obj, bool owned, bool museumHave)
         {
             if (hemisphere == Hemisphere.North)
             {
-                var normal = new NormalAnimals { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Weather, Time = obj.Time, AppearMonth = obj.Hemisphere.North.Month.AppearMonth, Owned = owned, MuseumHave = museumHave };
+                var normal = new NormalAnimal { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Weather, Time = obj.Time, AppearMonth = obj.Hemisphere.North.Month.AppearMonth, Owned = owned, MuseumHave = museumHave };
                 return normal;
             }
             else
             {
-                var normal = new NormalAnimals { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Weather, Time = obj.Time, AppearMonth = obj.Hemisphere.South.Month.AppearMonth, Owned = owned, MuseumHave = museumHave };
+                var normal = new NormalAnimal { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Weather, Time = obj.Time, AppearMonth = obj.Hemisphere.South.Month.AppearMonth, Owned = owned, MuseumHave = museumHave };
                 return normal;
             }
         }

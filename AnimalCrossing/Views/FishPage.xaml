@@ -23,7 +23,10 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Text="鱼类图鉴" Margin="12,12,0,0" FontSize="16" FontWeight="SemiBold"/>
+            <TextBlock Text="鱼类图鉴"
+                       Margin="12,12,0,0"
+                       FontSize="16"
+                       FontWeight="SemiBold" />
             <muxc:RadioButtons MaxColumns="2"
                                Grid.Column="1"
                                Margin="8,8,0,0"
@@ -49,13 +52,13 @@
             </muxc:RadioButtons>
         </Grid>
         <control:DataGrid AutoGenerateColumns="False"
-                          GridLinesVisibility="All"  
+                          GridLinesVisibility="All"
                           CanUserSortColumns="True"
                           Margin="12"
                           Grid.Row="1"
                           IsReadOnly="False"
                           HorizontalScrollBarVisibility="Auto"
-                          Sorting="{x:Bind ViewModel.OnSorting}"                       
+                          Sorting="{x:Bind ViewModel.OnSorting}"
                           ItemsSource="{x:Bind ViewModel.Fishes,Mode=OneWay}">
             <i:Interaction.Behaviors>
                 <ic:EventTriggerBehavior EventName="BeginningEdit">
@@ -78,7 +81,8 @@
                                 <Image Height="36"
                                        Source="{Binding Icon}"
                                        Margin="4" />
-                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" />
+                                <TextBlock Text="{Binding Name}"
+                                           VerticalAlignment="Center" />
                             </StackPanel>
                         </DataTemplate>
                     </control:DataGridTemplateColumn.CellTemplate>
@@ -103,27 +107,31 @@
                                             Tag="ShapeOrWeather"
                                             Binding="{Binding ShapeOrWeather}" />
                 <control:DataGridTextColumn Header="时间"
-                                            Tag="Time"                                   
+                                            Tag="Time"
                                             Binding="{Binding Time}" />
                 <control:DataGridTemplateColumn Header="出现月份"
                                                 CanUserSort="False"
                                                 Tag="AppearMonth">
                     <control:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <usercontrol:AppearMonthControl AppearMonth="{Binding AppearMonth}" Margin="0,0,4,0"/>
+                            <usercontrol:AppearMonthControl AppearMonth="{Binding AppearMonth}"
+                                                            Margin="0,0,4,0" />
                         </DataTemplate>
                     </control:DataGridTemplateColumn.CellTemplate>
                 </control:DataGridTemplateColumn>
             </control:DataGrid.Columns>
         </control:DataGrid>
-        <Grid Grid.Row="3" x:DefaultBindMode="OneWay">
+        <Grid Grid.Row="3"
+              x:DefaultBindMode="OneWay">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBlock Margin="12,4,0,4" Grid.Column="0">
-                <Run Text="共有鱼类"/>
-                <Run Text="{x:Bind ViewModel.Fishes.Count}" Foreground="{ThemeResource SystemAccentColor}"/>
+            <TextBlock Margin="12,4,0,4"
+                       Grid.Column="0">
+                <Run Text="共有鱼类" />
+                <Run Text="{x:Bind ViewModel.Fishes.Count}"
+                     Foreground="{ThemeResource SystemAccentColor}" />
                 <Run Text="种,其中图鉴已开启" />
                 <Run Text="{x:Bind ViewModel.BookCount}"
                      Foreground="{ThemeResource SystemAccentColor}" />
@@ -132,8 +140,10 @@
                      Foreground="{ThemeResource SystemAccentColor}" />
                 <Run Text="种." />
             </TextBlock>
-            <Button Grid.Column="1" Content="有数据错误或者其他问题欢迎反馈"
-                    Style="{StaticResource TextBlockButtonStyle}" Command="{x:Bind ViewModel.SendEmailCommand}"/>
+            <Button Grid.Column="1"
+                    Content="有数据错误或者其他问题欢迎反馈"
+                    Style="{StaticResource TextBlockButtonStyle}"
+                    Command="{x:Bind ViewModel.SendEmailCommand}" />
         </Grid>
     </Grid>
 </Page>

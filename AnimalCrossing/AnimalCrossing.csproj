@@ -173,6 +173,7 @@
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Services\SQLiteService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
+    <Compile Include="Helpers\TimeHelper.cs" />
     <Compile Include="UserControls\AppearMonthControl.xaml.cs">
       <DependentUpon>AppearMonthControl.xaml</DependentUpon>
     </Compile>
@@ -183,6 +184,9 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="UserControls\DetailControl.xaml.cs">
+      <DependentUpon>DetailControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ExcelToolPage.xaml.cs">
       <DependentUpon>ExcelToolPage.xaml</DependentUpon>
     </Compile>
@@ -230,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\AppearMonthControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DetailControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

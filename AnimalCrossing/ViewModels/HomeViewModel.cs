@@ -10,24 +10,22 @@ using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
+using static AnimalCrossing.UserControls.DetailControl;
 
 namespace AnimalCrossing.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
-        //private List<Insect> _insects;
+        private Animal _whichAnimal;
+        private List<NormalAnimal> _thisMonthAnimals;
 
-        //public ObservableCollection<Insect> ThisMonthInsects { get; private set; } = new ObservableCollection<Insect>();
-
-        private List<NormalAnimals> _thisMonthAnimals;
-
-        public List<NormalAnimals> ThisMonthAnimals
+        public List<NormalAnimal> ThisMonthAnimals
         {
             get
             {
                 if (_thisMonthAnimals == null)
                 {
-                    _thisMonthAnimals = new List<NormalAnimals>();
+                    _thisMonthAnimals = new List<NormalAnimal>();
                 }
                 return _thisMonthAnimals;
             }
@@ -124,7 +122,7 @@ namespace AnimalCrossing.ViewModels
             var toggleSwitch = args.OriginalSource as ToggleSwitch;
             if (toggleSwitch.IsOn)
             {
-                ThisMonthAnimals = ThisMonthAnimals.FindAll(delegate (NormalAnimals animals)
+                ThisMonthAnimals = ThisMonthAnimals.FindAll(delegate (NormalAnimal animals)
                 {
                     if (animals.Owned)
                     {
@@ -133,6 +131,43 @@ namespace AnimalCrossing.ViewModels
                     else
                     {
                         return true;
+                    }
+                });
+            }
+            else
+            {
+                SelectDataToLoad();
+            }
+        }
+
+        private ICommand _nowAvailable;
+
+        public ICommand NowAvailableCommand
+        {
+            get
+            {
+                if (_nowAvailable == null)
+                {
+                    _nowAvailable = new RelayCommand<RoutedEventArgs>(NowAvailable);
+                }
+                return _nowAvailable;
+            }
+        }
+
+        private void NowAvailable(RoutedEventArgs obj)
+        {
+            var toggleSwitch = obj.OriginalSource as ToggleSwitch;
+            if (toggleSwitch.IsOn)
+            {
+                ThisMonthAnimals = ThisMonthAnimals.FindAll(delegate (NormalAnimal animals)
+                {
+                    if (Helpers.TimeHelper.JudgeIfHourInRange(animals.Time))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
                     }
                 });
             }
@@ -194,6 +229,28 @@ namespace AnimalCrossing.ViewModels
             }
         }
 
+        private ICommand _itemClick;
+
+        public ICommand ItemClickCommand
+        {
+            get
+            {
+                if (_itemClick == null)
+                {
+                    _itemClick = new RelayCommand<ItemClickEventArgs>(GridViewItemClick);
+                }
+                return _itemClick;
+            }
+        }
+
+        private void GridViewItemClick(ItemClickEventArgs obj)
+        {
+            var animal = obj.ClickedItem as NormalAnimal;
+            if (animal == null) return;
+            UserControls.DetailControl detail = new UserControls.DetailControl(animal, _whichAnimal);
+            detail.Show();
+        }
+
         #region
         private bool _isNorthCheck;
 
@@ -227,9 +284,23 @@ namespace AnimalCrossing.ViewModels
             set { Set(ref _isInsectCheck, value); }
         }
 
-        #endregion
+        private bool _isOwnedOn;
 
-        public ObservableCollection<Insect> NextMonthInsects { get; private set; } = new ObservableCollection<Insect>();
+        public bool IsOwnedOn
+        {
+            get { return _isOwnedOn; }
+            set { Set(ref _isOwnedOn, value); }
+        }
+
+        private bool _isNowAvailable;
+
+        public bool IsNowAvailableOn
+        {
+            get { return _isNowAvailable; }
+            set { Set(ref _isNowAvailable, value); }
+        }
+
+        #endregion
 
         public HomeViewModel()
         {
@@ -248,7 +319,7 @@ namespace AnimalCrossing.ViewModels
 
         private void LoadNorthFishData()
         {
-            List<NormalAnimals> animals = new List<NormalAnimals>();
+            List<NormalAnimal> animals = new List<NormalAnimal>();
 
             var normalAnimals = CommonDataService.GetThisMonthFishes(out int bookCount, out int museumCount, CommonDataService.Hemisphere.North);
             foreach (var item in normalAnimals)
@@ -257,11 +328,13 @@ namespace AnimalCrossing.ViewModels
             }
 
             ThisMonthAnimals = animals;
+            OwnedAndTimeSort();
+            _whichAnimal = Animal.Fish;
         }
 
         private void LoadNorthInsectData()
         {
-            List<NormalAnimals> animals = new List<NormalAnimals>();
+            List<NormalAnimal> animals = new List<NormalAnimal>();
 
             var normalAnimals = CommonDataService.GetThisMonthInsects(out int bookCount, out int museumCount, CommonDataService.Hemisphere.North);
             foreach (var item in normalAnimals)
@@ -269,11 +342,13 @@ namespace AnimalCrossing.ViewModels
                 animals.Add(item);
             }
             ThisMonthAnimals = animals;
+            OwnedAndTimeSort();
+            _whichAnimal = Animal.Insect;
         }
 
         private void LoadSouthFishData()
         {
-            List<NormalAnimals> animals = new List<NormalAnimals>();
+            List<NormalAnimal> animals = new List<NormalAnimal>();
 
             var normalAnimals = CommonDataService.GetThisMonthFishes(out int bookCount, out int museumCount, CommonDataService.Hemisphere.South);
             foreach (var item in normalAnimals)
@@ -281,17 +356,21 @@ namespace AnimalCrossing.ViewModels
                 animals.Add(item);
             }
             ThisMonthAnimals = animals;
+            OwnedAndTimeSort();
+            _whichAnimal = Animal.Fish;
         }
 
         private void LoadSouthInsectData()
         {
-            List<NormalAnimals> animals = new List<NormalAnimals>();
+            List<NormalAnimal> animals = new List<NormalAnimal>();
             var normalAnimals = CommonDataService.GetThisMonthInsects(out int bookCount, out int museumCount, CommonDataService.Hemisphere.South);
             foreach (var item in normalAnimals)
             {
                 animals.Add(item);
             }
             ThisMonthAnimals = animals;
+            OwnedAndTimeSort();
+            _whichAnimal = Animal.Insect;
         }
 
         private void SelectDataToLoad()
@@ -317,6 +396,38 @@ namespace AnimalCrossing.ViewModels
                 {
                     LoadSouthInsectData();
                 }
+            }
+        }
+
+        private void OwnedAndTimeSort()
+        {
+            if (IsOwnedOn)
+            {
+                ThisMonthAnimals = ThisMonthAnimals.FindAll(delegate (NormalAnimal animals)
+                {
+                    if (animals.Owned)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                });
+            }
+            if (IsNowAvailableOn)
+            {
+                ThisMonthAnimals = ThisMonthAnimals.FindAll(delegate (NormalAnimal animals)
+                {
+                    if (Helpers.TimeHelper.JudgeIfHourInRange(animals.Time))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                });
             }
         }
     }

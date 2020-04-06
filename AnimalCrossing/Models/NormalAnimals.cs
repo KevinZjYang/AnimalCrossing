@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnimalCrossing.Models
 {
-    public class NormalAnimals
+    public class NormalAnimal
     {
         public string Name { get; set; }
         public string Icon { get; set; }
@@ -21,6 +21,5 @@ namespace AnimalCrossing.Models
 
         public bool Owned { get; set; }
         public bool MuseumHave { get; set; }
-
     }
 }
