@@ -40,7 +40,7 @@
                             <RadioButton Content="鱼类"
                                          Tag="Fish"
                                          GroupName="Animal"
-                                         IsChecked="{x:Bind ViewModel.IsFishCheck,Mode=OneWay}">
+                                         IsChecked="{x:Bind ViewModel.IsFishCheck,Mode=TwoWay}">
                                 <i:Interaction.Behaviors>
                                     <ic:EventTriggerBehavior EventName="Checked">
                                         <ic:InvokeCommandAction Command="{x:Bind ViewModel.FishCheckedCommand}" />
@@ -50,7 +50,7 @@
                             <RadioButton Content="昆虫"
                                          Tag="Insect"
                                          GroupName="Animal"
-                                         IsChecked="{x:Bind ViewModel.IsInsectCheck,Mode=OneWay}">
+                                         IsChecked="{x:Bind ViewModel.IsInsectCheck,Mode=TwoWay}">
                                 <i:Interaction.Behaviors>
                                     <ic:EventTriggerBehavior EventName="Checked">
                                         <ic:InvokeCommandAction Command="{x:Bind ViewModel.InsectCheckedCommand}" />
@@ -64,7 +64,7 @@
                             <RadioButton Content="北半球"
                                          Tag="North"
                                          GroupName="Hemisphere"
-                                         IsChecked="{x:Bind ViewModel.IsNorthCheck,Mode=OneWay}">
+                                         IsChecked="{x:Bind ViewModel.IsNorthCheck,Mode=TwoWay}">
                                 <i:Interaction.Behaviors>
                                     <ic:EventTriggerBehavior EventName="Checked">
                                         <ic:InvokeCommandAction Command="{x:Bind ViewModel.NorthCheckedCommand}" />
@@ -74,7 +74,7 @@
                             <RadioButton Content="南半球"
                                          Tag="South"
                                          GroupName="Hemisphere"
-                                         IsChecked="{x:Bind ViewModel.IsSouthCheck,Mode=OneWay}">
+                                         IsChecked="{x:Bind ViewModel.IsSouthCheck,Mode=TwoWay}">
                                 <i:Interaction.Behaviors>
                                     <ic:EventTriggerBehavior EventName="Checked">
                                         <ic:InvokeCommandAction Command="{x:Bind ViewModel.SouthCheckedCommand}" />
