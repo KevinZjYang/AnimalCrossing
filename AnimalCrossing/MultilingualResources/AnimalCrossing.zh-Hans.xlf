@@ -7,13 +7,13 @@
     <body>
       <group id="ANIMALCROSSING/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
         <trans-unit id="AppDisplayName" translate="yes" xml:space="preserve">
-          <source>AnimalCrossing</source>
-          <target state="new">AnimalCrossing</target>
+          <source>动物森友会图鉴</source>
+          <target state="new">动物森友会图鉴</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Application display name</note>
         </trans-unit>
         <trans-unit id="AppDescription" translate="yes" xml:space="preserve">
-          <source>AnimalCrossing</source>
-          <target state="new">AnimalCrossing</target>
+          <source>动物森友会图鉴</source>
+          <target state="new">动物森友会图鉴</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Application description</note>
         </trans-unit>
         <trans-unit id="ExceptionNavigationServiceExPageNotFound" translate="yes" xml:space="preserve">
@@ -36,79 +36,54 @@
           <target state="new">The page '{0}' is unknown by the NavigationService</target>
           <note from="MultilingualBuild" annotates="source" priority="2">The page is unknown or not registered in navigation service</note>
         </trans-unit>
-        <trans-unit id="Main_Title.Text" translate="yes" xml:space="preserve">
-          <source>Main</source>
-          <target state="new">Main</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Page title for MainPage</note>
-        </trans-unit>
-        <trans-unit id="Home_Title.Text" translate="yes" xml:space="preserve">
-          <source>Home</source>
-          <target state="new">Home</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Page title for HomePage</note>
-        </trans-unit>
-        <trans-unit id="ExcelTool_Title.Text" translate="yes" xml:space="preserve">
-          <source>ExcelTool</source>
-          <target state="new">ExcelTool</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Page title for ExcelToolPage</note>
-        </trans-unit>
-        <trans-unit id="Fish_Title.Text" translate="yes" xml:space="preserve">
-          <source>Fish</source>
-          <target state="new">Fish</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Page title for FishPage</note>
-        </trans-unit>
-        <trans-unit id="Insect_Title.Text" translate="yes" xml:space="preserve">
-          <source>Insect</source>
-          <target state="new">Insect</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Page title for InsectPage</note>
-        </trans-unit>
         <trans-unit id="ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty" translate="yes" xml:space="preserve">
           <source>File name is null or empty. Specify a valid file name</source>
           <target state="new">File name is null or empty. Specify a valid file name</target>
           <note from="MultilingualBuild" annotates="source" priority="2">File name is null or empty to save file in settings storage extensions</note>
         </trans-unit>
         <trans-unit id="Settings_Theme.Text" translate="yes" xml:space="preserve">
-          <source>Choose Theme</source>
-          <target state="new">Choose Theme</target>
+          <source>模式</source>
+          <target state="new">模式</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Choose theme text for Settings</note>
         </trans-unit>
         <trans-unit id="Settings_Theme_Dark.Content" translate="yes" xml:space="preserve">
-          <source>Dark</source>
-          <target state="new">Dark</target>
+          <source>暗</source>
+          <target state="new">暗</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Dark theme text for Settings</note>
         </trans-unit>
         <trans-unit id="Settings_Theme_Default.Content" translate="yes" xml:space="preserve">
-          <source>Windows default</source>
-          <target state="new">Windows default</target>
+          <source>使用系统设置</source>
+          <target state="new">使用系统设置</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Windows default theme text for Settings</note>
         </trans-unit>
         <trans-unit id="Settings_Theme_Light.Content" translate="yes" xml:space="preserve">
-          <source>Light</source>
-          <target state="new">Light</target>
+          <source>亮</source>
+          <target state="new">亮</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Light theme text for Settings</note>
         </trans-unit>
         <trans-unit id="Settings_About.Text" translate="yes" xml:space="preserve">
-          <source>About this application</source>
-          <target state="new">About this application</target>
+          <source>关于应用</source>
+          <target state="new">关于应用</target>
           <note from="MultilingualBuild" annotates="source" priority="2">About this application title for Settings</note>
         </trans-unit>
         <trans-unit id="Settings_AboutDescription.Text" translate="yes" xml:space="preserve">
-          <source>Settings page placeholder text.  Your app description goes here.</source>
-          <target state="new">Settings page placeholder text.  Your app description goes here.</target>
+          <source>仓促完成，有不对的地方，请发邮件反馈。</source>
+          <target state="new">仓促完成，有不对的地方，请发邮件反馈。</target>
           <note from="MultilingualBuild" annotates="source" priority="2">About this application description for Settings</note>
         </trans-unit>
         <trans-unit id="Settings_PrivacyTermsLink.Content" translate="yes" xml:space="preserve">
-          <source>Privacy Statement</source>
-          <target state="new">Privacy Statement</target>
+          <source>隐私政策</source>
+          <target state="new">隐私政策</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Privacy Statement link content for Settings</note>
         </trans-unit>
         <trans-unit id="Settings_PrivacyTermsLink.NavigateUri" translate="yes" xml:space="preserve">
-          <source>https://YourPrivacyUrlGoesHere/</source>
-          <target state="new">https://YourPrivacyUrlGoesHere/</target>
+          <source>https://www.yzj0308.com/%e5%85%b3%e4%ba%8e%e6%9c%ac%e4%ba%ba%e5%8f%91%e5%b8%83%e7%9a%84uwp%e7%9a%84%e9%9a%90%e7%a7%81%e7%ad%96%e7%95%a5/</source>
+          <target state="new">https://www.yzj0308.com/%e5%85%b3%e4%ba%8e%e6%9c%ac%e4%ba%ba%e5%8f%91%e5%b8%83%e7%9a%84uwp%e7%9a%84%e9%9a%90%e7%a7%81%e7%ad%96%e7%95%a5/</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Here is your Privacy Statement url for Settings</note>
         </trans-unit>
         <trans-unit id="Settings_Personalization.Text" translate="yes" xml:space="preserve">
-          <source>Personalization</source>
-          <target state="new">Personalization</target>
+          <source>个性化</source>
+          <target state="new">个性化</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Personalization text for Settings</note>
         </trans-unit>
         <trans-unit id="ExceptionEnumToBooleanConverterValueMustBeAnEnum" translate="yes" xml:space="preserve">
@@ -122,9 +97,59 @@
           <note from="MultilingualBuild" annotates="source" priority="2">Parameter must be an Enum name in enum to boolean converter</note>
         </trans-unit>
         <trans-unit id="Settings_Title.Text" translate="yes" xml:space="preserve">
-          <source>Settings</source>
-          <target state="new">Settings</target>
+          <source>设置</source>
+          <target state="new">设置</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Page title for SettingsPage</note>
+        </trans-unit>
+        <trans-unit id="FirstRun_Body.Text" translate="yes" xml:space="preserve">
+          <source>第一版目前主要提供的功能有：
+1、全部鱼类的详细信息。
+2、全部昆虫的详细信息。
+3、首页显示本月可获取的动物信息。
+以上所有均支持筛选，以及标记是否已经加入图鉴，博物管是否捐赠。
+后续还会加入其他有用的功能。</source>
+          <target state="new">第一版目前主要提供的功能有：
+1、全部鱼类的详细信息。
+2、全部昆虫的详细信息。
+3、首页显示本月可获取的动物信息。
+以上所有均支持筛选，以及标记是否已经加入图鉴，博物管是否捐赠。
+后续还会加入其他有用的功能。</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">First use prompt message body</note>
+        </trans-unit>
+        <trans-unit id="FirstRunDialog.Title" translate="yes" xml:space="preserve">
+          <source>欢迎</source>
+          <target state="new">欢迎</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">First use prompt message title</note>
+        </trans-unit>
+        <trans-unit id="FirstRunDialog.PrimaryButtonText" translate="yes" xml:space="preserve">
+          <source>好的</source>
+          <target state="new">好的</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">First use prompt message primary button text</note>
+        </trans-unit>
+        <trans-unit id="WhatsNew_Body.Text" translate="yes" xml:space="preserve">
+          <source>第一版目前主要提供的功能有：
+1、全部鱼类的详细信息。
+2、全部昆虫的详细信息。
+3、首页显示本月可获取的动物信息。
+以上所有均支持筛选，以及标记是否已经加入图鉴，博物管是否捐赠。
+后续还会加入其他有用的功能。</source>
+          <target state="new">第一版目前主要提供的功能有：
+1、全部鱼类的详细信息。
+2、全部昆虫的详细信息。
+3、首页显示本月可获取的动物信息。
+以上所有均支持筛选，以及标记是否已经加入图鉴，博物管是否捐赠。
+后续还会加入其他有用的功能。</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">What's new prompt message body</note>
+        </trans-unit>
+        <trans-unit id="WhatsNewDialog.Title" translate="yes" xml:space="preserve">
+          <source>更新内容</source>
+          <target state="new">更新内容</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">What's new prompt message title</note>
+        </trans-unit>
+        <trans-unit id="WhatsNewDialog.PrimaryButtonText" translate="yes" xml:space="preserve">
+          <source>好的</source>
+          <target state="new">好的</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">What's new prompt message primary button text</note>
         </trans-unit>
       </group>
     </body>

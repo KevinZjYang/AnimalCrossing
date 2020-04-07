@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDisplayName" xml:space="preserve">
-    <value>AnimalCrossing</value>
+    <value>动物森友会图鉴</value>
     <comment>Application display name</comment>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>AnimalCrossing</value>
+    <value>动物森友会图鉴</value>
     <comment>Application description</comment>
   </data>
   <data name="ExceptionNavigationServiceExPageNotFound" xml:space="preserve">
@@ -141,64 +141,45 @@
     <value>The page '{0}' is unknown by the NavigationService</value>
     <comment>The page is unknown or not registered in navigation service</comment>
   </data>
-  <data name="Main_Title.Text" xml:space="preserve">
-    <value>Main</value>
-    <comment>Page title for MainPage</comment>
-  </data>
-  <data name="Home_Title.Text" xml:space="preserve">
-    <value>Home</value>
-    <comment>Page title for HomePage</comment>
-  </data>
-  <data name="ExcelTool_Title.Text" xml:space="preserve">
-    <value>ExcelTool</value>
-    <comment>Page title for ExcelToolPage</comment>
-  </data>
-  <data name="Fish_Title.Text" xml:space="preserve">
-    <value>Fish</value>
-    <comment>Page title for FishPage</comment>
-  </data>
-  <data name="Insect_Title.Text" xml:space="preserve">
-    <value>Insect</value>
-    <comment>Page title for InsectPage</comment>
-  </data>
+ 
   <data name="ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty" xml:space="preserve">
     <value>File name is null or empty. Specify a valid file name</value>
     <comment>File name is null or empty to save file in settings storage extensions</comment>
   </data>
   <data name="Settings_Theme.Text" xml:space="preserve">
-    <value>Choose Theme</value>
+    <value>模式</value>
     <comment>Choose theme text for Settings</comment>
   </data>
   <data name="Settings_Theme_Dark.Content" xml:space="preserve">
-    <value>Dark</value>
+    <value>暗</value>
     <comment>Dark theme text for Settings</comment>
   </data>
   <data name="Settings_Theme_Default.Content" xml:space="preserve">
-    <value>Windows default</value>
+    <value>使用系统设置</value>
     <comment>Windows default theme text for Settings</comment>
   </data>
   <data name="Settings_Theme_Light.Content" xml:space="preserve">
-    <value>Light</value>
+    <value>亮</value>
     <comment>Light theme text for Settings</comment>
   </data>
   <data name="Settings_About.Text" xml:space="preserve">    
-    <value>About this application</value>
+    <value>关于应用</value>
     <comment>About this application title for Settings</comment>
   </data>
   <data name="Settings_AboutDescription.Text" xml:space="preserve">    
-    <value>Settings page placeholder text.  Your app description goes here.</value>
+    <value>仓促完成，有不对的地方，请发邮件反馈。</value>
     <comment>About this application description for Settings</comment>
   </data>
   <data name="Settings_PrivacyTermsLink.Content" xml:space="preserve">    
-    <value>Privacy Statement</value>
+    <value>隐私政策</value>
     <comment>Privacy Statement link content for Settings</comment>
   </data>
   <data name="Settings_PrivacyTermsLink.NavigateUri" xml:space="preserve">  
-    <value>https://YourPrivacyUrlGoesHere/</value>
+    <value>https://www.yzj0308.com/%e5%85%b3%e4%ba%8e%e6%9c%ac%e4%ba%ba%e5%8f%91%e5%b8%83%e7%9a%84uwp%e7%9a%84%e9%9a%90%e7%a7%81%e7%ad%96%e7%95%a5/</value>
     <comment>Here is your Privacy Statement url for Settings</comment>
   </data>
   <data name="Settings_Personalization.Text" xml:space="preserve">   
-    <value>Personalization</value>
+    <value>个性化</value>
     <comment>Personalization text for Settings</comment>
   </data>
   <data name="ExceptionEnumToBooleanConverterValueMustBeAnEnum" xml:space="preserve">   
@@ -210,7 +191,41 @@
     <comment>Parameter must be an Enum name in enum to boolean converter</comment>
   </data>
   <data name="Settings_Title.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>设置</value>
     <comment>Page title for SettingsPage</comment>
+  </data>
+  <data name="FirstRun_Body.Text" xml:space="preserve">
+    <value>第一版目前主要提供的功能有：
+1、全部鱼类的详细信息。
+2、全部昆虫的详细信息。
+3、首页显示本月可获取的动物信息。
+以上所有均支持筛选，以及标记是否已经加入图鉴，博物管是否捐赠。
+后续还会加入其他有用的功能。</value>
+    <comment>First use prompt message body</comment>
+  </data>
+  <data name="FirstRunDialog.Title" xml:space="preserve">
+    <value>欢迎</value>
+    <comment>First use prompt message title</comment>
+  </data>
+  <data name="FirstRunDialog.PrimaryButtonText" xml:space="preserve">
+    <value>好的</value>
+    <comment>First use prompt message primary button text</comment>
+  </data>
+  <data name="WhatsNew_Body.Text" xml:space="preserve">
+    <value>第一版目前主要提供的功能有：
+1、全部鱼类的详细信息。
+2、全部昆虫的详细信息。
+3、首页显示本月可获取的动物信息。
+以上所有均支持筛选，以及标记是否已经加入图鉴，博物管是否捐赠。
+后续还会加入其他有用的功能。</value>
+    <comment>What's new prompt message body</comment>
+  </data>
+  <data name="WhatsNewDialog.Title" xml:space="preserve">
+    <value>更新内容</value>
+    <comment>What's new prompt message title</comment>
+  </data>
+  <data name="WhatsNewDialog.PrimaryButtonText" xml:space="preserve">
+    <value>好的</value>
+    <comment>What's new prompt message primary button text</comment>
   </data>
 </root>

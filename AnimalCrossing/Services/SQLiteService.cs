@@ -6,11 +6,12 @@ using Windows.Storage;
 
 namespace AnimalCrossing.Services
 {
-    public class SQLiteService
+    public static class SQLiteService
     {
         #region 图鉴数据库
 
-        public readonly static string DbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "Animals.db");
+        public readonly static string DbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, DBNAME);
+        public const string DBNAME = "Animals.db";
 
         public static SQLiteConnection GetDbConnection()
         {

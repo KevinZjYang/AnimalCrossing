@@ -78,7 +78,6 @@ namespace AnimalCrossing.UserControls
         public DetailControl()
         {
             this.InitializeComponent();
-            this.InitializeComponent();
             Popup = new Popup
             {
                 Child = this

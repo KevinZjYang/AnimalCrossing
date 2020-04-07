@@ -24,10 +24,13 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Text="鱼类图鉴"
-                       Margin="12,12,0,0"
-                       FontSize="16"
-                       FontWeight="SemiBold" />
+            <StackPanel Orientation="Horizontal"
+                        Margin="12,12,0,0">
+                <TextBlock Text="鱼类图鉴"                         
+                           FontSize="16"
+                           FontWeight="SemiBold" />
+                <TextBlock Text="选中单元格后双击或者按F2可编辑图鉴或博物馆" Foreground="{ThemeResource ThemeColor3}" FontSize="12" VerticalAlignment="Center" Margin="12,0,0,0"/>
+            </StackPanel>
             <muxc:RadioButtons MaxColumns="2"
                                Grid.Column="1"
                                Margin="8,8,0,0"

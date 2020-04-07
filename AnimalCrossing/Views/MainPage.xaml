@@ -16,6 +16,7 @@
             <ColumnDefinition x:Name="FrameColumn"
                               Width="*" />
         </Grid.ColumnDefinitions>
+     
         <!--#region Nav-->
         <Grid Grid.Column="0"
               Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}">
@@ -26,11 +27,9 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0"
                   Height="100">
-                <TextBlock Text="动物森友会图鉴"
-                           FontSize="20"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           TextWrapping="Wrap" />
+                <Image Width="72"
+                      
+                       Source="ms-appx:///Assets/StoreLogo.png" />
             </Grid>
             <ListView Grid.Row="1"
                       ItemsSource="{x:Bind ViewModel.NavItems,Mode=OneWay}"
@@ -44,19 +43,29 @@
                 </i:Interaction.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:NavItem">
-                        <TextBlock Text="{x:Bind Name}" />
+                        <Grid HorizontalAlignment="Center">
+                            <TextBlock Text="{x:Bind Name}" />
+                        </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalAlignment"
+                                Value="Stretch" />
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
             </ListView>
             <Grid Grid.Row="2"
                   Visibility="Visible">
-                <ListViewItem>
+                <ListViewItem HorizontalContentAlignment="Stretch">
                     <i:Interaction.Behaviors>
                         <ic:EventTriggerBehavior EventName="Tapped">
                             <ic:InvokeCommandAction Command="{x:Bind ViewModel.SettingsTapCommand}" />
                         </ic:EventTriggerBehavior>
                     </i:Interaction.Behaviors>
-                    <TextBlock Text="设置" />
+                    <TextBlock Text="设置"  HorizontalAlignment="Center"/>
                 </ListViewItem>
             </Grid>
         </Grid>
