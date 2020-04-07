@@ -15,8 +15,8 @@ namespace AnimalCrossing.Services
 
         public static SQLiteConnection GetDbConnection()
         {
-            var option = new SQLiteConnectionString(DbPath, true, key: "pCBR8Jg7n6lHPcwh");
-            //var option = new SQLiteConnectionString(DbPath);
+            //var option = new SQLiteConnectionString(DbPath, true, key: "pCBR8Jg7n6lHPcwh");
+            var option = new SQLiteConnectionString(DbPath);
             var liteConnection = new SQLiteConnection(option);
 
             liteConnection.CreateTable<AnimalsInsect>();
@@ -76,6 +76,5 @@ namespace AnimalCrossing.Services
         }
 
         #endregion 用户信息数据库
-
     }
 }

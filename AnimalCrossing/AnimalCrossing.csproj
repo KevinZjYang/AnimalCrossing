@@ -19,7 +19,7 @@
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>
     </PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>D375ABD680AE65B0AE06C2BFE7DF8F82506C6F46</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>7C10BA1E2F05013DEEDD468ADAC868EB365CC2EF</PackageCertificateThumbprint>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
@@ -133,7 +133,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.9</Version>
+      <Version>6.2.10</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp">
       <Version>6.0.0</Version>
@@ -162,7 +162,7 @@
     <PackageReference Include="NPOI">
       <Version>2.5.1</Version>
     </PackageReference>
-    <PackageReference Include="sqlite-net-sqlcipher">
+    <PackageReference Include="sqlite-net-pcl">
       <Version>1.6.292</Version>
     </PackageReference>
     <PackageReference Include="SQLite.Universal">
@@ -531,6 +531,7 @@
     <Content Include="Icons\Yellow butterfly.jpg" />
     <Content Include="Icons\Yellow perch.jpg" />
     <Content Include="Icons\Zebra turkeyfish.jpg" />
+    <Content Include="Data\data.xlsx" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -554,9 +555,7 @@
   <ItemGroup>
     <XliffResource Include="MultilingualResources\AnimalCrossing.zh-Hans.xlf" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

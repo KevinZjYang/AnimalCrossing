@@ -19,7 +19,7 @@ namespace AnimalCrossing.Services
             var localFolder = ApplicationData.Current.LocalFolder;
             var file = await localFolder.TryGetItemAsync(SQLiteService.DBNAME);
             var property = await file.GetBasicPropertiesAsync();
-            if (file == null || property.Size < 10240)
+            if (file == null || property.Size < 51200)
             {
                 Helpers.NotifyPopup notify;
                 if (NetworkHelper.Instance.ConnectionInformation.IsInternetAvailable == false)
@@ -37,7 +37,7 @@ namespace AnimalCrossing.Services
                 var downloaded = new BackgroundDownloader();
                 var download = downloaded.CreateDownload(source, destinationFile);
                 var operation = await download.StartAsync();
-                
+
                 if (operation.Progress.Status != BackgroundTransferStatus.Completed)
                 {
                     notify = new Helpers.NotifyPopup("数据库下载失败，请检查网络状况后，重新开启应用", TimeSpan.FromSeconds(60));
@@ -50,10 +50,9 @@ namespace AnimalCrossing.Services
                     await Task.Delay(TimeSpan.FromSeconds(5));
                     await CoreApplication.RequestRestartAsync(string.Empty);
                 }
-
             }
             else
-            {               
+            {
                 return;
             }
         }
