@@ -151,6 +151,61 @@
           <target state="new">好的</target>
           <note from="MultilingualBuild" annotates="source" priority="2">What's new prompt message primary button text</note>
         </trans-unit>
+        <trans-unit id="Price_FailedMessage.Text" translate="yes" xml:space="preserve">
+          <source>Page failed to load. Check connection and retry.</source>
+          <target state="new">Page failed to load. Check connection and retry.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Load failure message for Price</note>
+        </trans-unit>
+        <trans-unit id="Price_Loading.Text" translate="yes" xml:space="preserve">
+          <source>Loading...</source>
+          <target state="new">Loading...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Loading message for Price</note>
+        </trans-unit>
+        <trans-unit id="Price_Retry.Content" translate="yes" xml:space="preserve">
+          <source>retry</source>
+          <target state="new">retry</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Retry button for Price</note>
+        </trans-unit>
+        <trans-unit id="Price_BrowserBackButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" translate="yes" xml:space="preserve">
+          <source>Back</source>
+          <target state="new">Back</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">WebView back button automation name property for Price</note>
+        </trans-unit>
+        <trans-unit id="Price_BrowserBackButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Back</source>
+          <target state="new">Back</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Back button automation tooltip property for Price</note>
+        </trans-unit>
+        <trans-unit id="Price_BrowserForwardButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" translate="yes" xml:space="preserve">
+          <source>Forward</source>
+          <target state="new">Forward</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Forward button automation name property for Price</note>
+        </trans-unit>
+        <trans-unit id="Price_BrowserForwardButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Forward</source>
+          <target state="new">Forward</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Forward button automation tooltip property for Price</note>
+        </trans-unit>
+        <trans-unit id="Price_RefreshBrowserButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" translate="yes" xml:space="preserve">
+          <source>Refresh</source>
+          <target state="new">Refresh</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Refresh button automation name property for Price</note>
+        </trans-unit>
+        <trans-unit id="Price_RefreshBrowserButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Refresh</source>
+          <target state="new">Refresh</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Refresh button automation tooltip property for Price</note>
+        </trans-unit>
+        <trans-unit id="Price_OpenInBrowserButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" translate="yes" xml:space="preserve">
+          <source>Open in browser</source>
+          <target state="new">Open in browser</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Open in browser button automation name property for Price</note>
+        </trans-unit>
+        <trans-unit id="Price_OpenInBrowserButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Open in browser</source>
+          <target state="new">Open in browser</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Open in browser button automation tooltip property for Price</note>
+        </trans-unit>
       </group>
     </body>
   </file>

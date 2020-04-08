@@ -23,7 +23,10 @@ namespace AnimalCrossing.ViewModels
             Register<FishViewModel, FishPage>();
             Register<InsectViewModel, InsectPage>();
             Register<SettingsViewModel, SettingsPage>();
+            Register<PriceViewModel, PricePage>();
         }
+
+        public PriceViewModel PriceViewModel => SimpleIoc.Default.GetInstance<PriceViewModel>();
 
         public SettingsViewModel SettingsViewModel => SimpleIoc.Default.GetInstance<SettingsViewModel>();
 

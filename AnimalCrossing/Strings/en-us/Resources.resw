@@ -228,4 +228,48 @@
     <value>好的</value>
     <comment>What's new prompt message primary button text</comment>
   </data>
+  <data name="Price_FailedMessage.Text" xml:space="preserve">
+    <value>Page failed to load. Check connection and retry.</value>
+    <comment>Load failure message for Price</comment>
+  </data>
+  <data name="Price_Loading.Text" xml:space="preserve">
+    <value>Loading...</value>
+    <comment>Loading message for Price</comment>
+  </data>
+  <data name="Price_Retry.Content" xml:space="preserve">
+    <value>retry</value>
+    <comment>Retry button for Price</comment>
+  </data>
+    <data name="Price_BrowserBackButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Back</value>
+    <comment>WebView back button automation name property for Price</comment>
+  </data>
+  <data name="Price_BrowserBackButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Back</value>
+    <comment>Back button automation tooltip property for Price</comment>
+  </data>
+  <data name="Price_BrowserForwardButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Forward</value>
+    <comment>Forward button automation name property for Price</comment>
+  </data>
+  <data name="Price_BrowserForwardButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Forward</value>
+    <comment>Forward button automation tooltip property for Price</comment>
+  </data>
+  <data name="Price_RefreshBrowserButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>Refresh button automation name property for Price</comment>
+  </data>
+  <data name="Price_RefreshBrowserButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>Refresh button automation tooltip property for Price</comment>
+  </data>
+  <data name="Price_OpenInBrowserButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Open in browser</value>
+    <comment>Open in browser button automation name property for Price</comment>
+  </data>
+  <data name="Price_OpenInBrowserButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Open in browser</value>
+    <comment>Open in browser button automation tooltip property for Price</comment>
+  </data>
 </root>
