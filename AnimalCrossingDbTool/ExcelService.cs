@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnimalCrossing.Services
+namespace AnimalCrossingDbTool
 {
     public static class ExcelService
     {

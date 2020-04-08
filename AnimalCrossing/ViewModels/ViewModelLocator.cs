@@ -19,7 +19,7 @@ namespace AnimalCrossing.ViewModels
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
             Register<MainViewModel, MainPage>();
             Register<HomeViewModel, HomePage>();
-            Register<ExcelToolViewModel, ExcelToolPage>();
+            
             Register<FishViewModel, FishPage>();
             Register<InsectViewModel, InsectPage>();
             Register<SettingsViewModel, SettingsPage>();
@@ -30,8 +30,7 @@ namespace AnimalCrossing.ViewModels
         public InsectViewModel InsectViewModel => SimpleIoc.Default.GetInstance<InsectViewModel>();
 
         public FishViewModel FishViewModel => SimpleIoc.Default.GetInstance<FishViewModel>();
-
-        public ExcelToolViewModel ExcelToolViewModel => SimpleIoc.Default.GetInstance<ExcelToolViewModel>();
+     
 
         public HomeViewModel HomeViewModel => SimpleIoc.Default.GetInstance<HomeViewModel>();
 

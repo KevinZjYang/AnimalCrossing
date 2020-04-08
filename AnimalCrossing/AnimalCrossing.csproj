@@ -19,11 +19,11 @@
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>
     </PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>7C10BA1E2F05013DEEDD468ADAC868EB365CC2EF</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>18ED85DF60555B2EC1324D91E3CFB03A15906787</PackageCertificateThumbprint>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
-    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <AppxBundlePlatforms>x86|x64|arm|arm64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
@@ -159,11 +159,8 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
     </PackageReference>
-    <PackageReference Include="NPOI">
-      <Version>2.5.1</Version>
-    </PackageReference>
     <PackageReference Include="sqlite-net-pcl">
-      <Version>1.6.292</Version>
+      <Version>1.7.302-beta</Version>
     </PackageReference>
     <PackageReference Include="SQLite.Universal">
       <Version>3.28.0</Version>
@@ -196,7 +193,6 @@
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
     <Compile Include="Services\CommonDataService.cs" />
-    <Compile Include="Services\ExcelService.cs" />
     <Compile Include="Services\FirstRunDbDownloadService.cs" />
     <Compile Include="Services\FirstRunDisplayService.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
@@ -207,7 +203,6 @@
     <Compile Include="UserControls\AppearMonthControl.xaml.cs">
       <DependentUpon>AppearMonthControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ExcelToolViewModel.cs" />
     <Compile Include="ViewModels\FishViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\InsectViewModel.cs" />
@@ -216,9 +211,6 @@
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="UserControls\DetailControl.xaml.cs">
       <DependentUpon>DetailControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ExcelToolPage.xaml.cs">
-      <DependentUpon>ExcelToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FirstRunDialog.xaml.cs">
       <DependentUpon>FirstRunDialog.xaml</DependentUpon>
@@ -280,10 +272,6 @@
     <Page Include="UserControls\DetailControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ExcelToolPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\FirstRunDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -531,7 +519,6 @@
     <Content Include="Icons\Yellow butterfly.jpg" />
     <Content Include="Icons\Yellow perch.jpg" />
     <Content Include="Icons\Zebra turkeyfish.jpg" />
-    <Content Include="Data\data.xlsx" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
