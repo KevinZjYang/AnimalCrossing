@@ -12,7 +12,7 @@ namespace AnimalCrossing.ViewModels
     public class PriceViewModel : ViewModelBase
     {
         // TODO WTS: Set the URI of the page to show by default
-        private const string DefaultUrl = "http://dodopass.21hz.top/turnip/?from=groupmessage&isappinstalled=0";
+        private const string DefaultUrl = "http://api.iuwp.top";
 
         private Uri _source;
 
@@ -100,6 +100,8 @@ namespace AnimalCrossing.ViewModels
             IsLoading = false;
             RaisePropertyChanged(nameof(BrowserBackCommand));
             RaisePropertyChanged(nameof(BrowserForwardCommand));
+
+            //await InputSaveData();
         }
 
         private ICommand _navFailed;
@@ -217,6 +219,26 @@ namespace AnimalCrossing.ViewModels
         public void Initialize(WebView webView)
         {
             _webView = webView;
+            _webView.Settings.IsJavaScriptEnabled = true;
         }
+
+        //private async void InputSaveData()
+        //{
+        //await _webView.InvokeScriptAsync("eval", new[]
+        //{
+        //    $"document.getElementById('inlineInput').value = '99 110/122 133/111 62/54 98/69 64';"
+        //});
+
+        //var functionString = string.Format(@"document.getElementsByClassName('logging')[0].click();");
+        //await GeekWebView.InvokeScriptAsync("eval", new string[] { functionString });
+        //}
+
+        //private async void InvokeScripAsync(string id, string content)
+        //{
+        //    await _webView.InvokeScriptAsync("eval", new[]
+        //   {
+        //        $"document.getElementById('{id}').value = '{content}';"
+        //    });
+        //}
     }
 }
