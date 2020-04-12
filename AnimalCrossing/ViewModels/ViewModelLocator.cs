@@ -24,7 +24,16 @@ namespace AnimalCrossing.ViewModels
             Register<InsectViewModel, InsectPage>();
             Register<SettingsViewModel, SettingsPage>();
             Register<PriceViewModel, PricePage>();
+            Register<AlbumViewModel, AlbumPage>();
+            Register<LittleAnimalViewModel, LittleAnimalPage>();
+            Register<PlantViewModel, PlantPage>();
         }
+
+        public PlantViewModel PlantViewModel => SimpleIoc.Default.GetInstance<PlantViewModel>();
+
+        public LittleAnimalViewModel LittleAnimalViewModel => SimpleIoc.Default.GetInstance<LittleAnimalViewModel>();
+
+        public AlbumViewModel AlbumViewModel => SimpleIoc.Default.GetInstance<AlbumViewModel>();
 
         public PriceViewModel PriceViewModel => SimpleIoc.Default.GetInstance<PriceViewModel>();
 

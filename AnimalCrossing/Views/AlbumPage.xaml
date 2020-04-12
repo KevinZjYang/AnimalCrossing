@@ -1,0 +1,59 @@
+﻿<Page x:Class="AnimalCrossing.Views.AlbumPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+      xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+      xmlns:i="using:Microsoft.Xaml.Interactivity"
+      xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:model="using:AnimalCrossing.Models"
+      Style="{StaticResource PageStyle}"
+      mc:Ignorable="d">
+    <Grid x:Name="ContentArea"
+          Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   x:Uid="Album_Title"
+                   Style="{StaticResource PageTitleStyle}" />
+        <Grid Grid.Row="1">
+            <controls:AdaptiveGridView Margin="0,32,0,0"
+                                       IsItemClickEnabled="True"
+                                       SelectionMode="Single"
+                                       animations:ReorderGridAnimation.Duration="500"
+                                       ItemsSource="{x:Bind ViewModel.Albums,Mode=OneWay}">
+                <i:Interaction.Behaviors>
+                    <ic:EventTriggerBehavior EventName="ItemClick">
+                        <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemClickCommand}" />
+                    </ic:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
+
+                <controls:AdaptiveGridView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Album">
+                        <StackPanel Orientation="Vertical"
+                                    Padding="4">
+                            <controls:ImageEx Width="120"
+                                              IsCacheEnabled="True"
+                                              EnableLazyLoading="False"
+                                              Source="{x:Bind Cover }"
+                                              Background="{ThemeResource SystemControlHighlightListLowRevealBackgroundBrush}" />
+                            <TextBlock Text="{x:Bind Name}"
+                                       FontSize="16"
+                                       HorizontalAlignment="Center" />
+                            <TextBlock HorizontalAlignment="Center"
+                                       Foreground="{ThemeResource ThemeColor3}">
+
+                            <Run Text="{x:Bind BuyPrice}" />
+                            <Run>铃钱</Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </controls:AdaptiveGridView.ItemTemplate>
+            </controls:AdaptiveGridView>
+        </Grid>
+    </Grid>
+</Page>

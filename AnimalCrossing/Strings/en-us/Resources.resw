@@ -271,4 +271,16 @@
     <value>Open in browser</value>
     <comment>Open in browser button automation tooltip property for Price</comment>
   </data>
+  <data name="Album_Title.Text" xml:space="preserve">
+    <value>Album</value>
+    <comment>Page title for AlbumPage</comment>
+  </data>
+  <data name="LittleAnimal_Title.Text" xml:space="preserve">
+    <value>LittleAnimal</value>
+    <comment>Page title for LittleAnimalPage</comment>
+  </data>
+  <data name="Plant_Title.Text" xml:space="preserve">
+    <value>Plant</value>
+    <comment>Page title for PlantPage</comment>
+  </data>
 </root>

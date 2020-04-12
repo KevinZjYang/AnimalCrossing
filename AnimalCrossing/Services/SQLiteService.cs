@@ -20,6 +20,9 @@ namespace AnimalCrossing.Services
 
             liteConnection.CreateTable<AnimalsInsect>();
             liteConnection.CreateTable<AnimalsFish>();
+            liteConnection.CreateTable<Plant>();
+            liteConnection.CreateTable<LittleAnimal>();
+            liteConnection.CreateTable<Album>();
             return liteConnection;
         }
 

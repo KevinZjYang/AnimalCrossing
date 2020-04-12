@@ -189,12 +189,15 @@
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Helpers\Singleton.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
+    <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Animals.cs" />
     <Compile Include="Models\Fish.cs" />
     <Compile Include="Models\Insect.cs" />
+    <Compile Include="Models\LittleAnimal.cs" />
     <Compile Include="Models\NavItem.cs" />
     <Compile Include="Models\NormalAnimals.cs" />
     <Compile Include="Models\PictorialBook.cs" />
+    <Compile Include="Models\Plant.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
@@ -209,15 +212,21 @@
     <Compile Include="UserControls\AppearMonthControl.xaml.cs">
       <DependentUpon>AppearMonthControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AlbumViewModel.cs" />
     <Compile Include="ViewModels\FishViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\InsectViewModel.cs" />
+    <Compile Include="ViewModels\LittleAnimalViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PlantViewModel.cs" />
     <Compile Include="ViewModels\PriceViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="UserControls\DetailControl.xaml.cs">
       <DependentUpon>DetailControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AlbumPage.xaml.cs">
+      <DependentUpon>AlbumPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FirstRunDialog.xaml.cs">
       <DependentUpon>FirstRunDialog.xaml</DependentUpon>
@@ -231,8 +240,14 @@
     <Compile Include="Views\InsectPage.xaml.cs">
       <DependentUpon>InsectPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\LittleAnimalPage.xaml.cs">
+      <DependentUpon>LittleAnimalPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlantPage.xaml.cs">
+      <DependentUpon>PlantPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PricePage.xaml.cs">
       <DependentUpon>PricePage.xaml</DependentUpon>
@@ -254,6 +269,10 @@
     <Page Include="Helpers\NotifyPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ImageEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Page.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -283,6 +302,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AlbumPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\FirstRunDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -299,7 +322,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\LittleAnimalPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PlantPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

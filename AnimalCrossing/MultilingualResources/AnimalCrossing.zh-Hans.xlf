@@ -204,6 +204,21 @@
           <target state="new">Open in browser</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Open in browser button automation tooltip property for Price</note>
         </trans-unit>
+        <trans-unit id="Album_Title.Text" translate="yes" xml:space="preserve">
+          <source>Album</source>
+          <target state="new">Album</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Page title for AlbumPage</note>
+        </trans-unit>
+        <trans-unit id="LittleAnimal_Title.Text" translate="yes" xml:space="preserve">
+          <source>LittleAnimal</source>
+          <target state="new">LittleAnimal</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Page title for LittleAnimalPage</note>
+        </trans-unit>
+        <trans-unit id="Plant_Title.Text" translate="yes" xml:space="preserve">
+          <source>Plant</source>
+          <target state="new">Plant</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Page title for PlantPage</note>
+        </trans-unit>
       </group>
     </body>
   </file>

@@ -1,0 +1,95 @@
+﻿<Page x:Class="AnimalCrossing.Views.LittleAnimalPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+      xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+      xmlns:i="using:Microsoft.Xaml.Interactivity"
+      xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:model="using:AnimalCrossing.Models"
+      Style="{StaticResource PageStyle}"
+      mc:Ignorable="d">
+    <Grid x:Name="ContentArea">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid  Grid.Row="0"
+               Margin="0,32,0,0">
+            <TextBlock x:Uid="LittleAnimal_Title"
+                       Style="{StaticResource PageTitleStyle}" />
+            <AutoSuggestBox Width="200"
+                            x:Name="SearchAutoBox"
+                            QueryIcon="Find"
+                            TextChanged="SearchAutoBox_TextChanged"
+                            SuggestionChosen="SearchAutoBox_SuggestionChosen"
+                            QuerySubmitted="SearchAutoBox_QuerySubmitted"
+                            HorizontalAlignment="Center">
+                <!--<i:Interaction.Behaviors>
+                    <ic:EventTriggerBehavior EventName="QuerySubmitted">
+                        <ic:InvokeCommandAction Command="" />
+                    </ic:EventTriggerBehavior>
+                </i:Interaction.Behaviors>-->
+                <AutoSuggestBox.ItemTemplate>
+                    <DataTemplate x:DataType="model:LittleAnimal">
+                        <TextBlock Text="{x:Bind Name}" />
+                    </DataTemplate>
+                </AutoSuggestBox.ItemTemplate>
+            </AutoSuggestBox>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <controls:AdaptiveGridView x:Name="MainGridView"
+                                       IsItemClickEnabled="True"
+                                       SelectionMode="Single"
+                                       ItemHeight="200"
+                                       DesiredWidth="200"
+                                       animations:ReorderGridAnimation.Duration="500"
+                                       ItemsSource="{x:Bind ViewModel.LittleAnimals,Mode=OneWay}">
+                <i:Interaction.Behaviors>
+                    <ic:EventTriggerBehavior EventName="ItemClick">
+                        <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemClickCommand}" />
+                    </ic:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
+
+                <controls:AdaptiveGridView.ItemTemplate>
+                    <DataTemplate x:DataType="model:LittleAnimal">
+                        <Grid Padding="12"
+                              CornerRadius="6"
+                              Background="{ThemeResource SystemControlHighlightListLowRevealBackgroundBrush}">
+                            <controls:ImageEx Height="160"
+                                              IsCacheEnabled="False"
+                                              EnableLazyLoading="False"
+                                              Source="{x:Bind Image}"
+                                              Margin="0,0,0,24" />
+                            <TextBlock Text="{x:Bind Name}"
+                                       FontSize="16"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Center" />
+                            <TextBlock Text="{x:Bind Gender}"
+                                       HorizontalAlignment="Right" />
+                            <!--<TextBlock HorizontalAlignment="Center"
+                                       Foreground="{ThemeResource ThemeColor3}">
+
+                            <Run Text="{x:Bind Price}" />
+                            <Run>铃钱</Run>
+                            </TextBlock>-->
+                        </Grid>
+                    </DataTemplate>
+                </controls:AdaptiveGridView.ItemTemplate>
+                <controls:AdaptiveGridView.ItemContainerStyle>
+                    <Style TargetType="GridViewItem">
+                        <Setter Property="Margin"
+                                Value="8" />
+                        <Setter Property="Padding"
+                                Value="0" />
+                        <!--<Setter Property="CornerRadius"
+                                Value="8" />-->
+                    </Style>
+                </controls:AdaptiveGridView.ItemContainerStyle>
+            </controls:AdaptiveGridView>
+        </Grid>
+    </Grid>
+</Page>
