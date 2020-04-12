@@ -193,9 +193,7 @@ namespace AnimalCrossing.ViewModels
 
         public void LoadData()
         {
-            IsSouthCheck = false;
-            IsNorthCheck = true;
-            LoadNorthData();
+            SetDefaultHemisphere();
         }
 
         public void OnSorting(object sender, DataGridColumnEventArgs e)
@@ -209,15 +207,15 @@ namespace AnimalCrossing.ViewModels
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
                 {
                     dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Insects
-                                                                             orderby item.Number ascending
-                                                                             select item);
+                                                                            orderby item.Number ascending
+                                                                            select item);
                     e.Column.SortDirection = DataGridSortDirection.Ascending;
                 }
                 else
                 {
                     dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Insects
-                                                                             orderby item.Number descending
-                                                                             select item);
+                                                                            orderby item.Number descending
+                                                                            select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
                 }
             }
@@ -231,15 +229,15 @@ namespace AnimalCrossing.ViewModels
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
                 {
                     dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Insects
-                                                                             orderby item.Owned ascending
-                                                                             select item);
+                                                                            orderby item.Owned ascending
+                                                                            select item);
                     e.Column.SortDirection = DataGridSortDirection.Ascending;
                 }
                 else
                 {
                     dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Insects
-                                                                             orderby item.Owned descending
-                                                                             select item);
+                                                                            orderby item.Owned descending
+                                                                            select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
                 }
             }
@@ -253,15 +251,15 @@ namespace AnimalCrossing.ViewModels
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
                 {
                     dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Insects
-                                                                             orderby item.MuseumHave ascending
-                                                                             select item);
+                                                                            orderby item.MuseumHave ascending
+                                                                            select item);
                     e.Column.SortDirection = DataGridSortDirection.Ascending;
                 }
                 else
                 {
                     dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Insects
-                                                                             orderby item.MuseumHave descending
-                                                                             select item);
+                                                                            orderby item.MuseumHave descending
+                                                                            select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
                 }
             }
@@ -275,15 +273,15 @@ namespace AnimalCrossing.ViewModels
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
                 {
                     dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Insects
-                                                                             orderby item.Price ascending
-                                                                             select item);
+                                                                            orderby item.Price ascending
+                                                                            select item);
                     e.Column.SortDirection = DataGridSortDirection.Ascending;
                 }
                 else
                 {
                     dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Insects
-                                                                             orderby item.Price descending
-                                                                             select item);
+                                                                            orderby item.Price descending
+                                                                            select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
                 }
             }
@@ -297,15 +295,15 @@ namespace AnimalCrossing.ViewModels
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
                 {
                     dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Insects
-                                                                             orderby item.Position ascending
-                                                                             select item);
+                                                                            orderby item.Position ascending
+                                                                            select item);
                     e.Column.SortDirection = DataGridSortDirection.Ascending;
                 }
                 else
                 {
                     dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Insects
-                                                                             orderby item.Position descending
-                                                                             select item);
+                                                                            orderby item.Position descending
+                                                                            select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
                 }
             }
@@ -319,15 +317,15 @@ namespace AnimalCrossing.ViewModels
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
                 {
                     dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Insects
-                                                                             orderby item.ShapeOrWeather ascending
-                                                                             select item);
+                                                                            orderby item.ShapeOrWeather ascending
+                                                                            select item);
                     e.Column.SortDirection = DataGridSortDirection.Ascending;
                 }
                 else
                 {
                     dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Insects
-                                                                             orderby item.ShapeOrWeather descending
-                                                                             select item);
+                                                                            orderby item.ShapeOrWeather descending
+                                                                            select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
                 }
             }
@@ -341,15 +339,15 @@ namespace AnimalCrossing.ViewModels
                 if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
                 {
                     dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Insects
-                                                                             orderby item.Time ascending
-                                                                             select item);
+                                                                            orderby item.Time ascending
+                                                                            select item);
                     e.Column.SortDirection = DataGridSortDirection.Ascending;
                 }
                 else
                 {
                     dg.ItemsSource = new ObservableCollection<NormalAnimal>(from item in Insects
-                                                                             orderby item.Time descending
-                                                                             select item);
+                                                                            orderby item.Time descending
+                                                                            select item);
                     e.Column.SortDirection = DataGridSortDirection.Descending;
                 }
             }
@@ -371,7 +369,7 @@ namespace AnimalCrossing.ViewModels
             BookCount = 0;
             MuseumCount = 0;
 
-            var normalAnimals = CommonDataService.GetAllInsects(out int bookCount, out int museumCount, CommonDataService.Hemisphere.North);
+            var normalAnimals = CommonDataService.GetAllInsects(out int bookCount, out int museumCount, CommonDataService.Hemisphere.South);
             BookCount = bookCount;
             MuseumCount = museumCount;
             foreach (var item in normalAnimals)
@@ -392,6 +390,32 @@ namespace AnimalCrossing.ViewModels
             foreach (var item in normalAnimals)
             {
                 Insects.Add(item);
+            }
+        }
+
+        private void SetDefaultHemisphere()
+        {
+            var hemisphere = Helpers.SettingsHelper.GetLocalSetting(SettingsKey.DefaultHemisphereKey);
+            if (hemisphere != null)
+            {
+                if (hemisphere == "North")
+                {
+                    IsNorthCheck = true;
+                    IsSouthCheck = false;
+                    LoadNorthData();
+                }
+                else
+                {
+                    IsNorthCheck = false;
+                    IsSouthCheck = true;
+                    LoadSouthData();
+                }
+            }
+            else
+            {
+                IsNorthCheck = true;
+                IsSouthCheck = false;
+                LoadNorthData();
             }
         }
     }

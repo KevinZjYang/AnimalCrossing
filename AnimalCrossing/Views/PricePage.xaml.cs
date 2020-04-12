@@ -19,5 +19,16 @@ namespace AnimalCrossing.Views
             InitializeComponent();
             ViewModel.Initialize(webView);
         }
+
+        protected async override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            var functionString = string.Format("document.getElementById('inlineInput').value;");
+            var content = await webView.InvokeScriptAsync("eval", new string[] { functionString });
+            if (!Helpers.StringHelper.IsNullOrEmptyOrWhiteSpace(content))
+            {
+                Helpers.SettingsHelper.SaveRoamingSetting(SettingsKey.TurnipPriceKey, content);
+            }
+        }
     }
 }

@@ -102,18 +102,16 @@
           <note from="MultilingualBuild" annotates="source" priority="2">Page title for SettingsPage</note>
         </trans-unit>
         <trans-unit id="FirstRun_Body.Text" translate="yes" xml:space="preserve">
-          <source>第一版目前主要提供的功能有：
-1、全部鱼类的详细信息。
-2、全部昆虫的详细信息。
-3、首页显示本月可获取的动物信息。
-以上所有均支持筛选，以及标记是否已经加入图鉴，博物管是否捐赠。
-后续还会加入其他有用的功能。</source>
-          <target state="new">第一版目前主要提供的功能有：
-1、全部鱼类的详细信息。
-2、全部昆虫的详细信息。
-3、首页显示本月可获取的动物信息。
-以上所有均支持筛选，以及标记是否已经加入图鉴，博物管是否捐赠。
-后续还会加入其他有用的功能。</target>
+          <source>1、修改首页隐藏开启图鉴按钮功能异常
+2、修复昆虫页面南北半球数据显示错误的问题
+3、设置页添加默认位置的选项
+植物，小动物等数据正在处理中，完成后会尽快上线.
+</source>
+          <target state="new">1、修改首页隐藏开启图鉴按钮功能异常
+2、修复昆虫页面南北半球数据显示错误的问题
+3、设置页添加默认位置的选项
+植物，小动物等数据正在处理中，完成后会尽快上线.
+</target>
           <note from="MultilingualBuild" annotates="source" priority="2">First use prompt message body</note>
         </trans-unit>
         <trans-unit id="FirstRunDialog.Title" translate="yes" xml:space="preserve">

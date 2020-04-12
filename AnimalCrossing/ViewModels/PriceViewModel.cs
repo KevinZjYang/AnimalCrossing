@@ -101,7 +101,7 @@ namespace AnimalCrossing.ViewModels
             RaisePropertyChanged(nameof(BrowserBackCommand));
             RaisePropertyChanged(nameof(BrowserForwardCommand));
 
-            //await InputSaveData();
+            InputSaveData();
         }
 
         private ICommand _navFailed;
@@ -222,23 +222,12 @@ namespace AnimalCrossing.ViewModels
             _webView.Settings.IsJavaScriptEnabled = true;
         }
 
-        //private async void InputSaveData()
-        //{
-        //await _webView.InvokeScriptAsync("eval", new[]
-        //{
-        //    $"document.getElementById('inlineInput').value = '99 110/122 133/111 62/54 98/69 64';"
-        //});
-
-        //var functionString = string.Format(@"document.getElementsByClassName('logging')[0].click();");
-        //await GeekWebView.InvokeScriptAsync("eval", new string[] { functionString });
-        //}
-
-        //private async void InvokeScripAsync(string id, string content)
-        //{
-        //    await _webView.InvokeScriptAsync("eval", new[]
-        //   {
-        //        $"document.getElementById('{id}').value = '{content}';"
-        //    });
-        //}
+        private async void InputSaveData()
+        {
+            var price = Helpers.SettingsHelper.GetRoamingSetting(SettingsKey.TurnipPriceKey);
+            if (price == null) return;
+            var functionString = string.Format("document.getElementById('inlineInput').value={0};", price);
+            await _webView.InvokeScriptAsync("eval", new string[] { functionString });
+        }
     }
 }

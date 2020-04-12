@@ -54,6 +54,60 @@ namespace AnimalCrossing.ViewModels
             }
         }
 
+        private bool _isNorthCheck;
+
+        public bool IsNorthCheck
+        {
+            get { return _isNorthCheck; }
+            set { Set(ref _isNorthCheck, value); }
+        }
+
+        private bool _isSouthCheck;
+
+        public bool IsSouthCheck
+        {
+            get { return _isSouthCheck; }
+            set { Set(ref _isSouthCheck, value); }
+        }
+
+        private ICommand _southChecked;
+
+        public ICommand SouthCheckedCommand
+        {
+            get
+            {
+                if (_southChecked == null)
+                {
+                    _southChecked = new RelayCommand<RoutedEventArgs>(SouthChecked);
+                }
+                return _southChecked;
+            }
+        }
+
+        private void SouthChecked(RoutedEventArgs obj)
+        {
+            SettingsHelper.SaveLocalSetting(SettingsKey.DefaultHemisphereKey, "South");
+        }
+
+        private ICommand _northChecked;
+
+        public ICommand NorthCheckedCommand
+        {
+            get
+            {
+                if (_northChecked == null)
+                {
+                    _northChecked = new RelayCommand<RoutedEventArgs>(NorthChecked);
+                }
+                return _northChecked;
+            }
+        }
+
+        private void NorthChecked(RoutedEventArgs obj)
+        {
+            SettingsHelper.SaveLocalSetting(SettingsKey.DefaultHemisphereKey, "North");
+        }
+
         public SettingsViewModel()
         {
         }
@@ -61,6 +115,7 @@ namespace AnimalCrossing.ViewModels
         public async Task InitializeAsync()
         {
             VersionDescription = GetVersionDescription();
+            SetDefaultHemisphere();
             await Task.CompletedTask;
         }
 
@@ -72,6 +127,29 @@ namespace AnimalCrossing.ViewModels
             var version = packageId.Version;
 
             return $"{appName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+        }
+
+        private void SetDefaultHemisphere()
+        {
+            var hemisphere = Helpers.SettingsHelper.GetLocalSetting(SettingsKey.DefaultHemisphereKey);
+            if (hemisphere != null)
+            {
+                if (hemisphere == "North")
+                {
+                    IsNorthCheck = true;
+                    IsSouthCheck = false;
+                }
+                else
+                {
+                    IsNorthCheck = false;
+                    IsSouthCheck = true;
+                }
+            }
+            else
+            {
+                IsNorthCheck = true;
+                IsSouthCheck = false;
+            }
         }
     }
 }

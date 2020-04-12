@@ -46,18 +46,6 @@ namespace AnimalCrossing.ViewModels
             }
         }
 
-        private void SouthChecked(RoutedEventArgs obj)
-        {
-            if (IsFishCheck)
-            {
-                LoadSouthFishData();
-            }
-            else
-            {
-                LoadSouthInsectData();
-            }
-        }
-
         private ICommand _northChecked;
 
         public ICommand NorthCheckedCommand
@@ -69,18 +57,6 @@ namespace AnimalCrossing.ViewModels
                     _northChecked = new RelayCommand<RoutedEventArgs>(NorthChecked);
                 }
                 return _northChecked;
-            }
-        }
-
-        private void NorthChecked(RoutedEventArgs obj)
-        {
-            if (IsFishCheck)
-            {
-                LoadNorthFishData();
-            }
-            else
-            {
-                LoadNorthInsectData();
             }
         }
 
@@ -98,11 +74,6 @@ namespace AnimalCrossing.ViewModels
             }
         }
 
-        private void SortPrice()
-        {
-            ThisMonthAnimals = ThisMonthAnimals.OrderByDescending(p => p.Price).ToList();
-        }
-
         private ICommand _hideBook;
 
         public ICommand HideBookCommand
@@ -114,29 +85,6 @@ namespace AnimalCrossing.ViewModels
                     _hideBook = new RelayCommand<RoutedEventArgs>(HideBook);
                 }
                 return _hideBook;
-            }
-        }
-
-        private void HideBook(RoutedEventArgs args)
-        {
-            var toggleSwitch = args.OriginalSource as ToggleSwitch;
-            if (toggleSwitch.IsOn)
-            {
-                ThisMonthAnimals = ThisMonthAnimals.FindAll(delegate (NormalAnimal animals)
-                {
-                    if (animals.Owned)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                });
-            }
-            else
-            {
-                SelectDataToLoad();
             }
         }
 
@@ -154,29 +102,6 @@ namespace AnimalCrossing.ViewModels
             }
         }
 
-        private void NowAvailable(RoutedEventArgs obj)
-        {
-            var toggleSwitch = obj.OriginalSource as ToggleSwitch;
-            if (toggleSwitch.IsOn)
-            {
-                ThisMonthAnimals = ThisMonthAnimals.FindAll(delegate (NormalAnimal animals)
-                {
-                    if (Helpers.TimeHelper.JudgeIfHourInRange(animals.Time))
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                });
-            }
-            else
-            {
-                SelectDataToLoad();
-            }
-        }
-
         private ICommand _fishChecked;
 
         public ICommand FishCheckedCommand
@@ -188,18 +113,6 @@ namespace AnimalCrossing.ViewModels
                     _fishChecked = new RelayCommand<RoutedEventArgs>(FishChecked);
                 }
                 return _fishChecked;
-            }
-        }
-
-        private void FishChecked(RoutedEventArgs obj)
-        {
-            if (IsNorthCheck)
-            {
-                LoadNorthFishData();
-            }
-            else
-            {
-                LoadSouthFishData();
             }
         }
 
@@ -217,18 +130,6 @@ namespace AnimalCrossing.ViewModels
             }
         }
 
-        private void InsectChecked(RoutedEventArgs obj)
-        {
-            if (IsNorthCheck)
-            {
-                LoadNorthInsectData();
-            }
-            else
-            {
-                LoadSouthInsectData();
-            }
-        }
-
         private ICommand _itemClick;
 
         public ICommand ItemClickCommand
@@ -241,14 +142,6 @@ namespace AnimalCrossing.ViewModels
                 }
                 return _itemClick;
             }
-        }
-
-        private void GridViewItemClick(ItemClickEventArgs obj)
-        {
-            var animal = obj.ClickedItem as NormalAnimal;
-            if (animal == null) return;
-            UserControls.DetailControl detail = new UserControls.DetailControl(animal, _whichAnimal);
-            detail.Show();
         }
 
         private ICommand _sendEmail;
@@ -330,12 +223,123 @@ namespace AnimalCrossing.ViewModels
             IsFishCheck = true;
             IsInsectCheck = false;
 
-            IsNorthCheck = true;
-            IsSouthCheck = false;
+            SetDefaultHemisphere();
 
             SelectDataToLoad();
         }
 
+        private void SouthChecked(RoutedEventArgs obj)
+        {
+            if (IsFishCheck)
+            {
+                LoadSouthFishData();
+            }
+            else
+            {
+                LoadSouthInsectData();
+            }
+        }
+
+        private void NorthChecked(RoutedEventArgs obj)
+        {
+            if (IsFishCheck)
+            {
+                LoadNorthFishData();
+            }
+            else
+            {
+                LoadNorthInsectData();
+            }
+        }
+
+        private void SortPrice()
+        {
+            ThisMonthAnimals = ThisMonthAnimals.OrderByDescending(p => p.Price).ToList();
+        }
+
+        private void HideBook(RoutedEventArgs args)
+        {
+            var toggleSwitch = args.OriginalSource as ToggleSwitch;
+            IsOwnedOn = toggleSwitch.IsOn;
+            if (IsOwnedOn)
+            {
+                ThisMonthAnimals = ThisMonthAnimals.FindAll(delegate (NormalAnimal animals)
+                {
+                    if (animals.Owned)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                });
+            }
+            else
+            {
+                SelectDataToLoad();
+            }
+        }
+
+        private void NowAvailable(RoutedEventArgs obj)
+        {
+            var toggleSwitch = obj.OriginalSource as ToggleSwitch;
+            IsNowAvailableOn = toggleSwitch.IsOn;
+            if (IsNowAvailableOn)
+            {
+                ThisMonthAnimals = ThisMonthAnimals.FindAll(delegate (NormalAnimal animals)
+                {
+                    if (Helpers.TimeHelper.JudgeIfHourInRange(animals.Time))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                });
+            }
+            else
+            {
+                SelectDataToLoad();
+            }
+        }
+
+        private void InsectChecked(RoutedEventArgs obj)
+        {
+            if (IsNorthCheck)
+            {
+                LoadNorthInsectData();
+            }
+            else
+            {
+                LoadSouthInsectData();
+            }
+        }
+
+        private void FishChecked(RoutedEventArgs obj)
+        {
+            if (IsNorthCheck)
+            {
+                LoadNorthFishData();
+            }
+            else
+            {
+                LoadSouthFishData();
+            }
+        }
+
+        private void GridViewItemClick(ItemClickEventArgs obj)
+        {
+            var animal = obj.ClickedItem as NormalAnimal;
+            if (animal == null) return;
+            UserControls.DetailControl detail = new UserControls.DetailControl(animal, _whichAnimal);
+            detail.Show();
+        }
+
+        /// <summary>
+        /// 加载北方鱼
+        /// </summary>
         private void LoadNorthFishData()
         {
             List<NormalAnimal> animals = new List<NormalAnimal>();
@@ -351,6 +355,9 @@ namespace AnimalCrossing.ViewModels
             _whichAnimal = Animal.Fish;
         }
 
+        /// <summary>
+        /// 加载北方昆虫
+        /// </summary>
         private void LoadNorthInsectData()
         {
             List<NormalAnimal> animals = new List<NormalAnimal>();
@@ -365,6 +372,9 @@ namespace AnimalCrossing.ViewModels
             _whichAnimal = Animal.Insect;
         }
 
+        /// <summary>
+        /// 加载南方鱼
+        /// </summary>
         private void LoadSouthFishData()
         {
             List<NormalAnimal> animals = new List<NormalAnimal>();
@@ -379,6 +389,9 @@ namespace AnimalCrossing.ViewModels
             _whichAnimal = Animal.Fish;
         }
 
+        /// <summary>
+        /// 加载南方昆虫
+        /// </summary>
         private void LoadSouthInsectData()
         {
             List<NormalAnimal> animals = new List<NormalAnimal>();
@@ -392,6 +405,9 @@ namespace AnimalCrossing.ViewModels
             _whichAnimal = Animal.Insect;
         }
 
+        /// <summary>
+        /// 选择加载何种数据
+        /// </summary>
         private void SelectDataToLoad()
         {
             if (IsFishCheck)
@@ -418,6 +434,9 @@ namespace AnimalCrossing.ViewModels
             }
         }
 
+        /// <summary>
+        /// 在拥有或者现在可获取开启情况下筛选
+        /// </summary>
         private void OwnedAndTimeSort()
         {
             if (IsOwnedOn)
@@ -447,6 +466,29 @@ namespace AnimalCrossing.ViewModels
                         return false;
                     }
                 });
+            }
+        }
+
+        private void SetDefaultHemisphere()
+        {
+            var hemisphere = Helpers.SettingsHelper.GetLocalSetting(SettingsKey.DefaultHemisphereKey);
+            if (hemisphere != null)
+            {
+                if (hemisphere == "North")
+                {
+                    IsNorthCheck = true;
+                    IsSouthCheck = false;
+                }
+                else
+                {
+                    IsNorthCheck = false;
+                    IsSouthCheck = true;
+                }
+            }
+            else
+            {
+                IsNorthCheck = true;
+                IsSouthCheck = false;
             }
         }
     }
