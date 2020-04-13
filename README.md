@@ -15,4 +15,4 @@ Win10商店地址：[https://www.microsoft.com/store/productId/9MZ26MR59V0D](htt
 ![昆虫](https://github.com/KevinZjYang/AnimalCrossing/blob/master/AnimalCrossingDbTool/Data/insect.png)
 
 # 鸣谢
-[juo6442](https://github.com/juo6442/moothumb)
+[elxris](https://github.com/elxris/Turnip-Calculator)
