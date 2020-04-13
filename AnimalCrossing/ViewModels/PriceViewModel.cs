@@ -13,7 +13,7 @@ namespace AnimalCrossing.ViewModels
     public class PriceViewModel : ViewModelBase
     {
         // TODO WTS: Set the URI of the page to show by default
-        private const string DefaultUrl = "http://api.iuwp.top:8008";
+        private const string DefaultUrl = "http://api.iuwp.top:8009";
 
         private Uri _source;
 
@@ -235,7 +235,6 @@ namespace AnimalCrossing.ViewModels
             catch (Exception e)
             {
                 Debug.Write(e.Message);
-                
             }
         }
     }

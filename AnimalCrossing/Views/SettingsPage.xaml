@@ -101,9 +101,26 @@
                 <TextBlock x:Uid="Settings_AboutDescription"
                            Margin="{StaticResource XSmallTopMargin}"
                            Style="{ThemeResource BodyTextBlockStyle}" />
-
-                <HyperlinkButton x:Uid="Settings_PrivacyTermsLink"
-                                 Margin="{StaticResource XSmallTopMargin}" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="本项目为开源项目："
+                               VerticalAlignment="Center" />
+                    <HyperlinkButton Content="Github地址"
+                                     NavigateUri="https://github.com/KevinZjYang/AnimalCrossing" />
+                </StackPanel>
+                <HyperlinkButton x:Uid="Settings_PrivacyTermsLink" />
+                <TextBlock Text="鸣谢"
+                           Margin="{StaticResource XSmallTopMargin}"
+                           Style="{ThemeResource SubtitleTextBlockStyle}" />
+                <StackPanel Orientation="Horizontal">
+                    <HyperlinkButton Content="elxris"
+                                     FontSize="16"
+                                     NavigateUri="https://github.com/elxris/Turnip-Calculator" />
+                    <TextBlock Text="大头菜预测来自他的项目"
+                               FontSize="14"
+                               Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               Foreground="{ThemeResource ThemeColor3}" />
+                </StackPanel>
             </StackPanel>
         </StackPanel>
     </Grid>
