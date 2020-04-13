@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Diagnostics;
 using AnimalCrossing.ViewModels;
 
 using Windows.UI.Xaml.Controls;
@@ -23,12 +23,21 @@ namespace AnimalCrossing.Views
         protected async override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-            var functionString = string.Format("document.getElementById('inlineInput').value;");
-            var content = await webView.InvokeScriptAsync("eval", new string[] { functionString });
-            if (!Helpers.StringHelper.IsNullOrEmptyOrWhiteSpace(content))
+            try
             {
-                Helpers.SettingsHelper.SaveRoamingSetting(SettingsKey.TurnipPriceKey, content);
+                var functionString = string.Format("document.getElementById('inlineInput').value;");
+                var content = await webView.InvokeScriptAsync("eval", new string[] { functionString });
+                if (!Helpers.StringHelper.IsNullOrEmptyOrWhiteSpace(content))
+                {
+                    Helpers.SettingsHelper.SaveRoamingSetting(SettingsKey.TurnipPriceKey, content);
+                }
             }
+            catch (Exception ex)
+            {
+
+                Debug.Write(ex.Message);
+            }
+          
         }
     }
 }

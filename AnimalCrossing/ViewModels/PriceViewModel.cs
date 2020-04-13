@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Input;
 
 using GalaSoft.MvvmLight;
@@ -12,7 +13,7 @@ namespace AnimalCrossing.ViewModels
     public class PriceViewModel : ViewModelBase
     {
         // TODO WTS: Set the URI of the page to show by default
-        private const string DefaultUrl = "http://api.iuwp.top";
+        private const string DefaultUrl = "http://api.iuwp.top:8008";
 
         private Uri _source;
 
@@ -224,10 +225,18 @@ namespace AnimalCrossing.ViewModels
 
         private async void InputSaveData()
         {
-            var price = Helpers.SettingsHelper.GetRoamingSetting(SettingsKey.TurnipPriceKey);
-            if (price == null) return;
-            var functionString = string.Format("document.getElementById('inlineInput').value={0};", price);
-            await _webView.InvokeScriptAsync("eval", new string[] { functionString });
+            try
+            {
+                var price = Helpers.SettingsHelper.GetRoamingSetting(SettingsKey.TurnipPriceKey);
+                if (price == null) return;
+                var functionString = string.Format("document.getElementById('inlineInput').value={0};", price);
+                await _webView.InvokeScriptAsync("eval", new string[] { functionString });
+            }
+            catch (Exception e)
+            {
+                Debug.Write(e.Message);
+                
+            }
         }
     }
 }
