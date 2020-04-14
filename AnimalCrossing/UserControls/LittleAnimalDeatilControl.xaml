@@ -1,0 +1,178 @@
+﻿<UserControl
+    x:Class="AnimalCrossing.UserControls.LittleAnimalDeatilControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AnimalCrossing.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" x:Key="TitleTbStyle">
+            <Setter Property="FontSize"
+                    Value="18" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="Foreground"
+                    Value="White" />
+            <Setter Property="Padding"
+                    Value="12,0" />
+        </Style>
+        <Style TargetType="TextBlock"
+               x:Key="ContentTbStyle">
+            <Setter Property="FontSize"
+                    Value="20" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+            <Setter Property="Padding"
+                    Value="12,0" />
+        </Style>
+        <Style TargetType="Grid"
+               x:Key="TitleGridStyle">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="https://patchwiki.biligame.com/images/dongsen/e/ef/arbetwbpw9040k4vsv8s42cnxa86mud.jpg"
+                                Stretch="None" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="CornerRadius"
+                    Value="16" />
+            <Setter Property="Padding"
+                    Value="4" />
+            <Setter Property="Margin"
+                    Value="8" />
+        </Style>
+    </UserControl.Resources>
+    <Grid Tapped="RootGrid_Tapped"
+          Background="{ThemeResource SystemControlBackgroundBaseMediumBrush}">
+        <StackPanel CornerRadius="12"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="https://patchwiki.biligame.com/images/dongsen/9/98/0x54b4qal4v0e6fxn9i0jd5k5jiylng.jpg"
+                            Stretch="None" />
+            </StackPanel.Background>
+            <Grid Padding="8" MinHeight="300" MinWidth="600">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image x:Name="ImageCover"
+                       Height="250" Margin="12,0,12,0">
+                    <Image.Source>
+                        <BitmapImage UriSource="{x:Bind LittleAnimal.Image}" />
+                    </Image.Source>
+                </Image>
+                <Grid Grid.Column="1" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               VerticalAlignment="Center"
+                               FontSize="24" HorizontalAlignment="Center">
+                        <Run Text="{x:Bind LittleAnimal.Name}" />
+                        <Run Text="{x:Bind LittleAnimal.Gender}" />
+                    </TextBlock>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Style="{StaticResource TitleGridStyle}" Grid.Column="0">
+                                <TextBlock Text="生日" Style="{StaticResource TitleTbStyle}"/>
+                            </Grid>
+                            <TextBlock Grid.Column="1" Style="{StaticResource ContentTbStyle}"
+                                       Text="{x:Bind LittleAnimal.Brithday}" />
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Style="{StaticResource TitleGridStyle}"
+                                 >
+                                <TextBlock Text="性格"
+                                           Style="{StaticResource TitleTbStyle}" />
+                            </Grid>
+                            <TextBlock Grid.Column="1" Style="{StaticResource ContentTbStyle}"
+                                       Text="{x:Bind LittleAnimal.Character}" />
+                        </Grid>
+
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Style="{StaticResource TitleGridStyle}"
+                              >
+                            <TextBlock Text="初始口头禅"
+                                       Style="{StaticResource TitleTbStyle}" />
+                        </Grid>
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource ContentTbStyle}"
+                                   Text="{x:Bind LittleAnimal.Mantra}" />
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Style="{StaticResource TitleGridStyle}">
+                            <TextBlock Text="目标"
+                                       Style="{StaticResource TitleTbStyle}" />
+                        </Grid>
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource ContentTbStyle}"
+                                   Text="{x:Bind LittleAnimal.Goal}" />
+                    </Grid>
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Style="{StaticResource TitleGridStyle}">
+                            <TextBlock Text="座右铭"
+                                       Style="{StaticResource TitleTbStyle}" />
+                        </Grid>
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource ContentTbStyle}"
+                                   Text="{x:Bind LittleAnimal.Motto}" />
+                    </Grid>
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Style="{StaticResource TitleGridStyle}">
+                            <TextBlock Text="外文名称"
+                                       Style="{StaticResource TitleTbStyle}" />
+                        </Grid>
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource ContentTbStyle}"
+                                   Text="{x:Bind LittleAnimal.ForeignName}" />
+                    </Grid>
+                </Grid>
+            </Grid>
+            
+            
+            
+        </StackPanel>
+     
+    </Grid>
+</UserControl>

@@ -102,7 +102,7 @@ namespace AnimalCrossing.ViewModels
             RaisePropertyChanged(nameof(BrowserBackCommand));
             RaisePropertyChanged(nameof(BrowserForwardCommand));
 
-            InputSaveData();
+            //InputSaveData();
         }
 
         private ICommand _navFailed;

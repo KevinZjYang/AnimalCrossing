@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using Windows.UI.Xaml.Controls;
 using AnimalCrossing.Models;
 using AnimalCrossing.Services;
+using AnimalCrossing.UserControls;
 
 namespace AnimalCrossing.ViewModels
 {
@@ -34,7 +35,12 @@ namespace AnimalCrossing.ViewModels
             {
                 if (_itemClick == null)
                 {
-                    _itemClick = new RelayCommand<ItemClickEventArgs>(GridViewItemClick);
+                    _itemClick = new RelayCommand<ItemClickEventArgs>((p) =>
+                    {
+                        var para = p.ClickedItem as LittleAnimal;
+                        var little = new LittleAnimalDeatilControl(para);
+                        little.Show();
+                    });
                 }
                 return _itemClick;
             }

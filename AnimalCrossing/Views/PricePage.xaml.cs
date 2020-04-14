@@ -20,24 +20,24 @@ namespace AnimalCrossing.Views
             ViewModel.Initialize(webView);
         }
 
-        protected async override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-            try
-            {
-                var functionString = string.Format("document.getElementById('inlineInput').value;");
-                var content = await webView.InvokeScriptAsync("eval", new string[] { functionString });
-                if (!Helpers.StringHelper.IsNullOrEmptyOrWhiteSpace(content))
-                {
-                    Helpers.SettingsHelper.SaveRoamingSetting(SettingsKey.TurnipPriceKey, content);
-                }
-            }
-            catch (Exception ex)
-            {
+        //protected async override void OnNavigatedFrom(NavigationEventArgs e)
+        //{
+        //    base.OnNavigatedFrom(e);
+        //    try
+        //    {
+        //        var functionString = string.Format("document.getElementById('inlineInput').value;");
+        //        var content = await webView.InvokeScriptAsync("eval", new string[] { functionString });
+        //        if (!Helpers.StringHelper.IsNullOrEmptyOrWhiteSpace(content))
+        //        {
+        //            Helpers.SettingsHelper.SaveRoamingSetting(SettingsKey.TurnipPriceKey, content);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                Debug.Write(ex.Message);
-            }
+        //        Debug.Write(ex.Message);
+        //    }
           
-        }
+        //}
     }
 }

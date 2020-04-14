@@ -61,9 +61,9 @@ namespace AnimalCrossing.ViewModels
             NavItems.Add(new NavItem { Name = "大头菜", PageFullName = typeof(PricePage).FullName });
             NavItems.Add(new NavItem { Name = "鱼类", PageFullName = typeof(FishPage).FullName });
             NavItems.Add(new NavItem { Name = "昆虫", PageFullName = typeof(InsectPage).FullName });
-            //NavItems.Add(new NavItem { Name = "小动物", PageFullName = typeof(LittleAnimalPage).FullName });
-            //NavItems.Add(new NavItem { Name = "植物", PageFullName = typeof(PlantPage).FullName });
-            //NavItems.Add(new NavItem { Name = "唱片", PageFullName = typeof(AlbumPage).FullName });
+            NavItems.Add(new NavItem { Name = "小动物", PageFullName = typeof(LittleAnimalPage).FullName });
+            NavItems.Add(new NavItem { Name = "植物", PageFullName = typeof(PlantPage).FullName });
+            NavItems.Add(new NavItem { Name = "唱片", PageFullName = typeof(AlbumPage).FullName });
         }
 
         public void Initialize(Frame frame)

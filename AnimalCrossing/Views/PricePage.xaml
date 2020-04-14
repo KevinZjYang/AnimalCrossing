@@ -145,7 +145,7 @@
 
         <Grid VerticalAlignment="Bottom"
               Background="{ThemeResource SystemControlChromeHighAcrylicElementMediumBrush }">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Visibility="Collapsed">
                 <Button Style="{StaticResource BrowserButtonStyle}"
                         Command="{x:Bind ViewModel.BrowserBackCommand, Mode=OneWay}"
                         x:Uid="Price_BrowserBackButton">
