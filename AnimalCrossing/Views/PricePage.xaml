@@ -115,6 +115,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <WebView x:Name="webView"
+                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
                  Source="{x:Bind ViewModel.Source, Mode=OneWay}">
             <i:Interaction.Behaviors>
                 <ic:EventTriggerBehavior EventName="NavigationCompleted">
@@ -129,8 +130,8 @@
         <StackPanel Visibility="{x:Bind ViewModel.IsLoadingVisibility, Mode=OneWay}"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-            <ProgressRing IsActive="{x:Bind ViewModel.IsLoading, Mode=OneWay}" />
-            <TextBlock x:Uid="Price_Loading" />
+            <ProgressRing Height="72" Width="72" IsActive="{x:Bind ViewModel.IsLoading, Mode=OneWay}" />
+            <TextBlock x:Uid="Price_Loading" Text="加载中..." FontSize="16"/>
         </StackPanel>
         <StackPanel Visibility="{x:Bind ViewModel.FailedMesageVisibility, Mode=OneWay}"
                     HorizontalAlignment="Center"

@@ -24,6 +24,8 @@
             <controls:AdaptiveGridView Margin="0,32,0,0"
                                        IsItemClickEnabled="True"
                                        SelectionMode="Single"
+                                       DesiredWidth="200"
+                                       ItemHeight="200"
                                        animations:ReorderGridAnimation.Duration="500"
                                        ItemsSource="{x:Bind ViewModel.Albums,Mode=OneWay}">
                 <i:Interaction.Behaviors>
@@ -35,7 +37,9 @@
                 <controls:AdaptiveGridView.ItemTemplate>
                     <DataTemplate x:DataType="model:Album">
                         <StackPanel Orientation="Vertical"
-                                    Padding="4">
+                                    Padding="12"
+                                    CornerRadius="6"
+                                    Background="{ThemeResource SystemControlHighlightListLowRevealBackgroundBrush}">
                             <controls:ImageEx Width="120"
                                               IsCacheEnabled="True"
                                               EnableLazyLoading="False"
@@ -53,6 +57,16 @@
                         </StackPanel>
                     </DataTemplate>
                 </controls:AdaptiveGridView.ItemTemplate>
+                <controls:AdaptiveGridView.ItemContainerStyle>
+                    <Style TargetType="GridViewItem">
+                        <Setter Property="Margin"
+                                Value="8" />
+                        <Setter Property="Padding"
+                                Value="0" />
+                        <!--<Setter Property="CornerRadius"
+                                Value="8" />-->
+                    </Style>
+                </controls:AdaptiveGridView.ItemContainerStyle>
             </controls:AdaptiveGridView>
         </Grid>
     </Grid>

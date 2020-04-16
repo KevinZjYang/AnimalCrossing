@@ -13,7 +13,7 @@ namespace AnimalCrossing.ViewModels
     public class PriceViewModel : ViewModelBase
     {
         // TODO WTS: Set the URI of the page to show by default
-        private const string DefaultUrl = "http://api.iuwp.top:8009";
+        private const string DefaultUrl = "https://turnip.iuwp.top";
 
         private Uri _source;
 

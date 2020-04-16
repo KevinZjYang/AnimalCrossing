@@ -35,7 +35,7 @@
                x:Key="TitleGridStyle">
             <Setter Property="Background">
                 <Setter.Value>
-                    <ImageBrush ImageSource="https://patchwiki.biligame.com/images/dongsen/e/ef/arbetwbpw9040k4vsv8s42cnxa86mud.jpg"
+                    <ImageBrush ImageSource="ms-appx:///Icons/littleanimal1.jpg"
                                 Stretch="None" />
                 </Setter.Value>
             </Setter>
@@ -53,7 +53,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <StackPanel.Background>
-                <ImageBrush ImageSource="https://patchwiki.biligame.com/images/dongsen/9/98/0x54b4qal4v0e6fxn9i0jd5k5jiylng.jpg"
+                <ImageBrush ImageSource="ms-appx:///Icons/littleanimal2.jpg"
                             Stretch="None" />
             </StackPanel.Background>
             <Grid Padding="8" MinHeight="300" MinWidth="600">
@@ -164,6 +164,7 @@
                                        Style="{StaticResource TitleTbStyle}" />
                         </Grid>
                         <TextBlock Grid.Column="1"
+                                   IsTextSelectionEnabled="True"
                                    Style="{StaticResource ContentTbStyle}"
                                    Text="{x:Bind LittleAnimal.ForeignName}" />
                     </Grid>
