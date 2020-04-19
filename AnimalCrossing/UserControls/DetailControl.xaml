@@ -41,7 +41,7 @@
                     <controls:ImageEx Width="200"
                                       Grid.Row="0"
                                       CornerRadius="6"
-                                      Source="{x:Bind NormalAnimals.English,Converter={StaticResource EnglishToIconConverter}}" />
+                                      Source="{x:Bind NormalAnimals.Icon}" />
                     <TextBlock HorizontalAlignment="Center"
                                Grid.Row="1"
                                Text="{x:Bind NormalAnimals.Name}"
@@ -107,10 +107,11 @@
                  <Run Foreground="{ThemeResource ThemeColor3}">形状/天气：</Run>
                  <Run Text="{x:Bind NormalAnimals.ShapeOrWeather}" />
                     </TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockStyle}">
-                 <Run Foreground="{ThemeResource ThemeColor3}">活跃时间：</Run>
-                 <Run Text="{x:Bind NormalAnimals.Time}" />
-                    </TextBlock>
+                    <TextBlock Text="活跃时间："
+                               Foreground="{ThemeResource ThemeColor3}"
+                               Style="{StaticResource TextBlockStyle}" />
+
+                    <TextBlock Text="{x:Bind NormalAnimals.Time}" />
                     <TextBlock Text="活跃月份："
                                Style="{StaticResource TextBlockStyle}"
                                Foreground="{ThemeResource ThemeColor3}" />

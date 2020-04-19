@@ -10,19 +10,29 @@
       xmlns:model="using:AnimalCrossing.Models"
       Style="{StaticResource PageStyle}"
       mc:Ignorable="d">
-    <Grid x:Name="ContentArea"
-          Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid x:Name="ContentArea">
         <Grid.RowDefinitions>
-            <RowDefinition Height="48" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid Grid.Row="0"
+              Margin="0,32,0,0">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="唱片"
+                           Margin="8,0,0,0"
+                           Style="{StaticResource PageTitleStyle}" />
+                <TextBlock Foreground="{ThemeResource ThemeColor3}"
+                           Margin="12,0,0,0"
+                           VerticalAlignment="Bottom">
+                    <Run>共</Run>
+                    <Run Text="{x:Bind ViewModel.Albums.Count}" />
+                    <Run>个</Run>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
 
-        <TextBlock Grid.Row="0"
-                   x:Uid="Album_Title"
-                   Style="{StaticResource PageTitleStyle}" />
         <Grid Grid.Row="1">
-            <controls:AdaptiveGridView Margin="0,32,0,0"
-                                       IsItemClickEnabled="True"
+            <controls:AdaptiveGridView IsItemClickEnabled="True"
                                        SelectionMode="Single"
                                        DesiredWidth="200"
                                        ItemHeight="200"

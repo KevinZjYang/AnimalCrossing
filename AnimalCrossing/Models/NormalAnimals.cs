@@ -17,7 +17,7 @@ namespace AnimalCrossing.Models
         public string Position { get; set; }
         public string ShapeOrWeather { get; set; }
         public string Time { get; set; }
-        public List<string> AppearMonth { get; set; }
+        public List<bool> AppearMonth { get; set; }
 
         public bool Owned { get; set; }
         public bool MuseumHave { get; set; }

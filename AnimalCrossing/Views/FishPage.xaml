@@ -26,10 +26,14 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal"
                         Margin="12,12,0,0">
-                <TextBlock Text="鱼类图鉴"                         
+                <TextBlock Text="鱼类图鉴"
                            FontSize="16"
                            FontWeight="SemiBold" />
-                <TextBlock Text="选中单元格后双击或者按F2可编辑图鉴或博物馆" Foreground="{ThemeResource ThemeColor3}" FontSize="12" VerticalAlignment="Center" Margin="12,0,0,0"/>
+                <TextBlock Text="选中单元格后双击或者按F2可编辑图鉴或博物馆"
+                           Foreground="{ThemeResource ThemeColor3}"
+                           FontSize="12"
+                           VerticalAlignment="Center"
+                           Margin="12,0,0,0" />
             </StackPanel>
             <muxc:RadioButtons MaxColumns="2"
                                Grid.Column="1"
@@ -110,9 +114,7 @@
                 <control:DataGridTextColumn Header="形状"
                                             Tag="ShapeOrWeather"
                                             Binding="{Binding ShapeOrWeather}" />
-                <control:DataGridTextColumn Header="时间"
-                                            Tag="Time"
-                                            Binding="{Binding Time}" />
+
                 <control:DataGridTemplateColumn Header="出现月份"
                                                 CanUserSort="False"
                                                 Tag="AppearMonth">
@@ -123,6 +125,9 @@
                         </DataTemplate>
                     </control:DataGridTemplateColumn.CellTemplate>
                 </control:DataGridTemplateColumn>
+                <control:DataGridTextColumn Header="时间"
+                                            Tag="Time"
+                                            Binding="{Binding Time}" />
             </control:DataGrid.Columns>
         </control:DataGrid>
         <Grid Grid.Row="3"

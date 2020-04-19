@@ -12,7 +12,17 @@ namespace AnimalCrossing.Models
     {
         [PrimaryKey]
         public string Name { get; set; }
-        public string Data { get; set; }
+
+        public string Image { get; set; }
+        public int Number { get; set; }
+        public string English { get; set; }
+        public string Japanese { get; set; }
+        public string Position { get; set; }
+        public string Weather { get; set; }
+        public string North { get; set; }
+        public string South { get; set; }
+        public string Time { get; set; }
+        public int Price { get; set; }
     }
 
     [Table("Fish")]
@@ -20,6 +30,16 @@ namespace AnimalCrossing.Models
     {
         [PrimaryKey]
         public string Name { get; set; }
-        public string Data { get; set; }
+
+        public string Image { get; set; }
+        public int Number { get; set; }
+        public string English { get; set; }
+        public string Japanese { get; set; }
+        public string Position { get; set; }
+        public string Shape { get; set; }
+        public string North { get; set; }
+        public string South { get; set; }
+        public string Time { get; set; }
+        public int Price { get; set; }
     }
 }

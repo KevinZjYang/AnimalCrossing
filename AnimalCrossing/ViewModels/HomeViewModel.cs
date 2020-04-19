@@ -289,7 +289,8 @@ namespace AnimalCrossing.ViewModels
             {
                 ThisMonthAnimals = ThisMonthAnimals.FindAll(delegate (NormalAnimal animals)
                 {
-                    if (Helpers.TimeHelper.JudgeIfHourInRange(animals.Time))
+                    var thisHour = DateTime.Now.Hour.ToString();
+                    if (animals.Time.Contains(thisHour))
                     {
                         return true;
                     }
@@ -457,7 +458,8 @@ namespace AnimalCrossing.ViewModels
             {
                 ThisMonthAnimals = ThisMonthAnimals.FindAll(delegate (NormalAnimal animals)
                 {
-                    if (Helpers.TimeHelper.JudgeIfHourInRange(animals.Time))
+                    var thisHour = DateTime.Now.Hour.ToString();
+                    if (animals.Time.Contains(thisHour))
                     {
                         return true;
                     }

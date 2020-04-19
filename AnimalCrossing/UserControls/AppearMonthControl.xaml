@@ -32,75 +32,75 @@
         <Grid Style="{StaticResource GridStyle}">
 
             <Rectangle Fill="{StaticResource BackgroundBrush}"
-                       Visibility="{x:Bind AppearMonth[0],Converter={StaticResource ZeroToVisibilityConverter}}" />
+                       Visibility="{x:Bind AppearMonth[0]}" />
             <TextBlock Text="1"
                        Style="{StaticResource TextBlockStyle}" />
         </Grid>
         <Grid Style="{StaticResource GridStyle}">
             <Rectangle Fill="{StaticResource BackgroundBrush}"
-                       Visibility="{x:Bind AppearMonth[1],Converter={StaticResource ZeroToVisibilityConverter}}" />
+                       Visibility="{x:Bind AppearMonth[1]}" />
             <TextBlock Text="2"
                        Style="{StaticResource TextBlockStyle}" />
         </Grid>
         <Grid Style="{StaticResource GridStyle}">
             <Rectangle Fill="{StaticResource BackgroundBrush}"
-                       Visibility="{x:Bind AppearMonth[2],Converter={StaticResource ZeroToVisibilityConverter}}" />
+                       Visibility="{x:Bind AppearMonth[2]}" />
             <TextBlock Text="3"
                        Style="{StaticResource TextBlockStyle}" />
         </Grid>
         <Grid Style="{StaticResource GridStyle}">
             <Rectangle Fill="{StaticResource BackgroundBrush}"
-                       Visibility="{x:Bind AppearMonth[3],Converter={StaticResource ZeroToVisibilityConverter}}" />
+                       Visibility="{x:Bind AppearMonth[3]}" />
             <TextBlock Text="4"
                        Style="{StaticResource TextBlockStyle}" />
         </Grid>
         <Grid Style="{StaticResource GridStyle}">
             <Rectangle Fill="{StaticResource BackgroundBrush}"
-                       Visibility="{x:Bind AppearMonth[4],Converter={StaticResource ZeroToVisibilityConverter}}" />
+                       Visibility="{x:Bind AppearMonth[4]}" />
             <TextBlock Text="5"
                        Style="{StaticResource TextBlockStyle}" />
         </Grid>
         <Grid Style="{StaticResource GridStyle}">
             <Rectangle Fill="{StaticResource BackgroundBrush}"
-                       Visibility="{x:Bind AppearMonth[5],Converter={StaticResource ZeroToVisibilityConverter}}" />
+                       Visibility="{x:Bind AppearMonth[5]}" />
             <TextBlock Text="6"
                        Style="{StaticResource TextBlockStyle}" />
         </Grid>
         <Grid Style="{StaticResource GridStyle}">
             <Rectangle Fill="{StaticResource BackgroundBrush}"
-                       Visibility="{x:Bind AppearMonth[6],Converter={StaticResource ZeroToVisibilityConverter}}" />
+                       Visibility="{x:Bind AppearMonth[6]}" />
             <TextBlock Text="7"
                        Style="{StaticResource TextBlockStyle}" />
         </Grid>
         <Grid Style="{StaticResource GridStyle}">
             <Rectangle Fill="{StaticResource BackgroundBrush}"
-                       Visibility="{x:Bind AppearMonth[7],Converter={StaticResource ZeroToVisibilityConverter}}" />
+                       Visibility="{x:Bind AppearMonth[7]}" />
             <TextBlock Text="8"
                        Style="{StaticResource TextBlockStyle}" />
         </Grid>
         <Grid Style="{StaticResource GridStyle}">
 
             <Rectangle Fill="{StaticResource BackgroundBrush}"
-                       Visibility="{x:Bind AppearMonth[8],Converter={StaticResource ZeroToVisibilityConverter}}" />
+                       Visibility="{x:Bind AppearMonth[8]}" />
             <TextBlock Text="9"
                        Style="{StaticResource TextBlockStyle}" />
         </Grid>
         <Grid Style="{StaticResource GridStyle}">
             <Rectangle Fill="{StaticResource BackgroundBrush}"
-                       Visibility="{x:Bind AppearMonth[9],Converter={StaticResource ZeroToVisibilityConverter}}" />
+                       Visibility="{x:Bind AppearMonth[9]}" />
             <TextBlock Text="10"
                        Style="{StaticResource TextBlockStyle}" />
         </Grid>
 
         <Grid Style="{StaticResource GridStyle}">
             <Rectangle Fill="{StaticResource BackgroundBrush}"
-                       Visibility="{x:Bind AppearMonth[10],Converter={StaticResource ZeroToVisibilityConverter}}" />
+                       Visibility="{x:Bind AppearMonth[10]}" />
             <TextBlock Text="11"
                        Style="{StaticResource TextBlockStyle}" />
         </Grid>
         <Grid Style="{StaticResource GridStyle}">
             <Rectangle Fill="{StaticResource BackgroundBrush}"
-                       Visibility="{x:Bind AppearMonth[11],Converter={StaticResource ZeroToVisibilityConverter}}" />
+                       Visibility="{x:Bind AppearMonth[11]}" />
             <TextBlock Text="12"
                        Style="{StaticResource TextBlockStyle}" />
         </Grid>

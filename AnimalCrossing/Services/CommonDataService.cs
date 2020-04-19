@@ -38,7 +38,7 @@ namespace AnimalCrossing.Services
                 var animals = con.Table<AnimalsFish>().ToList();
                 foreach (var item in animals)
                 {
-                    var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Fish>(item.Data);
+                    //var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Fish>(item.Data);
 
                     List<UserFish> userFish;
                     using (var usercon = SQLiteService.GetUserDbConnection())
@@ -52,12 +52,12 @@ namespace AnimalCrossing.Services
                         if (owned) bookCount += 1;
                         if (museumHave) museumCount += 1;
 
-                        var normal = SelectHemisphereAndConstructFish(hemisphere, obj, owned, museumHave);
+                        var normal = SelectHemisphereAndConstructFish(hemisphere, item, owned, museumHave);
                         normalAnimals.Add(normal);
                     }
                     else
                     {
-                        var normal = SelectHemisphereAndConstructFish(hemisphere, obj, false, false);
+                        var normal = SelectHemisphereAndConstructFish(hemisphere, item, false, false);
                         normalAnimals.Add(normal);
                     }
                 }
@@ -87,7 +87,7 @@ namespace AnimalCrossing.Services
                 var thisMonth = DateTime.Now.Month;
                 if (item.Owned) bookCount += 1;
                 if (item.MuseumHave) museumCount += 1;
-                if (item.AppearMonth[thisMonth - 1] == "1")
+                if (item.AppearMonth[thisMonth - 1])
                 {
                     normalAnimals.Add(item);
                 }
@@ -119,7 +119,7 @@ namespace AnimalCrossing.Services
                 var animals = con.Table<AnimalsInsect>().ToList();
                 foreach (var item in animals)
                 {
-                    var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Insect>(item.Data);
+                    //var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Insect>(item.Data);
 
                     List<UserInsect> userInsect;
                     using (var usercon = SQLiteService.GetUserDbConnection())
@@ -134,13 +134,13 @@ namespace AnimalCrossing.Services
                         if (owned) bookCount += 1;
                         if (museumHave) museumCount += 1;
 
-                        var normal = SelectHemisphereAndConstructInsect(hemisphere, obj, owned, museumHave);
+                        var normal = SelectHemisphereAndConstructInsect(hemisphere, item, owned, museumHave);
 
                         normalAnimals.Add(normal);
                     }
                     else
                     {
-                        var normal = SelectHemisphereAndConstructInsect(hemisphere, obj, false, false);
+                        var normal = SelectHemisphereAndConstructInsect(hemisphere, item, false, false);
 
                         normalAnimals.Add(normal);
                     }
@@ -171,7 +171,7 @@ namespace AnimalCrossing.Services
                 var thisMonth = DateTime.Now.Month;
                 if (item.Owned) bookCount += 1;
                 if (item.MuseumHave) museumCount += 1;
-                if (item.AppearMonth[thisMonth - 1] == "1")
+                if (item.AppearMonth[thisMonth - 1])
                 {
                     normalAnimals.Add(item);
                 }
@@ -180,32 +180,102 @@ namespace AnimalCrossing.Services
             return normalAnimals;
         }
 
-        private static NormalAnimal SelectHemisphereAndConstructFish(Hemisphere hemisphere, Fish obj, bool owned, bool museumHave)
+        private static NormalAnimal SelectHemisphereAndConstructFish(Hemisphere hemisphere, AnimalsFish obj, bool owned, bool museumHave)
         {
+            string time;
+            if (obj.Time.Contains("全天"))
+            {
+                time = "全天";
+            }
+            else
+            {
+                time = obj.Time;
+            }
             if (hemisphere == Hemisphere.North)
             {
-                var normal = new NormalAnimal { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Shape, Time = obj.Time, AppearMonth = obj.Hemisphere.North.Month.AppearMonth, Owned = owned, MuseumHave = museumHave };
+                var normal = new NormalAnimal { Name = obj.Name, Icon = obj.Image, Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Shape, Time = time, AppearMonth = MonthStringToList(obj.North), Owned = owned, MuseumHave = museumHave };
                 return normal;
             }
             else
             {
-                var normal = new NormalAnimal { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Shape, Time = obj.Time, AppearMonth = obj.Hemisphere.South.Month.AppearMonth, Owned = owned, MuseumHave = museumHave };
+                var normal = new NormalAnimal { Name = obj.Name, Icon = obj.Image, Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Shape, Time = time, AppearMonth = MonthStringToList(obj.South), Owned = owned, MuseumHave = museumHave };
                 return normal;
             }
         }
 
-        private static NormalAnimal SelectHemisphereAndConstructInsect(Hemisphere hemisphere, Insect obj, bool owned, bool museumHave)
+        private static NormalAnimal SelectHemisphereAndConstructInsect(Hemisphere hemisphere, AnimalsInsect obj, bool owned, bool museumHave)
         {
+            string time;
+            if (obj.Time.Contains("全天"))
+            {
+                time = "全天";
+            }
+            else
+            {
+                time = obj.Time;
+            }
             if (hemisphere == Hemisphere.North)
             {
-                var normal = new NormalAnimal { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Weather, Time = obj.Time, AppearMonth = obj.Hemisphere.North.Month.AppearMonth, Owned = owned, MuseumHave = museumHave };
+                var normal = new NormalAnimal { Name = obj.Name, Icon = obj.Image, Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Weather, Time = time, AppearMonth = MonthStringToList(obj.North), Owned = owned, MuseumHave = museumHave };
                 return normal;
             }
             else
             {
-                var normal = new NormalAnimal { Name = obj.Name, Icon = $"ms-appx:///Icons/{obj.English}.jpg", Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Weather, Time = obj.Time, AppearMonth = obj.Hemisphere.South.Month.AppearMonth, Owned = owned, MuseumHave = museumHave };
+                var normal = new NormalAnimal { Name = obj.Name, Icon = obj.Image, Number = obj.Number, English = obj.English, Japanese = obj.Japanese, Price = Convert.ToInt32(obj.Price), Position = obj.Position, ShapeOrWeather = obj.Weather, Time = time, AppearMonth = MonthStringToList(obj.South), Owned = owned, MuseumHave = museumHave };
                 return normal;
             }
+        }
+
+        private static List<bool> MonthStringToList(string month)
+        {
+            List<bool> appear = new List<bool>();
+            if (Helpers.StringHelper.IsNullOrEmptyOrWhiteSpace(month))
+            {
+                for (int i = 0; i < 12; i++)
+                {
+                    appear.Add(false);
+                }
+            }
+            else if (month.Contains("、"))
+            {
+                var collection = month.Split("、");
+                if (month.Contains("（全年）"))
+                {
+                    for (int i = 0; i < 12; i++)
+                    {
+                        appear.Add(true);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < 12; i++)
+                    {
+                        if (collection.Contains(i.ToString()))
+                        {
+                            appear.Add(true);
+                        }
+                        else
+                        {
+                            appear.Add(false);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 12; i++)
+                {
+                    if (i.ToString() == month)
+                    {
+                        appear.Add(true);
+                    }
+                    else
+                    {
+                        appear.Add(false);
+                    }
+                }
+            }
+            return appear;
         }
     }
 }

@@ -20,16 +20,14 @@ namespace AnimalCrossing.UserControls
 {
     public sealed partial class AppearMonthControl : UserControl
     {
-        public List<string> AppearMonth
+        public List<bool> AppearMonth
         {
-            get { return (List<string>)GetValue(AppearMonthProperty); }
+            get { return (List<bool>)GetValue(AppearMonthProperty); }
             set { SetValue(AppearMonthProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for AppearMonth. This enables animation,
-        // styling, binding, etc...
         public static readonly DependencyProperty AppearMonthProperty =
-            DependencyProperty.Register("AppearMonth", typeof(List<string>), typeof(AppearMonthControl), new PropertyMetadata(null));
+            DependencyProperty.Register("AppearMonth", typeof(List<bool>), typeof(AppearMonthControl), new PropertyMetadata(null));
 
         public AppearMonthControl()
         {

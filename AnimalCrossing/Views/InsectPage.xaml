@@ -114,9 +114,7 @@
                 <control:DataGridTextColumn Header="天气"
                                             Tag="ShapeOrWeather"
                                             Binding="{Binding ShapeOrWeather}" />
-                <control:DataGridTextColumn Header="时间"
-                                            Tag="Time"
-                                            Binding="{Binding Time}" />
+
                 <control:DataGridTemplateColumn Header="出现月份"
                                                 CanUserSort="False"
                                                 Tag="AppearMonth">
@@ -127,6 +125,9 @@
                         </DataTemplate>
                     </control:DataGridTemplateColumn.CellTemplate>
                 </control:DataGridTemplateColumn>
+                <control:DataGridTextColumn Header="时间"
+                                            Tag="Time"
+                                            Binding="{Binding Time}" />
             </control:DataGrid.Columns>
         </control:DataGrid>
         <Grid Grid.Row="3"

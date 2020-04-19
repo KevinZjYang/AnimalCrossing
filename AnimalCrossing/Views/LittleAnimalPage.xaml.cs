@@ -22,13 +22,13 @@ namespace AnimalCrossing.Views
         private void SearchAutoBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             var items = MainGridView.ItemsSource as List<LittleAnimal>;
-            if (Helpers.StringHelper.IsNullOrEmptyOrWhiteSpace(args.QueryText))
+            if (Helpers.StringHelper.IsNullOrEmptyOrWhiteSpace(SearchAutoBox.Text))
             {
                 var notify = new Helpers.NotifyPopup("请输入搜索内容");
                 notify.Show();
                 return;
             }
-            var result = items.Find(p => p.Name == args.QueryText);
+            var result = items.Find(p => p.Name == SearchAutoBox.Text);
             if (result != null)
             {
                 //MainGridView.ItemsSource = result;

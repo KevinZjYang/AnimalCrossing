@@ -11,7 +11,7 @@ namespace AnimalCrossing.Services
         #region 图鉴数据库
 
         public readonly static string DbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, DBNAME);
-        public const string DBNAME = "Animals1.0.6.db";
+        public const string DBNAME = "Animals1.3.0.db";
 
         public static SQLiteConnection GetDbConnection()
         {
@@ -26,23 +26,23 @@ namespace AnimalCrossing.Services
             return liteConnection;
         }
 
-        public static void AddInsectData(string name, string json)
-        {
-            using (var con = GetDbConnection())
-            {
-                var animal = new AnimalsInsect { Name = name, Data = json };
-                con.InsertOrReplace(animal);
-            }
-        }
+        //public static void AddInsectData(string name, string json)
+        //{
+        //    using (var con = GetDbConnection())
+        //    {
+        //        var animal = new AnimalsInsect { Name = name, Data = json };
+        //        con.InsertOrReplace(animal);
+        //    }
+        //}
 
-        public static void AddFishData(string name, string json)
-        {
-            using (var con = GetDbConnection())
-            {
-                var animal = new AnimalsFish { Name = name, Data = json };
-                con.InsertOrReplace(animal);
-            }
-        }
+        //public static void AddFishData(string name, string json)
+        //{
+        //    using (var con = GetDbConnection())
+        //    {
+        //        var animal = new AnimalsFish { Name = name, Data = json };
+        //        con.InsertOrReplace(animal);
+        //    }
+        //}
 
         #endregion 图鉴数据库
 

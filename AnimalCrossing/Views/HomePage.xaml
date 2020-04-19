@@ -21,7 +21,8 @@
         </Grid.RowDefinitions>
         <controls:AdaptiveGridView Margin="0,32,0,0"
                                    IsItemClickEnabled="True"
-                                   SelectionMode="Single"
+                                   SelectionMode="None"
+                                   ItemHeight="200"
                                    animations:ReorderGridAnimation.Duration="500"
                                    ItemsSource="{x:Bind ViewModel.ThisMonthAnimals,Mode=OneWay}">
             <i:Interaction.Behaviors>
@@ -120,10 +121,12 @@
             <controls:AdaptiveGridView.ItemTemplate>
                 <DataTemplate x:DataType="model:NormalAnimal">
                     <StackPanel Orientation="Vertical"
-                                Padding="4">
+                                Padding="4"
+                                CornerRadius="6"
+                                Background="{ThemeResource SystemControlHighlightListLowRevealBackgroundBrush}">
                         <controls:ImageEx Width="120"
                                           Style="{StaticResource ImageExStyle}"
-                                          Source="{x:Bind English,Converter={StaticResource EnglishToIconConverter}}" />
+                                          Source="{x:Bind Icon}" />
                         <TextBlock Text="{x:Bind Name}"
                                    FontSize="16"
                                    HorizontalAlignment="Center" />
@@ -133,9 +136,23 @@
                             <Run Text="{x:Bind Price}" />
                             <Run>铃钱</Run>
                         </TextBlock>
+                        <TextBlock Text="{x:Bind Position}"
+                                   Foreground="{ThemeResource ThemeColor3}"
+                                   HorizontalAlignment="Center"
+                                   TextWrapping="Wrap" />
                     </StackPanel>
                 </DataTemplate>
             </controls:AdaptiveGridView.ItemTemplate>
+            <controls:AdaptiveGridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem">
+                    <Setter Property="Margin"
+                            Value="8" />
+                    <Setter Property="Padding"
+                            Value="0" />
+                    <!--<Setter Property="CornerRadius"
+                                Value="8" />-->
+                </Style>
+            </controls:AdaptiveGridView.ItemContainerStyle>
         </controls:AdaptiveGridView>
 
         <Grid Grid.Row="1">
