@@ -120,27 +120,38 @@
             </controls:AdaptiveGridView.Header>
             <controls:AdaptiveGridView.ItemTemplate>
                 <DataTemplate x:DataType="model:NormalAnimal">
-                    <StackPanel Orientation="Vertical"
-                                Padding="4"
-                                CornerRadius="6"
-                                Background="{ThemeResource SystemControlHighlightListLowRevealBackgroundBrush}">
-                        <controls:ImageEx Width="120"
-                                          Style="{StaticResource ImageExStyle}"
-                                          Source="{x:Bind Icon}" />
-                        <TextBlock Text="{x:Bind Name}"
-                                   FontSize="16"
-                                   HorizontalAlignment="Center" />
-                        <TextBlock HorizontalAlignment="Center"
-                                   Foreground="{ThemeResource ThemeColor3}">
+
+                    <Grid>
+                        <StackPanel Orientation="Vertical"
+                                    Padding="4"
+                                    CornerRadius="6"
+                                    Background="{ThemeResource SystemControlHighlightListLowRevealBackgroundBrush}">
+                            <controls:ImageEx Margin="0,12,0,0"
+                                              Width="100"
+                                              Style="{StaticResource ImageExStyle}"
+                                              Source="{x:Bind Icon}" />
+                            <TextBlock Text="{x:Bind Name}"
+                                       FontSize="16"
+                                       HorizontalAlignment="Center" />
+                            <TextBlock HorizontalAlignment="Center"
+                                       Foreground="{ThemeResource ThemeColor3}">
 
                             <Run Text="{x:Bind Price}" />
                             <Run>铃钱</Run>
-                        </TextBlock>
-                        <TextBlock Text="{x:Bind Position}"
-                                   Foreground="{ThemeResource ThemeColor3}"
-                                   HorizontalAlignment="Center"
-                                   TextWrapping="Wrap" />
-                    </StackPanel>
+                            </TextBlock>
+                            <TextBlock Text="{x:Bind Position}"
+                                       Foreground="{ThemeResource ThemeColor3}"
+                                       HorizontalAlignment="Center"
+                                       TextTrimming="CharacterEllipsis" />
+                        </StackPanel>
+                        <TextBlock Text="快到期"
+                                   Foreground="Red"
+                                   FontSize="16"
+                                   Margin="4"
+                                   VerticalAlignment="Top"
+                                   HorizontalAlignment="Left"
+                                   Visibility="{x:Bind AppearMonth,Converter={StaticResource AppearMonthToExpireConverter}}" />
+                    </Grid>
                 </DataTemplate>
             </controls:AdaptiveGridView.ItemTemplate>
             <controls:AdaptiveGridView.ItemContainerStyle>

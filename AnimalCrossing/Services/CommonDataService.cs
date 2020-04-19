@@ -249,7 +249,7 @@ namespace AnimalCrossing.Services
                 {
                     for (int i = 0; i < 12; i++)
                     {
-                        if (collection.Contains(i.ToString()))
+                        if (collection.Contains((i + 1).ToString()))
                         {
                             appear.Add(true);
                         }

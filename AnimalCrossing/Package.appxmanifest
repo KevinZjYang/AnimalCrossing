@@ -10,7 +10,7 @@
   <Identity
     Name="8541KevinYang.40412892D837E"
     Publisher="CN=C7769EF7-AB04-4749-A104-966485ADAE54"
-    Version="1.3.2.0" />
+    Version="1.3.3.0" />
 
   <mp:PhoneIdentity PhoneProductId="91d0098c-4f55-4061-a22f-49d6e5bb1d81" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

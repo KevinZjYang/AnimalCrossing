@@ -18,8 +18,7 @@
                 <ResourceDictionary Source="/Styles/ImageEx.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <converter:EnglishToIconConverter x:Key="EnglishToIconConverter" />
-            <converter:ZeroToVisibilityConverter x:Key="ZeroToVisibilityConverter" />
+            <converter:AppearMonthToExpireConverter x:Key="AppearMonthToExpireConverter" />
 
             <MuxConverter:BoolToVisibilityConverter FalseValue="Visible"
                                                     TrueValue="Collapsed"

@@ -170,8 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
-    <Compile Include="Converters\EnglishToIconConverter.cs" />
-    <Compile Include="Converters\ZeroToVisibilityConverter.cs" />
+    <Compile Include="Converters\AppearMonthToExpireConverter.cs" />
     <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\Json.cs" />
