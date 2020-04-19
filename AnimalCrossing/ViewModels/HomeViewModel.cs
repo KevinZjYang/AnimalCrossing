@@ -290,7 +290,7 @@ namespace AnimalCrossing.ViewModels
                 ThisMonthAnimals = ThisMonthAnimals.FindAll(delegate (NormalAnimal animals)
                 {
                     var thisHour = DateTime.Now.Hour.ToString();
-                    if (animals.Time.Contains(thisHour))
+                    if (animals.Time.Contains(thisHour) || animals.Time == "全天")
                     {
                         return true;
                     }

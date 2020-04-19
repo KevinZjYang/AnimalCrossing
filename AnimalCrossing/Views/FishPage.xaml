@@ -79,6 +79,7 @@
             <control:DataGrid.Columns>
                 <control:DataGridTextColumn Header="编号"
                                             Tag="Number"
+                                            SortDirection="Descending"
                                             Binding="{Binding Number}" />
                 <control:DataGridTemplateColumn Header="名称"
                                                 Tag="Name"

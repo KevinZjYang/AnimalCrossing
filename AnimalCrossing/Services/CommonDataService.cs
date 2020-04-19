@@ -35,11 +35,10 @@ namespace AnimalCrossing.Services
             List<NormalAnimal> normalAnimals = new List<NormalAnimal>();
             using (var con = SQLiteService.GetDbConnection())
             {
-                var animals = con.Table<AnimalsFish>().ToList();
+                var animals = con.Table<AnimalsFish>().OrderBy(p => p.Number).ToList();
+
                 foreach (var item in animals)
                 {
-                    //var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Fish>(item.Data);
-
                     List<UserFish> userFish;
                     using (var usercon = SQLiteService.GetUserDbConnection())
                     {
@@ -116,7 +115,7 @@ namespace AnimalCrossing.Services
             List<NormalAnimal> normalAnimals = new List<NormalAnimal>();
             using (var con = SQLiteService.GetDbConnection())
             {
-                var animals = con.Table<AnimalsInsect>().ToList();
+                var animals = con.Table<AnimalsInsect>().OrderBy(p => p.Number).ToList();
                 foreach (var item in animals)
                 {
                     //var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Insect>(item.Data);
