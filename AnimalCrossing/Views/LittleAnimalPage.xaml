@@ -31,11 +31,12 @@
                 </TextBlock>
             </StackPanel>
 
-            <AutoSuggestBox Width="200"
-                            x:Name="SearchAutoBox"
+            <AutoSuggestBox Width="300"
+                            x:Name="SearchAutoSuggestBox"
                             QueryIcon="Find"
+                            UpdateTextOnSelect="True"
                             PlaceholderText="输入名字搜索小动物"
-                            TextChanged="SearchAutoBox_TextChanged"
+                            TextMemberPath="Name"
                             SuggestionChosen="SearchAutoBox_SuggestionChosen"
                             QuerySubmitted="SearchAutoBox_QuerySubmitted"
                             HorizontalAlignment="Right"
