@@ -91,6 +91,11 @@
                 </RadioButton>
             </muxc:RadioButtons>
 
+            <Button Content="导出用户数据" Margin="0,8,0,0" Command="{x:Bind ViewModel.OutputDataCommand}"/>
+            <Button Content="导入用户数据"
+                    Margin="0,8,0,0"
+                    Command="{x:Bind ViewModel.InputDataCommand}" />
+
             <TextBlock x:Uid="Settings_About"
                        Margin="{StaticResource XSmallTopMargin}"
                        Style="{ThemeResource SubtitleTextBlockStyle}" />
