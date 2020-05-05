@@ -208,8 +208,7 @@
     <comment>First use prompt message primary button text</comment>
   </data>
   <data name="WhatsNew_Body.Text" xml:space="preserve">
-    <value>1、添加小动物和唱片页面
-2、替换大头菜预测页面为新版</value>
+    <value>1、更新数据库</value>
     <comment>What's new prompt message body</comment>
   </data>
   <data name="WhatsNewDialog.Title" xml:space="preserve">
