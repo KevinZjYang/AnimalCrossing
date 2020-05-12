@@ -12,5 +12,7 @@ namespace AnimalCrossing
         public const string TurnipPriceKey = "TurnipPrice";
 
         public const string DefaultHemisphereKey = "DefaultHemisphere";
+
+        public const string DbVersionKey = "DbVersion";
     }
 }

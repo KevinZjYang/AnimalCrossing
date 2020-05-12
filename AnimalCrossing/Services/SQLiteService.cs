@@ -11,7 +11,7 @@ namespace AnimalCrossing.Services
         #region 图鉴数据库
 
         public readonly static string DbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, DBNAME);
-        public const string DBNAME = "Animals1.3.1.db";
+        public const string DBNAME = "AnimalsCrossing.db";
 
         public static SQLiteConnection GetDbConnection()
         {
