@@ -8,6 +8,7 @@
       xmlns:i="using:Microsoft.Xaml.Interactivity"
       xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
       xmlns:model="using:AnimalCrossing.Models"
+      xmlns:hnControl="using:HN.Controls"
       Style="{StaticResource PageStyle}"
       mc:Ignorable="d">
     <Grid x:Name="ContentArea">
@@ -73,11 +74,10 @@
                         <Grid Padding="12"
                               CornerRadius="6"
                               Background="{ThemeResource SystemControlHighlightListLowRevealBackgroundBrush}">
-                            <controls:ImageEx Height="160"
-                                              IsCacheEnabled="False"
-                                              EnableLazyLoading="False"
-                                              Source="{x:Bind Image}"
-                                              Margin="0,0,0,24" />
+                            <hnControl:ImageEx Height="160"
+                                               EnableLazyLoading="True"
+                                               Source="{x:Bind Image}"
+                                               Margin="0,0,0,24" />
                             <TextBlock Text="{x:Bind Name}"
                                        FontSize="16"
                                        VerticalAlignment="Bottom"

@@ -7,6 +7,7 @@
       xmlns:usercontrol="using:AnimalCrossing.UserControls"
       xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
       xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+      xmlns:hnControl="using:HN.Controls"
       xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
       xmlns:i="using:Microsoft.Xaml.Interactivity"
       xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
@@ -126,10 +127,9 @@
                                     Padding="4"
                                     CornerRadius="6"
                                     Background="{ThemeResource SystemControlHighlightListLowRevealBackgroundBrush}">
-                            <controls:ImageEx Margin="0,12,0,0"
-                                              Width="100"
-                                              Style="{StaticResource ImageExStyle}"
-                                              Source="{x:Bind Icon}" />
+                            <hnControl:ImageEx Margin="0,12,0,0"
+                                               Width="100"
+                                               Source="{x:Bind Icon}" />
                             <TextBlock Text="{x:Bind Name}"
                                        FontSize="16"
                                        HorizontalAlignment="Center" />

@@ -21,5 +21,6 @@ namespace AnimalCrossing.Models
         public string Goal { get; set; }
         public string Motto { get; set; }
         public string ForeignName { get; set; }
+        public string HomePic { get; set; }
     }
 }

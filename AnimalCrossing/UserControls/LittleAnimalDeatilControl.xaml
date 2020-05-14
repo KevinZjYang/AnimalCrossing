@@ -1,16 +1,17 @@
-﻿<UserControl
-    x:Class="AnimalCrossing.UserControls.LittleAnimalDeatilControl"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:AnimalCrossing.UserControls"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+﻿<UserControl x:Class="AnimalCrossing.UserControls.LittleAnimalDeatilControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:AnimalCrossing.UserControls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:hnControl="using:HN.Controls"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
 
     <UserControl.Resources>
-        <Style TargetType="TextBlock" x:Key="TitleTbStyle">
+        <Style TargetType="TextBlock"
+               x:Key="TitleTbStyle">
             <Setter Property="FontSize"
                     Value="18" />
             <Setter Property="VerticalAlignment"
@@ -56,33 +57,44 @@
                 <ImageBrush ImageSource="ms-appx:///Icons/littleanimal2.jpg"
                             Stretch="None" />
             </StackPanel.Background>
-            <Grid Padding="8" MinHeight="300" MinWidth="600">
+            <Grid Padding="8"
+                  MinHeight="300"
+                  MinWidth="600">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Image x:Name="ImageCover"
-                       Height="250" Margin="12,0,12,0">
-                    <Image.Source>
-                        <BitmapImage UriSource="{x:Bind LittleAnimal.Image}" />
-                    </Image.Source>
-                </Image>
-                <Grid Grid.Column="1" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <hnControl:ImageEx x:Name="ImageCover"
+                                       Height="250"
+                                       Margin="12,0,12,0"
+                                       EnableLazyLoading="False"
+                                       Source="{x:Bind LittleAnimal.Image}">
+                    </hnControl:ImageEx>
+                    <TextBlock Grid.Row="1"
+                               VerticalAlignment="Center"
+                               FontSize="24"
+                               HorizontalAlignment="Center">
+                        <Run Text="{x:Bind LittleAnimal.Name}" />
+                        <Run Text="{x:Bind LittleAnimal.Gender}" />
+                    </TextBlock>
+                </Grid>
+
+                <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0"
-                               VerticalAlignment="Center"
-                               FontSize="24" HorizontalAlignment="Center">
-                        <Run Text="{x:Bind LittleAnimal.Name}" />
-                        <Run Text="{x:Bind LittleAnimal.Gender}" />
-                    </TextBlock>
-                    <Grid Grid.Row="1">
+
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
@@ -92,10 +104,13 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Grid Style="{StaticResource TitleGridStyle}" Grid.Column="0">
-                                <TextBlock Text="生日" Style="{StaticResource TitleTbStyle}"/>
+                            <Grid Style="{StaticResource TitleGridStyle}"
+                                  Grid.Column="0">
+                                <TextBlock Text="生日"
+                                           Style="{StaticResource TitleTbStyle}" />
                             </Grid>
-                            <TextBlock Grid.Column="1" Style="{StaticResource ContentTbStyle}"
+                            <TextBlock Grid.Column="1"
+                                       Style="{StaticResource ContentTbStyle}"
                                        Text="{x:Bind LittleAnimal.Brithday}" />
                         </Grid>
                         <Grid Grid.Column="1">
@@ -103,24 +118,22 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Grid Style="{StaticResource TitleGridStyle}"
-                                 >
+                            <Grid Style="{StaticResource TitleGridStyle}">
                                 <TextBlock Text="性格"
                                            Style="{StaticResource TitleTbStyle}" />
                             </Grid>
-                            <TextBlock Grid.Column="1" Style="{StaticResource ContentTbStyle}"
+                            <TextBlock Grid.Column="1"
+                                       Style="{StaticResource ContentTbStyle}"
                                        Text="{x:Bind LittleAnimal.Character}" />
                         </Grid>
-
                     </Grid>
 
-                    <Grid Grid.Row="2">
+                    <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Grid Style="{StaticResource TitleGridStyle}"
-                              >
+                        <Grid Style="{StaticResource TitleGridStyle}">
                             <TextBlock Text="初始口头禅"
                                        Style="{StaticResource TitleTbStyle}" />
                         </Grid>
@@ -128,7 +141,7 @@
                                    Style="{StaticResource ContentTbStyle}"
                                    Text="{x:Bind LittleAnimal.Mantra}" />
                     </Grid>
-                    <Grid Grid.Row="3">
+                    <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
@@ -141,7 +154,7 @@
                                    Style="{StaticResource ContentTbStyle}"
                                    Text="{x:Bind LittleAnimal.Goal}" />
                     </Grid>
-                    <Grid Grid.Row="4">
+                    <Grid Grid.Row="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
@@ -154,7 +167,7 @@
                                    Style="{StaticResource ContentTbStyle}"
                                    Text="{x:Bind LittleAnimal.Motto}" />
                     </Grid>
-                    <Grid Grid.Row="5">
+                    <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
@@ -169,11 +182,27 @@
                                    Text="{x:Bind LittleAnimal.ForeignName}" />
                     </Grid>
                 </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1"
+                          Style="{StaticResource TitleGridStyle}">
+                        <TextBlock Text="家装"
+                                   HorizontalAlignment="Center"
+                                   Style="{StaticResource TitleTbStyle}" />
+                    </Grid>
+                    <Grid Grid.Row="0"
+                          CornerRadius="12">
+                        <hnControl:ImageEx x:Name="HomeImage"
+                                           Stretch="UniformToFill"
+                                           EnableLazyLoading="False"
+                                           Source="{x:Bind homePic[0]}">
+                        </hnControl:ImageEx>
+                    </Grid>
+                </Grid>
             </Grid>
-            
-            
-            
         </StackPanel>
-     
     </Grid>
 </UserControl>

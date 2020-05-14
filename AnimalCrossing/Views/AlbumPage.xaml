@@ -7,6 +7,7 @@
       xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
       xmlns:i="using:Microsoft.Xaml.Interactivity"
       xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:hnControl="using:HN.Controls"
       xmlns:model="using:AnimalCrossing.Models"
       Style="{StaticResource PageStyle}"
       mc:Ignorable="d">
@@ -50,11 +51,10 @@
                                     Padding="12"
                                     CornerRadius="6"
                                     Background="{ThemeResource SystemControlHighlightListLowRevealBackgroundBrush}">
-                            <controls:ImageEx Width="120"
-                                              IsCacheEnabled="True"
-                                              EnableLazyLoading="False"
-                                              Source="{x:Bind Cover }"
-                                              Background="{ThemeResource SystemControlHighlightListLowRevealBackgroundBrush}" />
+                            <hnControl:ImageEx Width="120"
+                                               EnableLazyLoading="False"
+                                               Source="{x:Bind Cover }"
+                                               Background="{ThemeResource SystemControlHighlightListLowRevealBackgroundBrush}" />
                             <TextBlock Text="{x:Bind Name}"
                                        FontSize="16"
                                        HorizontalAlignment="Center" />

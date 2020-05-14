@@ -221,7 +221,7 @@ PS:最近有点忙，没时间搞。</value>
     <comment>What's new prompt message primary button text</comment>
   </data>
   <data name="Price_FailedMessage.Text" xml:space="preserve">
-    <value>Page failed to load. Check connection and retry.</value>
+    <value>页面加载失败，检查网络连接后重试</value>
     <comment>Load failure message for Price</comment>
   </data>
   <data name="Price_Loading.Text" xml:space="preserve">
@@ -229,39 +229,39 @@ PS:最近有点忙，没时间搞。</value>
     <comment>Loading message for Price</comment>
   </data>
   <data name="Price_Retry.Content" xml:space="preserve">
-    <value>retry</value>
+    <value>重试</value>
     <comment>Retry button for Price</comment>
   </data>
   <data name="Price_BrowserBackButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Back</value>
+    <value>前进</value>
     <comment>WebView back button automation name property for Price</comment>
   </data>
   <data name="Price_BrowserBackButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
-    <value>Back</value>
+    <value>后退</value>
     <comment>Back button automation tooltip property for Price</comment>
   </data>
   <data name="Price_BrowserForwardButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Forward</value>
+    <value>前进</value>
     <comment>Forward button automation name property for Price</comment>
   </data>
   <data name="Price_BrowserForwardButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
-    <value>Forward</value>
+    <value>前进</value>
     <comment>Forward button automation tooltip property for Price</comment>
   </data>
   <data name="Price_RefreshBrowserButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Refresh</value>
+    <value>刷新</value>
     <comment>Refresh button automation name property for Price</comment>
   </data>
   <data name="Price_RefreshBrowserButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
-    <value>Refresh</value>
+    <value>刷新</value>
     <comment>Refresh button automation tooltip property for Price</comment>
   </data>
   <data name="Price_OpenInBrowserButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Open in browser</value>
+    <value>在浏览器中打开</value>
     <comment>Open in browser button automation name property for Price</comment>
   </data>
   <data name="Price_OpenInBrowserButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
-    <value>Open in browser</value>
+    <value>在浏览器中打开</value>
     <comment>Open in browser button automation tooltip property for Price</comment>
   </data>
   <data name="Album_Title.Text" xml:space="preserve">
@@ -269,11 +269,11 @@ PS:最近有点忙，没时间搞。</value>
     <comment>Page title for AlbumPage</comment>
   </data>
   <data name="LittleAnimal_Title.Text" xml:space="preserve">
-    <value>LittleAnimal</value>
+    <value>小动物</value>
     <comment>Page title for LittleAnimalPage</comment>
   </data>
   <data name="Plant_Title.Text" xml:space="preserve">
-    <value>Plant</value>
+    <value>植物</value>
     <comment>Page title for PlantPage</comment>
   </data>
 </root>

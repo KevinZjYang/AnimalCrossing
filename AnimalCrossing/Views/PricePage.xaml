@@ -130,8 +130,12 @@
         <StackPanel Visibility="{x:Bind ViewModel.IsLoadingVisibility, Mode=OneWay}"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-            <ProgressRing Height="72" Width="72" IsActive="{x:Bind ViewModel.IsLoading, Mode=OneWay}" />
-            <TextBlock x:Uid="Price_Loading" Text="加载中..." FontSize="16"/>
+            <ProgressRing Height="72"
+                          Width="72"
+                          IsActive="{x:Bind ViewModel.IsLoading, Mode=OneWay}" />
+            <TextBlock x:Uid="Price_Loading"
+                       Text="加载中..."
+                       FontSize="16" />
         </StackPanel>
         <StackPanel Visibility="{x:Bind ViewModel.FailedMesageVisibility, Mode=OneWay}"
                     HorizontalAlignment="Center"
@@ -146,7 +150,8 @@
 
         <Grid VerticalAlignment="Bottom"
               Background="{ThemeResource SystemControlChromeHighAcrylicElementMediumBrush }">
-            <StackPanel Orientation="Horizontal" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal"
+                        Visibility="Collapsed">
                 <Button Style="{StaticResource BrowserButtonStyle}"
                         Command="{x:Bind ViewModel.BrowserBackCommand, Mode=OneWay}"
                         x:Uid="Price_BrowserBackButton">
@@ -162,6 +167,8 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right">
+                <TextBlock Text="图表不显示的，请点击右侧在浏览器中打开。"
+                           VerticalAlignment="Center" />
                 <Button Style="{StaticResource BrowserButtonStyle}"
                         Command="{x:Bind ViewModel.RefreshCommand}"
                         x:Uid="Price_RefreshBrowserButton">

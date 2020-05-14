@@ -21,8 +21,10 @@ namespace AnimalCrossing.UserControls
 {
     public sealed partial class LittleAnimalDeatilControl : UserControl
     {
-        Popup Popup;
+        private Popup Popup;
         public LittleAnimal LittleAnimal;
+        public List<string> homePic;
+
         public LittleAnimalDeatilControl()
         {
             this.InitializeComponent();
@@ -36,10 +38,25 @@ namespace AnimalCrossing.UserControls
             this.Unloaded += LittleAnimalDeatilControl_Unloaded;
             RequestedTheme = (Window.Current.Content as FrameworkElement).RequestedTheme;
         }
+
         public LittleAnimalDeatilControl(LittleAnimal animal) : this()
         {
             LittleAnimal = animal;
+            if (LittleAnimal.HomePic == "[]")
+            {
+                homePic = null;
+            }
+            else
+            {
+                //['https://patchwiki.biligame.com/images/dongsen/f/f8/cczj5m0oeo0x3ff7qgdi4nb8y6xofb7.jpg']
+                var str = LittleAnimal.HomePic.Replace("'", "");
+                str = str.Replace("]", "");
+                str = str.Replace("[", "");
+
+                homePic = new List<string>(str.Split(","));
+            }
         }
+
         private void LittleAnimalDeatilControl_Loaded(object sender, RoutedEventArgs e)
         {
             Window.Current.SizeChanged += Current_SizeChanged;
@@ -64,6 +81,7 @@ namespace AnimalCrossing.UserControls
                 Hide();
             }
         }
+
         public void Show()
         {
             this.Popup.IsOpen = true;
