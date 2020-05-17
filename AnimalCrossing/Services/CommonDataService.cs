@@ -15,6 +15,33 @@ namespace AnimalCrossing.Services
             North
         }
 
+        internal static List<NormalAlbum> GetAllAlbums()
+        {
+            List<NormalAlbum> normalAlbums = new List<NormalAlbum>();
+            var con = SQLiteService.GetDbConnection();
+            var albums = con.Table<Album>().ToList();
+
+            var usercon = SQLiteService.GetUserDbConnection();
+            foreach (var item in albums)
+            {
+                List<UserAlbum> userAlbums;
+                userAlbums = usercon.Table<UserAlbum>().Where(p => p.Name == item.Name).ToList();
+                if (userAlbums.Count > 0)
+                {
+                    var normal = new NormalAlbum { Name = item.Name, BuyPrice = item.BuyPrice, Cover = item.Cover, ForeignName = item.ForeignName, Number = item.Number, SalePrice = item.SalePrice, Source = item.Source, Owned = userAlbums[0].Owned };
+                    normalAlbums.Add(normal);
+                }
+                else
+                {
+                    var normal = new NormalAlbum { Name = item.Name, BuyPrice = item.BuyPrice, Cover = item.Cover, ForeignName = item.ForeignName, Number = item.Number, SalePrice = item.SalePrice, Source = item.Source, Owned = false };
+                    normalAlbums.Add(normal);
+                }
+            }
+            con.Dispose();
+            usercon.Dispose();
+            return normalAlbums;
+        }
+
         /// <summary>
         /// 获取所有的鱼
         /// </summary>

@@ -12,6 +12,7 @@ namespace AnimalCrossing.Models
     {
         [PrimaryKey]
         public string Name { get; set; }
+
         public bool Owned { get; set; }
         public bool MuseumHave { get; set; }
     }
@@ -21,7 +22,18 @@ namespace AnimalCrossing.Models
     {
         [PrimaryKey]
         public string Name { get; set; }
+
         public bool Owned { get; set; }
         public bool MuseumHave { get; set; }
+    }
+
+    [Table("Album")]
+    public class UserAlbum
+    {
+        [PrimaryKey]
+        public string Name { get; set; }
+
+        public bool Owned { get; set; }
+        //public bool MuseumHave { get; set; }
     }
 }

@@ -195,6 +195,7 @@
     <Compile Include="Models\Animals.cs" />
     <Compile Include="Models\LittleAnimal.cs" />
     <Compile Include="Models\NavItem.cs" />
+    <Compile Include="Models\NormalAlbum.cs" />
     <Compile Include="Models\NormalAnimals.cs" />
     <Compile Include="Models\PictorialBook.cs" />
     <Compile Include="Models\Plant.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="Services\SQLiteService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="Helpers\TimeHelper.cs" />
+    <Compile Include="Services\Utils.cs" />
     <Compile Include="Services\WhatsNewDisplayService.cs" />
     <Compile Include="UserControls\AppearMonthControl.xaml.cs">
       <DependentUpon>AppearMonthControl.xaml</DependentUpon>

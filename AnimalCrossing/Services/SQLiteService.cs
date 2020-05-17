@@ -58,6 +58,7 @@ namespace AnimalCrossing.Services
 
             liteConnection.CreateTable<UserInsect>();
             liteConnection.CreateTable<UserFish>();
+            liteConnection.CreateTable<UserAlbum>();
             return liteConnection;
         }
 
@@ -74,6 +75,14 @@ namespace AnimalCrossing.Services
             using (var con = GetUserDbConnection())
             {
                 con.InsertOrReplace(userFish);
+            }
+        }
+
+        public static void AddUserAlbum(UserAlbum userAlbum)
+        {
+            using (var con = GetUserDbConnection())
+            {
+                con.InsertOrReplace(userAlbum);
             }
         }
 

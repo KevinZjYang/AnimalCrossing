@@ -18,23 +18,69 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0"
               Margin="0,32,0,0">
-            <StackPanel Orientation="Horizontal">
+            <RelativePanel>
                 <TextBlock Text="唱片"
+                           x:Name="TitleTb"
                            Margin="8,0,0,0"
+                           RelativePanel.AlignLeftWithPanel="True"
                            Style="{StaticResource PageTitleStyle}" />
                 <TextBlock Foreground="{ThemeResource ThemeColor3}"
                            Margin="12,0,0,0"
-                           VerticalAlignment="Bottom">
+                           RelativePanel.RightOf="TitleTb"
+                           RelativePanel.AlignBottomWithPanel="True">
                     <Run>共</Run>
-                    <Run Text="{x:Bind ViewModel.Albums.Count}" />
+                    <Run Text="{x:Bind ViewModel.Albums.Count,Mode=OneWay}" />
                     <Run>个</Run>
                 </TextBlock>
-            </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            RelativePanel.LeftOf="AddButton">
+                    <TextBlock Text="隐藏已拥有"
+                               VerticalAlignment="Center" />
+                    <ToggleSwitch Margin="12,0,0,0"
+                                  OffContent="关"
+                                  OnContent="开"
+                                  IsOn="{x:Bind ViewModel.IsOwnedOn,Mode=TwoWay}">
+                        <i:Interaction.Behaviors>
+                            <ic:EventTriggerBehavior EventName="Toggled">
+                                <ic:InvokeCommandAction Command="{x:Bind ViewModel.HideOwend}" />
+                            </ic:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>
+                    </ToggleSwitch>
+                </StackPanel>
+                <Button x:Name="RemoveButton"
+                        ToolTipService.ToolTip="移除"
+                        ToolTipService.Placement="Bottom"
+                        Background="Transparent"
+                        RelativePanel.LeftOf="AddButton"
+                        Command="{x:Bind ViewModel.OnUpdateCommand}"
+                        Visibility="{x:Bind ViewModel.IsEditMode,Mode=OneWay}">
+                    <SymbolIcon Symbol="Delete" />
+                </Button>
+                <Button x:Name="AddButton"
+                        ToolTipService.ToolTip="添加"
+                        ToolTipService.Placement="Bottom"
+                        Background="Transparent"
+                        RelativePanel.LeftOf="MarkButton"
+                        Command="{x:Bind ViewModel.OnAddItemCommand}"
+                        Visibility="{x:Bind ViewModel.IsEditMode,Mode=OneWay}">
+                    <SymbolIcon Symbol="Add" />
+                </Button>
+                <Button x:Name="MarkButton"
+                        ToolTipService.ToolTip="标记"
+                        ToolTipService.Placement="Bottom"
+                        Background="Transparent"
+                        Margin="0,0,8,0"
+                        RelativePanel.AlignRightWithPanel="True"
+                        Command="{x:Bind ViewModel.OnEditMode}">
+                    <SymbolIcon Symbol="Bullets" />
+                </Button>
+            </RelativePanel>
         </Grid>
 
         <Grid Grid.Row="1">
-            <controls:AdaptiveGridView IsItemClickEnabled="True"
-                                       SelectionMode="Single"
+            <controls:AdaptiveGridView x:Name="MainGridView"
+                                       IsItemClickEnabled="True"
+                                       SelectionMode="{x:Bind ViewModel.ListSelectionMode,Mode=OneWay}"
                                        DesiredWidth="200"
                                        ItemHeight="200"
                                        animations:ReorderGridAnimation.Duration="500"
@@ -46,11 +92,13 @@
                 </i:Interaction.Behaviors>
 
                 <controls:AdaptiveGridView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Album">
+                    <DataTemplate x:DataType="model:NormalAlbum">
                         <StackPanel Orientation="Vertical"
                                     Padding="12"
                                     CornerRadius="6"
-                                    Background="{ThemeResource SystemControlHighlightListLowRevealBackgroundBrush}">
+                                    Background="Transparent"
+                                    BorderBrush="{ThemeResource SystemControlBackgroundBaseLowRevealBorderBrush}"
+                                    BorderThickness="1">
                             <hnControl:ImageEx Width="120"
                                                EnableLazyLoading="False"
                                                Source="{x:Bind Cover }"
@@ -63,6 +111,10 @@
 
                             <Run Text="{x:Bind BuyPrice}" />
                             <Run>铃钱</Run>
+                            </TextBlock>
+                            <TextBlock HorizontalAlignment="Center">
+                                <Run Foreground="{ThemeResource ThemeColor3}">拥有：</Run>
+                                <Run Text="{x:Bind Owned,Converter={StaticResource BoolToShiFouConverter}}" />
                             </TextBlock>
                         </StackPanel>
                     </DataTemplate>
@@ -79,5 +131,20 @@
                 </controls:AdaptiveGridView.ItemContainerStyle>
             </controls:AdaptiveGridView>
         </Grid>
+        <!--<controls:Loading Grid.RowSpan="2"
+                          IsLoading="{x:Bind ViewModel.IsLoading,Mode=OneWay}"
+                          Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+            <StackPanel Orientation="Horizontal">
+                <controls:ImageEx Source="ms-appx:///Assets/Logo.png"
+                                  DecodePixelHeight="72"
+                                  Height="72"
+                                  DecodePixelType="Logical"
+                                  DecodePixelWidth="72" />
+                <TextBlock Text="加载中..."
+                           Margin="8,0,0,0"
+                           FontSize="18"
+                           VerticalAlignment="Center" />
+            </StackPanel>
+        </controls:Loading>-->
     </Grid>
 </Page>

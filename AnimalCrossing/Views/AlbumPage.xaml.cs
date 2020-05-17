@@ -3,6 +3,7 @@
 using AnimalCrossing.ViewModels;
 
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace AnimalCrossing.Views
 {
@@ -16,6 +17,12 @@ namespace AnimalCrossing.Views
         public AlbumPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ViewModel.Initialize(MainGridView);
         }
     }
 }
