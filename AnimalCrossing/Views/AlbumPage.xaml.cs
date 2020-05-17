@@ -17,6 +17,7 @@ namespace AnimalCrossing.Views
         public AlbumPage()
         {
             InitializeComponent();
+            NavigationCacheMode = NavigationCacheMode.Disabled;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

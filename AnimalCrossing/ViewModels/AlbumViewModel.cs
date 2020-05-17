@@ -162,7 +162,6 @@ namespace AnimalCrossing.ViewModels
 
         public AlbumViewModel()
         {
-            LoadData();
         }
 
         private AdaptiveGridView _adaptiveGridView;
@@ -170,6 +169,7 @@ namespace AnimalCrossing.ViewModels
         public void Initialize(AdaptiveGridView gridView)
         {
             _adaptiveGridView = gridView;
+            LoadData();
         }
 
         public void LoadData()

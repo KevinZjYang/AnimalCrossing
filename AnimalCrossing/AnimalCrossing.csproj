@@ -210,8 +210,10 @@
     <Compile Include="Services\SQLiteService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="Helpers\TimeHelper.cs" />
-    <Compile Include="Services\Utils.cs" />
     <Compile Include="Services\WhatsNewDisplayService.cs" />
+    <Compile Include="UserControls\AlbumControl.xaml.cs">
+      <DependentUpon>AlbumControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\AppearMonthControl.xaml.cs">
       <DependentUpon>AppearMonthControl.xaml</DependentUpon>
     </Compile>
@@ -290,6 +292,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\TextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AlbumControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

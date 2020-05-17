@@ -8,6 +8,7 @@
       xmlns:i="using:Microsoft.Xaml.Interactivity"
       xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
       xmlns:hnControl="using:HN.Controls"
+      xmlns:usercontrol="using:AnimalCrossing.UserControls"
       xmlns:model="using:AnimalCrossing.Models"
       Style="{StaticResource PageStyle}"
       mc:Ignorable="d">
@@ -33,7 +34,7 @@
                     <Run>个</Run>
                 </TextBlock>
                 <StackPanel Orientation="Horizontal"
-                            RelativePanel.LeftOf="AddButton">
+                            RelativePanel.AlignRightWithPanel="True">
                     <TextBlock Text="隐藏已拥有"
                                VerticalAlignment="Center" />
                     <ToggleSwitch Margin="12,0,0,0"
@@ -47,7 +48,7 @@
                         </i:Interaction.Behaviors>
                     </ToggleSwitch>
                 </StackPanel>
-                <Button x:Name="RemoveButton"
+                <!--<Button x:Name="RemoveButton"
                         ToolTipService.ToolTip="移除"
                         ToolTipService.Placement="Bottom"
                         Background="Transparent"
@@ -73,7 +74,7 @@
                         RelativePanel.AlignRightWithPanel="True"
                         Command="{x:Bind ViewModel.OnEditMode}">
                     <SymbolIcon Symbol="Bullets" />
-                </Button>
+                </Button>-->
             </RelativePanel>
         </Grid>
 
@@ -93,30 +94,8 @@
 
                 <controls:AdaptiveGridView.ItemTemplate>
                     <DataTemplate x:DataType="model:NormalAlbum">
-                        <StackPanel Orientation="Vertical"
-                                    Padding="12"
-                                    CornerRadius="6"
-                                    Background="Transparent"
-                                    BorderBrush="{ThemeResource SystemControlBackgroundBaseLowRevealBorderBrush}"
-                                    BorderThickness="1">
-                            <hnControl:ImageEx Width="120"
-                                               EnableLazyLoading="False"
-                                               Source="{x:Bind Cover }"
-                                               Background="{ThemeResource SystemControlHighlightListLowRevealBackgroundBrush}" />
-                            <TextBlock Text="{x:Bind Name}"
-                                       FontSize="16"
-                                       HorizontalAlignment="Center" />
-                            <TextBlock HorizontalAlignment="Center"
-                                       Foreground="{ThemeResource ThemeColor3}">
-
-                            <Run Text="{x:Bind BuyPrice}" />
-                            <Run>铃钱</Run>
-                            </TextBlock>
-                            <TextBlock HorizontalAlignment="Center">
-                                <Run Foreground="{ThemeResource ThemeColor3}">拥有：</Run>
-                                <Run Text="{x:Bind Owned,Converter={StaticResource BoolToShiFouConverter}}" />
-                            </TextBlock>
-                        </StackPanel>
+                        <usercontrol:AlbumControl NormalAlbum="{x:Bind}"
+                                                  Owend="{x:Bind Owned}" />
                     </DataTemplate>
                 </controls:AdaptiveGridView.ItemTemplate>
                 <controls:AdaptiveGridView.ItemContainerStyle>
@@ -125,6 +104,10 @@
                                 Value="8" />
                         <Setter Property="Padding"
                                 Value="0" />
+                        <Setter Property="BorderBrush"
+                                Value="{ThemeResource SystemControlBackgroundBaseLowRevealBorderBrush}" />
+                        <Setter Property="BorderThickness"
+                                Value="1" />
                         <!--<Setter Property="CornerRadius"
                                 Value="8" />-->
                     </Style>
