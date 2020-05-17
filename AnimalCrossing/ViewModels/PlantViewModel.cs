@@ -52,6 +52,7 @@ namespace AnimalCrossing.ViewModels
             var con = await SQLiteService.GetDbConnection();
             var plants = await con.Table<Plant>().ToListAsync();
             Plants = plants;
+            await con.CloseAsync();
         }
 
         private void GridViewItemClick(ItemClickEventArgs obj)

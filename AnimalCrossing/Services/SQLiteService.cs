@@ -67,18 +67,21 @@ namespace AnimalCrossing.Services
         {
             var con = await GetUserDbConnection();
             await con.InsertOrReplaceAsync(userInsect);
+            await con.CloseAsync();
         }
 
         public static async Task AddUserFish(UserFish userFish)
         {
             var con = await GetUserDbConnection();
             await con.InsertOrReplaceAsync(userFish);
+            await con.CloseAsync();
         }
 
         public static async Task AddUserAlbum(UserAlbum userAlbum)
         {
             var con = await GetUserDbConnection();
             await con.InsertOrReplaceAsync(userAlbum);
+            await con.CloseAsync();
         }
 
         #endregion 用户信息数据库

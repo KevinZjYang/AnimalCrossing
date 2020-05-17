@@ -180,6 +180,9 @@
     <Compile Include="Converters\NameToWebUrlConverter.cs" />
     <Compile Include="Converters\StringToListConverter.cs" />
     <Compile Include="Converters\StringToUriConverter.cs" />
+    <Compile Include="ExtendedSplash.xaml.cs">
+      <DependentUpon>ExtendedSplash.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\Json.cs" />
@@ -216,6 +219,9 @@
     </Compile>
     <Compile Include="UserControls\AppearMonthControl.xaml.cs">
       <DependentUpon>AppearMonthControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Bubble.xaml.cs">
+      <DependentUpon>Bubble.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AlbumViewModel.cs" />
     <Compile Include="ViewModels\FishViewModel.cs" />
@@ -271,6 +277,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ExtendedSplash.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Helpers\NotifyPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -302,6 +312,10 @@
     <Page Include="UserControls\AppearMonthControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Bubble.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\DetailControl.xaml">
       <SubType>Designer</SubType>

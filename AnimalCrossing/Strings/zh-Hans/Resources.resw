@@ -195,7 +195,6 @@
   </data>
   <data name="FirstRun_Body.Text" xml:space="preserve">
     <value>集合啦！动物森友会的图鉴。基本数据来源于哔哩哔哩游戏Wiki。
-首次启动会联网下载数据库，请连接网络后打开应用。
 </value>
     <comment>First use prompt message body</comment>
   </data>
@@ -210,7 +209,8 @@
   <data name="WhatsNew_Body.Text" xml:space="preserve">
     <value>1、小动物添加家里装修展示，以及生日提示。
 2、唱片可以编辑拥有状态了。
-3、优化页面加载速度。</value>
+3、优化页面加载速度。
+4、优化自动更新数据库的方式。更加无感。</value>
     <comment>What's new prompt message body</comment>
   </data>
   <data name="WhatsNewDialog.Title" xml:space="preserve">

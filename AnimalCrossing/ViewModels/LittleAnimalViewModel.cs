@@ -169,7 +169,7 @@ namespace AnimalCrossing.ViewModels
             var littleAnimals = await con.Table<LittleAnimal>().ToListAsync();
             LittleAnimals = littleAnimals;
             //LittleAnimalDeatil = LittleAnimals[0];
-
+            await con.CloseAsync();
             TodayIsWhoBrithday(LittleAnimals);
         }
 

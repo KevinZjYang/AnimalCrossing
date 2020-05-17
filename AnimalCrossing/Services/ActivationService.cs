@@ -45,8 +45,18 @@ namespace AnimalCrossing.Services
             {
                 // Initialize services that you need before app activation take into account that
                 // the splash screen is shown while this code runs.
-                await InitializeAsync();
-
+                //await InitializeAsync();
+                if ((activationArgs as IActivatedEventArgs).Kind == ActivationKind.Launch)
+                {
+                    if ((activationArgs as LaunchActivatedEventArgs).PreviousExecutionState != ApplicationExecutionState.Running)
+                    {
+                        bool loadState = ((activationArgs as LaunchActivatedEventArgs).PreviousExecutionState == ApplicationExecutionState.Terminated);
+                        ExtendedSplash extendedSplash = new ExtendedSplash((activationArgs as LaunchActivatedEventArgs).SplashScreen, loadState);
+                        var rootFrame = new Frame();
+                        rootFrame.Content = extendedSplash;
+                        Window.Current.Content = rootFrame;
+                    }
+                }
                 // Do not repeat app initialization when the Window already has content, just ensure
                 // that the window is active
                 if (Window.Current.Content == null)
@@ -68,11 +78,11 @@ namespace AnimalCrossing.Services
             if (IsInteractive(activationArgs))
             {
                 // Ensure the current window is active
-                Window.Current.Activate();
+                //Window.Current.Activate();
 
                 ExtendAcrylicIntoTitleBar();
                 // Tasks after activation
-                await StartupAsync();
+                //await StartupAsync();
             }
         }
 
@@ -102,7 +112,7 @@ namespace AnimalCrossing.Services
             args.Handled = result;
         }
 
-        private async Task InitializeAsync()
+        public static async Task InitializeAsync()
         {
             await ThemeSelectorService.InitializeAsync().ConfigureAwait(false);
         }
@@ -127,12 +137,11 @@ namespace AnimalCrossing.Services
             }
         }
 
-        private async Task StartupAsync()
+        public static async Task StartupAsync()
         {
             await ThemeSelectorService.SetRequestedThemeAsync();
             await FirstRunDisplayService.ShowIfAppropriateAsync();
             await WhatsNewDisplayService.ShowIfAppropriateAsync();
-            await DbUpdateService.DownloadIfAppropriateAsync().ConfigureAwait(false);
         }
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()

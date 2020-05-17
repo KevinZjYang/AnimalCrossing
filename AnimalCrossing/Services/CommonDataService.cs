@@ -37,7 +37,8 @@ namespace AnimalCrossing.Services
                     normalAlbums.Add(normal);
                 }
             }
-
+            await con.CloseAsync();
+            await usercon.CloseAsync();
             return normalAlbums;
         }
 
@@ -83,6 +84,8 @@ namespace AnimalCrossing.Services
                     normalAnimals.Add(normal);
                 }
             }
+            await con.CloseAsync();
+            await usercon.CloseAsync();
             return normalAnimals;
         }
 
@@ -163,6 +166,8 @@ namespace AnimalCrossing.Services
                     normalAnimals.Add(normal);
                 }
             }
+            await con.CloseAsync();
+            await usercon.CloseAsync();
             return normalAnimals;
         }
 

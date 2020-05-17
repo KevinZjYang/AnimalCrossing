@@ -113,11 +113,12 @@ namespace AnimalCrossing.ViewModels
         }
 
         private ICommand _outputData;
+
         public ICommand OutputDataCommand
         {
             get
             {
-                if(_outputData == null)
+                if (_outputData == null)
                 {
                     _outputData = new RelayCommand(async () =>
                     {
@@ -128,60 +129,57 @@ namespace AnimalCrossing.ViewModels
                         var folder = await picker.PickSingleFolderAsync();
                         if (folder != null)
                         {
-                            await file.CopyAsync(folder,"User.db",NameCollisionOption.ReplaceExisting);
-                            
-                            var notify = new NotifyPopup($"导出用户数据到: {folder.Path}",TimeSpan.FromSeconds(5));
+                            await file.CopyAsync(folder, "User.db", NameCollisionOption.ReplaceExisting);
+
+                            var notify = new NotifyPopup($"导出用户数据到: {folder.Path}", TimeSpan.FromSeconds(5));
                             notify.Show();
                         }
                         else
                         {
                             var notify = new NotifyPopup("导出失败，请重试");
-                            notify.Show(); 
+                            notify.Show();
                         }
                     });
                 }
                 return _outputData;
             }
-            
         }
 
         private ICommand _inputData;
+
         public ICommand InputDataCommand
         {
             get
             {
-                if(_inputData == null)
+                if (_inputData == null)
                 {
                     _inputData = new RelayCommand(async () =>
                     {
                         NotifyPopup np;
                         try
                         {
-                          
                             var localFolder = ApplicationData.Current.LocalFolder;
                             FileOpenPicker openPicker = new FileOpenPicker();
                             openPicker.FileTypeFilter.Add(".db");
                             StorageFile file = await openPicker.PickSingleFileAsync();
-                            
+
                             var result = await file.CopyAsync(localFolder, "User1.db", NameCollisionOption.ReplaceExisting);
-                            using (var liteConnection = new SQLiteConnection(result.Path))
+                            var liteConnection = new SQLiteAsyncConnection(result.Path);
+                            var info1 = await liteConnection.GetTableInfoAsync("Insect");
+                            var info2 = await liteConnection.GetTableInfoAsync("Fish");
+                            if (info1.Count == 0 && info2.Count == 0)
                             {
-                                var info1 = liteConnection.GetTableInfo("Insect");
-                                var info2 = liteConnection.GetTableInfo("Fish");
-                                if (info1.Count == 0 && info2.Count == 0)
-                                {
-                                    np = new NotifyPopup("导入数据无效,请重试", TimeSpan.FromSeconds(5));
-                                    np.Show();
-                                    return;
-                                }
+                                np = new NotifyPopup("导入数据无效,请重试", TimeSpan.FromSeconds(5));
+                                np.Show();
+                                return;
                             }
+                            await liteConnection.CloseAsync();
                             await result.RenameAsync("User.db", NameCollisionOption.ReplaceExisting);
                             np = new NotifyPopup("导入成功");
                             np.Show();
                         }
                         catch (Exception e)
                         {
-
                             np = new NotifyPopup($"导入失败,{e.Message}");
                             np.Show();
                         }
@@ -190,6 +188,7 @@ namespace AnimalCrossing.ViewModels
                 return _inputData;
             }
         }
+
         public SettingsViewModel()
         {
         }

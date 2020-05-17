@@ -42,7 +42,7 @@
                       RelativePanel.LeftOf="BrithdyTb2"
                       SelectionMode="None"
                       IsItemClickEnabled="True"
-                      ItemsSource="{x:Bind ViewModel.TodayBrithday}">
+                      ItemsSource="{x:Bind ViewModel.TodayBrithday,Mode=OneWay}">
                 <i:Interaction.Behaviors>
                     <ic:EventTriggerBehavior EventName="ItemClick">
                         <ic:InvokeCommandAction Command="{x:Bind ViewModel.BrithdayItemClick}" />
