@@ -8,6 +8,7 @@ using System.Reactive.Linq;
 using Windows.Foundation;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Windows.UI.Xaml.Navigation;
 
 namespace AnimalCrossing.Views
 {
@@ -21,6 +22,7 @@ namespace AnimalCrossing.Views
         public LittleAnimalPage()
         {
             InitializeComponent();
+            Unloaded += LittleAnimalPage_Unloaded;
             var changed =
                 Observable.FromEventPattern<TypedEventHandler<AutoSuggestBox, AutoSuggestBoxTextChangedEventArgs>, AutoSuggestBox, AutoSuggestBoxTextChangedEventArgs>(
                 handler => SearchAutoSuggestBox.TextChanged += handler,
@@ -43,6 +45,18 @@ namespace AnimalCrossing.Views
             {
                 SearchAutoSuggestBox.ItemsSource = suggestions;
             });
+        }
+
+        private void LittleAnimalPage_Unloaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            ViewModel.DetailVisibility = Windows.UI.Xaml.Visibility.Collapsed;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ViewModel.Initialize(MainGridView, detailImageControl);
+            ViewModel.LoadData();
         }
 
         private void SearchAutoBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)

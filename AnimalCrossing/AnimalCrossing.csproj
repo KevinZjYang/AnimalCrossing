@@ -177,6 +177,9 @@
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="Converters\AppearMonthToExpireConverter.cs" />
+    <Compile Include="Converters\NameToWebUrlConverter.cs" />
+    <Compile Include="Converters\StringToListConverter.cs" />
+    <Compile Include="Converters\StringToUriConverter.cs" />
     <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\Json.cs" />

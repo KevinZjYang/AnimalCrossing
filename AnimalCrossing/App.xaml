@@ -19,6 +19,9 @@
             </ResourceDictionary.MergedDictionaries>
 
             <converter:AppearMonthToExpireConverter x:Key="AppearMonthToExpireConverter" />
+            <converter:StringToListConverter x:Key="StringToListConverter" />
+            <converter:StringToUriConverter x:Key="StringToUriConverter" />
+            <converter:NameToWebUrlConverter x:Key="NameToWebUrlConverter" />
 
             <MuxConverter:BoolToVisibilityConverter FalseValue="Visible"
                                                     TrueValue="Collapsed"
@@ -26,6 +29,13 @@
             <MuxConverter:BoolToObjectConverter TrueValue="是"
                                                 FalseValue="否"
                                                 x:Key="BoolToShiFouConverter" />
+            <MuxConverter:CollectionVisibilityConverter EmptyValue="Visible"
+                                                        NotEmptyValue="Collapsed"
+                                                        x:Key="CollectionVisibilityConverter" />
+            <MuxConverter:DoubleToVisibilityConverter GreaterThan="0"
+                                                      TrueValue="Visible"
+                                                      FalseValue="Collapsed"
+                                                      x:Key="DoubleToVisibilityConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

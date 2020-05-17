@@ -9,6 +9,8 @@
       xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
       xmlns:model="using:AnimalCrossing.Models"
       xmlns:hnControl="using:HN.Controls"
+      xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+      xmlns:sys="using:System"
       Style="{StaticResource PageStyle}"
       mc:Ignorable="d">
     <Grid x:Name="ContentArea">
@@ -67,6 +69,9 @@
                     <ic:EventTriggerBehavior EventName="ItemClick">
                         <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemClickCommand}" />
                     </ic:EventTriggerBehavior>
+                    <ic:EventTriggerBehavior EventName="SelectionChanged">
+                        <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemSelectionChanged}" />
+                    </ic:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
 
                 <controls:AdaptiveGridView.ItemTemplate>
@@ -75,6 +80,7 @@
                               CornerRadius="6"
                               Background="{ThemeResource SystemControlHighlightListLowRevealBackgroundBrush}">
                             <hnControl:ImageEx Height="160"
+                                               x:Name="connectedElement"
                                                EnableLazyLoading="True"
                                                Source="{x:Bind Image}"
                                                Margin="0,0,0,24" />
@@ -104,6 +110,234 @@
                     </Style>
                 </controls:AdaptiveGridView.ItemContainerStyle>
             </controls:AdaptiveGridView>
+
+            <Grid x:Name="DetailGrid"
+                  x:DefaultBindMode="OneWay"
+                  Visibility="{x:Bind ViewModel.DetailVisibility}"
+                  Background="{ThemeResource SystemControlBackgroundBaseMediumBrush}">
+                <i:Interaction.Behaviors>
+                    <ic:EventTriggerBehavior EventName="Tapped">
+                        <ic:InvokeCommandAction Command="{x:Bind ViewModel.CloseDetail}" />
+                    </ic:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
+                <Grid.Resources>
+                    <Style TargetType="TextBlock"
+                           x:Key="TitleTbStyle">
+                        <Setter Property="FontSize"
+                                Value="18" />
+                        <Setter Property="VerticalAlignment"
+                                Value="Center" />
+                        <Setter Property="Foreground"
+                                Value="White" />
+                        <Setter Property="Padding"
+                                Value="12,0" />
+                    </Style>
+                    <Style TargetType="TextBlock"
+                           x:Key="ContentTbStyle">
+                        <Setter Property="FontSize"
+                                Value="20" />
+                        <Setter Property="VerticalAlignment"
+                                Value="Center" />
+                        <Setter Property="HorizontalAlignment"
+                                Value="Center" />
+                        <Setter Property="Padding"
+                                Value="12,0" />
+                    </Style>
+                    <Style TargetType="Grid"
+                           x:Key="TitleGridStyle">
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <ImageBrush ImageSource="ms-appx:///Icons/littleanimal1.jpg"
+                                            Stretch="None" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="CornerRadius"
+                                Value="16" />
+                        <Setter Property="Padding"
+                                Value="4" />
+                        <Setter Property="Margin"
+                                Value="8" />
+                    </Style>
+                </Grid.Resources>
+                <StackPanel CornerRadius="12"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="ms-appx:///Icons/littleanimal2.jpg"
+                                    Stretch="None" />
+                    </StackPanel.Background>
+                    <Grid Padding="8"
+                          MinHeight="300"
+                          MinWidth="600">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <hnControl:ImageEx x:Name="detailImageControl"
+                                               Height="250"
+                                               Margin="12,0,12,0"
+                                               EnableLazyLoading="False"
+                                               Source="{x:Bind ViewModel.LittleAnimalDeatil.Image}">
+                            </hnControl:ImageEx>
+                            <TextBlock Grid.Row="1"
+                                       VerticalAlignment="Center"
+                                       FontSize="24"
+                                       HorizontalAlignment="Center">
+                        <Run Text="{x:Bind ViewModel.LittleAnimalDeatil.Name}" />
+                        <Run Text="{x:Bind ViewModel.LittleAnimalDeatil.Gender}" />
+                            </TextBlock>
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Style="{StaticResource TitleGridStyle}"
+                                          Grid.Column="0">
+                                        <TextBlock Text="生日"
+                                                   Style="{StaticResource TitleTbStyle}" />
+                                    </Grid>
+                                    <TextBlock Grid.Column="1"
+                                               Style="{StaticResource ContentTbStyle}"
+                                               Text="{x:Bind ViewModel.LittleAnimalDeatil.Brithday}" />
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Style="{StaticResource TitleGridStyle}">
+                                        <TextBlock Text="性格"
+                                                   Style="{StaticResource TitleTbStyle}" />
+                                    </Grid>
+                                    <TextBlock Grid.Column="1"
+                                               Style="{StaticResource ContentTbStyle}"
+                                               Text="{x:Bind ViewModel.LittleAnimalDeatil.Character}" />
+                                </Grid>
+                            </Grid>
+
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Style="{StaticResource TitleGridStyle}">
+                                    <TextBlock Text="初始口头禅"
+                                               Style="{StaticResource TitleTbStyle}" />
+                                </Grid>
+                                <TextBlock Grid.Column="1"
+                                           Style="{StaticResource ContentTbStyle}"
+                                           Text="{x:Bind ViewModel.LittleAnimalDeatil.Mantra}" />
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Style="{StaticResource TitleGridStyle}">
+                                    <TextBlock Text="目标"
+                                               Style="{StaticResource TitleTbStyle}" />
+                                </Grid>
+                                <TextBlock Grid.Column="1"
+                                           Style="{StaticResource ContentTbStyle}"
+                                           Text="{x:Bind ViewModel.LittleAnimalDeatil.Goal}" />
+                            </Grid>
+                            <Grid Grid.Row="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Style="{StaticResource TitleGridStyle}">
+                                    <TextBlock Text="座右铭"
+                                               Style="{StaticResource TitleTbStyle}" />
+                                </Grid>
+                                <TextBlock Grid.Column="1"
+                                           Style="{StaticResource ContentTbStyle}"
+                                           Text="{x:Bind ViewModel.LittleAnimalDeatil.Motto}" />
+                            </Grid>
+                            <Grid Grid.Row="4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Style="{StaticResource TitleGridStyle}">
+                                    <TextBlock Text="外文名称"
+                                               Style="{StaticResource TitleTbStyle}" />
+                                </Grid>
+                                <TextBlock Grid.Column="1"
+                                           IsTextSelectionEnabled="True"
+                                           Style="{StaticResource ContentTbStyle}"
+                                           Text="{x:Bind ViewModel.LittleAnimalDeatil.ForeignName}" />
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="1"
+                                  Style="{StaticResource TitleGridStyle}">
+                                <TextBlock Text="家装"
+                                           HorizontalAlignment="Center"
+                                           Style="{StaticResource TitleTbStyle}" />
+                            </Grid>
+
+                            <Grid Grid.Row="0">
+                                <FlipView x:Name="PicFlipView"
+                                          ItemsSource="{x:Bind ViewModel.LittleAnimalDeatil.HomePic,Converter={StaticResource StringToListConverter}}"
+                                          Height="{Binding ElementName=detailImageControl, Path=Height}"
+                                          Background="Transparent">
+                                    <FlipView.ItemTemplate>
+                                        <DataTemplate x:DataType="x:String">
+                                            <hnControl:ImageEx x:Name="HomeImage"
+                                                               Stretch="Uniform"
+                                                               EnableLazyLoading="False"
+                                                               Source="{Binding}">
+                                                <hnControl:ImageEx.LoadingTemplate>
+                                                    <DataTemplate>
+                                                        <winui:ProgressRing IsActive="True"
+                                                                            Height="48"
+                                                                            Width="48" />
+                                                    </DataTemplate>
+                                                </hnControl:ImageEx.LoadingTemplate>
+                                            </hnControl:ImageEx>
+                                        </DataTemplate>
+                                    </FlipView.ItemTemplate>
+                                </FlipView>
+                                <StackPanel Orientation="Vertical"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Visibility="{Binding ElementName=PicFlipView,Path=ItemsSource,Converter={StaticResource CollectionVisibilityConverter}}">
+                                    <TextBlock Text="还未收集到家装" />
+                                    <HyperlinkButton Content="我要去贡献家装照片"
+                                                     NavigateUri="{x:Bind ViewModel.LittleAnimalDeatil.Name,Converter={StaticResource NameToWebUrlConverter}}" />
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 </Page>
