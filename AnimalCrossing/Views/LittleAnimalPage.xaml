@@ -10,7 +10,6 @@
       xmlns:model="using:AnimalCrossing.Models"
       xmlns:hnControl="using:HN.Controls"
       xmlns:winui="using:Microsoft.UI.Xaml.Controls"
-      xmlns:sys="using:System"
       Style="{StaticResource PageStyle}"
       mc:Ignorable="d">
     <Grid x:Name="ContentArea">
@@ -19,9 +18,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid  Grid.Row="0"
-               Margin="0,32,0,8">
-            <StackPanel Orientation="Horizontal">
+        <RelativePanel  Grid.Row="0"
+                        Margin="0,32,0,8">
+            <StackPanel Orientation="Horizontal"
+                        RelativePanel.AlignLeftWithPanel="True">
                 <TextBlock Text="小动物图鉴"
                            Margin="8,0,0,0"
                            Style="{StaticResource PageTitleStyle}" />
@@ -33,6 +33,50 @@
                     <Run>个</Run>
                 </TextBlock>
             </StackPanel>
+            <TextBlock x:Name="BrithdyTb1"
+                       Text="今天是"
+                       Foreground="{ThemeResource ThemeColor3}"
+                       Margin="0,8,0,0"
+                       RelativePanel.LeftOf="BrithdayListView" />
+            <ListView x:Name="BrithdayListView"
+                      RelativePanel.LeftOf="BrithdyTb2"
+                      SelectionMode="None"
+                      IsItemClickEnabled="True"
+                      ItemsSource="{x:Bind ViewModel.TodayBrithday}">
+                <i:Interaction.Behaviors>
+                    <ic:EventTriggerBehavior EventName="ItemClick">
+                        <ic:InvokeCommandAction Command="{x:Bind ViewModel.BrithdayItemClick}" />
+                    </ic:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:LittleAnimal">
+                        <TextBlock Text="{x:Bind Name}"
+                                   FontSize="16"
+                                   Foreground="{ThemeResource SystemAccentColor}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Padding"
+                                Value="8,0,8,0" />
+                        <Setter Property="MinHeight"
+                                Value="32" />
+                        <Setter Property="MinWidth"
+                                Value="24" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+            <TextBlock x:Name="BrithdyTb2"
+                       Text="的生日"
+                       Margin="0,8,8,0"
+                       Foreground="{ThemeResource ThemeColor3}"
+                       VerticalAlignment="Bottom"
+                       RelativePanel.LeftOf="SearchAutoSuggestBox" />
 
             <AutoSuggestBox Width="300"
                             x:Name="SearchAutoSuggestBox"
@@ -42,7 +86,7 @@
                             TextMemberPath="Name"
                             SuggestionChosen="SearchAutoBox_SuggestionChosen"
                             QuerySubmitted="SearchAutoBox_QuerySubmitted"
-                            HorizontalAlignment="Right"
+                            RelativePanel.AlignRightWithPanel="True"
                             Margin="0,0,12,0">
                 <!--<i:Interaction.Behaviors>
                     <ic:EventTriggerBehavior EventName="QuerySubmitted">
@@ -55,7 +99,7 @@
                     </DataTemplate>
                 </AutoSuggestBox.ItemTemplate>
             </AutoSuggestBox>
-        </Grid>
+        </RelativePanel>
 
         <Grid Grid.Row="1">
             <controls:AdaptiveGridView x:Name="MainGridView"

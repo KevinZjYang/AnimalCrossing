@@ -11,6 +11,8 @@ using Microsoft.Toolkit.Uwp.UI.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Input;
 using Windows.UI.Xaml;
+using System.Linq;
+using System.Text;
 
 namespace AnimalCrossing.ViewModels
 {
@@ -31,6 +33,20 @@ namespace AnimalCrossing.ViewModels
             set { Set(ref _littleAnimal, value); }
         }
 
+        public ICommand BrithdayItemClick
+        {
+            get
+            {
+                return new RelayCommand<ItemClickEventArgs>((args) =>
+                {
+                    var item = args.ClickedItem as LittleAnimal;
+                    var targetItem = LittleAnimals.Find(p => p.Name == item.Name);
+                    _adaptiveGridView.ScrollIntoView(targetItem);
+                    _adaptiveGridView.SelectedItem = targetItem;
+                });
+            }
+        }
+
         private LittleAnimal _storedItem;
         private ICommand _itemClick;
 
@@ -42,7 +58,6 @@ namespace AnimalCrossing.ViewModels
                 {
                     _itemClick = new RelayCommand<ItemClickEventArgs>((p) =>
                     {
-                        var para = p.ClickedItem as LittleAnimal;
                         ConnectedAnimation animation = null;
                         var container = _adaptiveGridView.ContainerFromItem(p.ClickedItem) as GridViewItem;
                         if (container != null)
@@ -155,6 +170,22 @@ namespace AnimalCrossing.ViewModels
                 LittleAnimals = littleAnimals;
                 //LittleAnimalDeatil = LittleAnimals[0];
             }
+
+            TodayIsWhoBrithday(LittleAnimals);
+        }
+
+        private List<LittleAnimal> _todayBirthday;
+
+        public List<LittleAnimal> TodayBrithday
+        {
+            get { return _todayBirthday; }
+            set { Set(ref _todayBirthday, value); }
+        }
+
+        private void TodayIsWhoBrithday(List<LittleAnimal> animals)
+        {
+            var date = $"{ DateTimeOffset.Now.Month}月{ DateTimeOffset.Now.Day}日";
+            TodayBrithday = animals.FindAll(p => p.Brithday == date);
         }
     }
 }
