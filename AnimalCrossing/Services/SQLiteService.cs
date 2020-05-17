@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using AnimalCrossing.Models;
 using Windows.Storage;
+using System.Threading.Tasks;
 
 namespace AnimalCrossing.Services
 {
@@ -13,16 +14,16 @@ namespace AnimalCrossing.Services
         public readonly static string DbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, DBNAME);
         public const string DBNAME = "AnimalsCrossing.db";
 
-        public static SQLiteConnection GetDbConnection()
+        public static async Task<SQLiteAsyncConnection> GetDbConnection()
         {
             var option = new SQLiteConnectionString(DbPath);
-            var liteConnection = new SQLiteConnection(option);
+            var liteConnection = new SQLiteAsyncConnection(option);
 
-            liteConnection.CreateTable<AnimalsInsect>();
-            liteConnection.CreateTable<AnimalsFish>();
-            liteConnection.CreateTable<Plant>();
-            liteConnection.CreateTable<LittleAnimal>();
-            liteConnection.CreateTable<Album>();
+            await liteConnection.CreateTableAsync<AnimalsInsect>();
+            await liteConnection.CreateTableAsync<AnimalsFish>();
+            await liteConnection.CreateTableAsync<Plant>();
+            await liteConnection.CreateTableAsync<LittleAnimal>();
+            await liteConnection.CreateTableAsync<Album>();
             return liteConnection;
         }
 
@@ -50,40 +51,34 @@ namespace AnimalCrossing.Services
 
         public readonly static string UserDbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "User.db");
 
-        public static SQLiteConnection GetUserDbConnection()
+        public static async Task<SQLiteAsyncConnection> GetUserDbConnection()
         {
             //var option = new SQLiteConnectionString(DbPath, true, key: "pCBR8Jg7n6lHPcwh");
             var option = new SQLiteConnectionString(UserDbPath);
-            var liteConnection = new SQLiteConnection(option);
+            var liteConnection = new SQLiteAsyncConnection(option);
 
-            liteConnection.CreateTable<UserInsect>();
-            liteConnection.CreateTable<UserFish>();
-            liteConnection.CreateTable<UserAlbum>();
+            await liteConnection.CreateTableAsync<UserInsect>();
+            await liteConnection.CreateTableAsync<UserFish>();
+            await liteConnection.CreateTableAsync<UserAlbum>();
             return liteConnection;
         }
 
-        public static void AddUserInsect(UserInsect userInsect)
+        public static async Task AddUserInsect(UserInsect userInsect)
         {
-            using (var con = GetUserDbConnection())
-            {
-                con.InsertOrReplace(userInsect);
-            }
+            var con = await GetUserDbConnection();
+            await con.InsertOrReplaceAsync(userInsect);
         }
 
-        public static void AddUserFish(UserFish userFish)
+        public static async Task AddUserFish(UserFish userFish)
         {
-            using (var con = GetUserDbConnection())
-            {
-                con.InsertOrReplace(userFish);
-            }
+            var con = await GetUserDbConnection();
+            await con.InsertOrReplaceAsync(userFish);
         }
 
-        public static void AddUserAlbum(UserAlbum userAlbum)
+        public static async Task AddUserAlbum(UserAlbum userAlbum)
         {
-            using (var con = GetUserDbConnection())
-            {
-                con.InsertOrReplace(userAlbum);
-            }
+            var con = await GetUserDbConnection();
+            await con.InsertOrReplaceAsync(userAlbum);
         }
 
         #endregion 用户信息数据库

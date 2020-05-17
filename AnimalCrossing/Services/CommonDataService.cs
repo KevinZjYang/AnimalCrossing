@@ -15,17 +15,17 @@ namespace AnimalCrossing.Services
             North
         }
 
-        internal static List<NormalAlbum> GetAllAlbums()
+        internal static async Task<List<NormalAlbum>> GetAllAlbums()
         {
             List<NormalAlbum> normalAlbums = new List<NormalAlbum>();
-            var con = SQLiteService.GetDbConnection();
-            var albums = con.Table<Album>().ToList();
+            var con = await SQLiteService.GetDbConnection();
+            var albums = await con.Table<Album>().ToListAsync();
 
-            var usercon = SQLiteService.GetUserDbConnection();
+            var usercon = await SQLiteService.GetUserDbConnection();
             foreach (var item in albums)
             {
                 List<UserAlbum> userAlbums;
-                userAlbums = usercon.Table<UserAlbum>().Where(p => p.Name == item.Name).ToList();
+                userAlbums = await usercon.Table<UserAlbum>().Where(p => p.Name == item.Name).ToListAsync();
                 if (userAlbums.Count > 0)
                 {
                     var normal = new NormalAlbum { Name = item.Name, BuyPrice = item.BuyPrice, Cover = item.Cover, ForeignName = item.ForeignName, Number = item.Number, SalePrice = item.SalePrice, Source = item.Source, Owned = userAlbums[0].Owned };
@@ -37,8 +37,7 @@ namespace AnimalCrossing.Services
                     normalAlbums.Add(normal);
                 }
             }
-            con.Dispose();
-            usercon.Dispose();
+
             return normalAlbums;
         }
 
@@ -56,39 +55,34 @@ namespace AnimalCrossing.Services
         /// </param>
         /// <returns>
         /// </returns>
-        internal static List<NormalAnimal> GetAllFishes(out int bookCount, out int museumCount, Hemisphere hemisphere)
+        internal static async Task<List<NormalAnimal>> GetAllFishes(Hemisphere hemisphere)
         {
-            bookCount = 0; museumCount = 0;
+            //bookCount = 0; museumCount = 0;
             List<NormalAnimal> normalAnimals = new List<NormalAnimal>();
-            using (var con = SQLiteService.GetDbConnection())
+            var con = await SQLiteService.GetDbConnection();
+            var animals = await con.Table<AnimalsFish>().OrderBy(p => p.Number).ToListAsync();
+
+            var usercon = await SQLiteService.GetUserDbConnection();
+            foreach (var item in animals)
             {
-                var animals = con.Table<AnimalsFish>().OrderBy(p => p.Number).ToList();
-
-                foreach (var item in animals)
+                List<UserFish> userFish;
+                userFish = await usercon.Table<UserFish>().Where(p => p.Name == item.Name).ToListAsync();
+                if (userFish.Count > 0)
                 {
-                    List<UserFish> userFish;
-                    using (var usercon = SQLiteService.GetUserDbConnection())
-                    {
-                        userFish = usercon.Table<UserFish>().Where(p => p.Name == item.Name).ToList();
-                    }
-                    if (userFish.Count > 0)
-                    {
-                        var owned = userFish[0].Owned;
-                        var museumHave = userFish[0].MuseumHave;
-                        if (owned) bookCount += 1;
-                        if (museumHave) museumCount += 1;
+                    var owned = userFish[0].Owned;
+                    var museumHave = userFish[0].MuseumHave;
+                    //if (owned) bookCount += 1;
+                    //if (museumHave) museumCount += 1;
 
-                        var normal = SelectHemisphereAndConstructFish(hemisphere, item, owned, museumHave);
-                        normalAnimals.Add(normal);
-                    }
-                    else
-                    {
-                        var normal = SelectHemisphereAndConstructFish(hemisphere, item, false, false);
-                        normalAnimals.Add(normal);
-                    }
+                    var normal = SelectHemisphereAndConstructFish(hemisphere, item, owned, museumHave);
+                    normalAnimals.Add(normal);
+                }
+                else
+                {
+                    var normal = SelectHemisphereAndConstructFish(hemisphere, item, false, false);
+                    normalAnimals.Add(normal);
                 }
             }
-
             return normalAnimals;
         }
 
@@ -103,16 +97,16 @@ namespace AnimalCrossing.Services
         /// </param>
         /// <returns>
         /// </returns>
-        internal static List<NormalAnimal> GetThisMonthFishes(out int bookCount, out int museumCount, Hemisphere hemisphere)
+        internal static async Task<List<NormalAnimal>> GetThisMonthFishes(Hemisphere hemisphere)
         {
-            bookCount = 0; museumCount = 0;
+            //bookCount = 0; museumCount = 0;
             List<NormalAnimal> normalAnimals = new List<NormalAnimal>();
-            var animals = GetAllFishes(out int book, out int museum, hemisphere);
+            var animals = await GetAllFishes(hemisphere);
             foreach (var item in animals)
             {
                 var thisMonth = DateTime.Now.Month;
-                if (item.Owned) bookCount += 1;
-                if (item.MuseumHave) museumCount += 1;
+                //if (item.Owned) bookCount += 1;
+                //if (item.MuseumHave) museumCount += 1;
                 if (item.AppearMonth[thisMonth - 1])
                 {
                     normalAnimals.Add(item);
@@ -136,44 +130,40 @@ namespace AnimalCrossing.Services
         /// </param>
         /// <returns>
         /// </returns>
-        internal static List<NormalAnimal> GetAllInsects(out int bookCount, out int museumCount, Hemisphere hemisphere)
+        internal static async Task<List<NormalAnimal>> GetAllInsects(Hemisphere hemisphere)
         {
-            bookCount = 0; museumCount = 0;
+            //bookCount = 0; museumCount = 0;
             List<NormalAnimal> normalAnimals = new List<NormalAnimal>();
-            using (var con = SQLiteService.GetDbConnection())
+            var con = await SQLiteService.GetDbConnection();
+            var animals = await con.Table<AnimalsInsect>().OrderBy(p => p.Number).ToListAsync();
+
+            var usercon = await SQLiteService.GetUserDbConnection();
+            foreach (var item in animals)
             {
-                var animals = con.Table<AnimalsInsect>().OrderBy(p => p.Number).ToList();
-                foreach (var item in animals)
+                //var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Insect>(item.Data);
+
+                List<UserInsect> userInsect;
+                userInsect = await usercon.Table<UserInsect>().Where(p => p.Name == item.Name).ToListAsync();
+                if (userInsect.Count > 0)
                 {
-                    //var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Insect>(item.Data);
+                    var owned = userInsect[0].Owned;
+                    var museumHave = userInsect[0].MuseumHave;
 
-                    List<UserInsect> userInsect;
-                    using (var usercon = SQLiteService.GetUserDbConnection())
-                    {
-                        userInsect = usercon.Table<UserInsect>().Where(p => p.Name == item.Name).ToList();
-                    }
-                    if (userInsect.Count > 0)
-                    {
-                        var owned = userInsect[0].Owned;
-                        var museumHave = userInsect[0].MuseumHave;
+                    //if (owned) bookCount += 1;
+                    //if (museumHave) museumCount += 1;
 
-                        if (owned) bookCount += 1;
-                        if (museumHave) museumCount += 1;
+                    var normal = SelectHemisphereAndConstructInsect(hemisphere, item, owned, museumHave);
 
-                        var normal = SelectHemisphereAndConstructInsect(hemisphere, item, owned, museumHave);
-
-                        normalAnimals.Add(normal);
-                    }
-                    else
-                    {
-                        var normal = SelectHemisphereAndConstructInsect(hemisphere, item, false, false);
-
-                        normalAnimals.Add(normal);
-                    }
+                    normalAnimals.Add(normal);
                 }
+                else
+                {
+                    var normal = SelectHemisphereAndConstructInsect(hemisphere, item, false, false);
 
-                return normalAnimals;
+                    normalAnimals.Add(normal);
+                }
             }
+            return normalAnimals;
         }
 
         /// <summary>
@@ -187,16 +177,16 @@ namespace AnimalCrossing.Services
         /// </param>
         /// <returns>
         /// </returns>
-        internal static List<NormalAnimal> GetThisMonthInsects(out int bookCount, out int museumCount, Hemisphere hemisphere)
+        internal static async Task<List<NormalAnimal>> GetThisMonthInsects(Hemisphere hemisphere)
         {
-            bookCount = 0; museumCount = 0;
+            //bookCount = 0; museumCount = 0;
             List<NormalAnimal> normalAnimals = new List<NormalAnimal>();
-            var animals = GetAllInsects(out int book, out int museum, hemisphere);
+            var animals = await GetAllInsects(hemisphere);
             foreach (var item in animals)
             {
                 var thisMonth = DateTime.Now.Month;
-                if (item.Owned) bookCount += 1;
-                if (item.MuseumHave) museumCount += 1;
+                //if (item.Owned) bookCount += 1;
+                //if (item.MuseumHave) museumCount += 1;
                 if (item.AppearMonth[thisMonth - 1])
                 {
                     normalAnimals.Add(item);

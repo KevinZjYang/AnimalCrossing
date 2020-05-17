@@ -130,57 +130,57 @@ namespace AnimalCrossing.UserControls
             }
         }
 
-        private void AddOwnedButton_Click(object sender, RoutedEventArgs e)
+        private async void AddOwnedButton_Click(object sender, RoutedEventArgs e)
         {
             if (_animal == Animal.Fish)
             {
-                SQLiteService.AddUserFish(new UserFish { Name = NormalAnimals.Name, Owned = true, MuseumHave = NormalAnimals.MuseumHave });
+                await SQLiteService.AddUserFish(new UserFish { Name = NormalAnimals.Name, Owned = true, MuseumHave = NormalAnimals.MuseumHave });
             }
             else
             {
-                SQLiteService.AddUserInsect(new UserInsect { Name = NormalAnimals.Name, Owned = true, MuseumHave = NormalAnimals.MuseumHave });
+                await SQLiteService.AddUserInsect(new UserInsect { Name = NormalAnimals.Name, Owned = true, MuseumHave = NormalAnimals.MuseumHave });
             }
             Owned = true;
             NormalAnimals.Owned = true;
         }
 
-        private void AddMuseumButton_Click(object sender, RoutedEventArgs e)
+        private async void AddMuseumButton_Click(object sender, RoutedEventArgs e)
         {
             if (_animal == Animal.Fish)
             {
-                SQLiteService.AddUserFish(new UserFish { Name = NormalAnimals.Name, Owned = NormalAnimals.Owned, MuseumHave = true });
+                await SQLiteService.AddUserFish(new UserFish { Name = NormalAnimals.Name, Owned = NormalAnimals.Owned, MuseumHave = true });
             }
             else
             {
-                SQLiteService.AddUserInsect(new UserInsect { Name = NormalAnimals.Name, Owned = NormalAnimals.Owned, MuseumHave = true });
+                await SQLiteService.AddUserInsect(new UserInsect { Name = NormalAnimals.Name, Owned = NormalAnimals.Owned, MuseumHave = true });
             }
             Museum = true;
             NormalAnimals.MuseumHave = true;
         }
 
-        private void RemoveMuseumButton_Click(object sender, RoutedEventArgs e)
+        private async void RemoveMuseumButton_Click(object sender, RoutedEventArgs e)
         {
             if (_animal == Animal.Fish)
             {
-                SQLiteService.AddUserFish(new UserFish { Name = NormalAnimals.Name, Owned = NormalAnimals.Owned, MuseumHave = false });
+                await SQLiteService.AddUserFish(new UserFish { Name = NormalAnimals.Name, Owned = NormalAnimals.Owned, MuseumHave = false });
             }
             else
             {
-                SQLiteService.AddUserInsect(new UserInsect { Name = NormalAnimals.Name, Owned = NormalAnimals.Owned, MuseumHave = false });
+                await SQLiteService.AddUserInsect(new UserInsect { Name = NormalAnimals.Name, Owned = NormalAnimals.Owned, MuseumHave = false });
             }
             Museum = false;
             NormalAnimals.MuseumHave = false;
         }
 
-        private void RemoveOwnedButton_Click(object sender, RoutedEventArgs e)
+        private async void RemoveOwnedButton_Click(object sender, RoutedEventArgs e)
         {
             if (_animal == Animal.Fish)
             {
-                SQLiteService.AddUserFish(new UserFish { Name = NormalAnimals.Name, Owned = false, MuseumHave = NormalAnimals.MuseumHave });
+                await SQLiteService.AddUserFish(new UserFish { Name = NormalAnimals.Name, Owned = false, MuseumHave = NormalAnimals.MuseumHave });
             }
             else
             {
-                SQLiteService.AddUserInsect(new UserInsect { Name = NormalAnimals.Name, Owned = false, MuseumHave = NormalAnimals.MuseumHave });
+                await SQLiteService.AddUserInsect(new UserInsect { Name = NormalAnimals.Name, Owned = false, MuseumHave = NormalAnimals.MuseumHave });
             }
             Owned = false;
             NormalAnimals.Owned = false;

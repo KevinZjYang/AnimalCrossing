@@ -73,15 +73,15 @@ namespace AnimalCrossing.UserControls
             }
         }
 
-        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        private async void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            SQLiteService.AddUserAlbum(new UserAlbum { Name = NormalAlbum.Name, Owned = false });
+            await SQLiteService.AddUserAlbum(new UserAlbum { Name = NormalAlbum.Name, Owned = false });
             Owend = false;
         }
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
+        private async void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            SQLiteService.AddUserAlbum(new UserAlbum { Name = NormalAlbum.Name, Owned = true });
+            await SQLiteService.AddUserAlbum(new UserAlbum { Name = NormalAlbum.Name, Owned = true });
             Owend = true;
         }
     }

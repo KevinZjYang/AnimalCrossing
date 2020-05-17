@@ -44,75 +44,75 @@ namespace AnimalCrossing.ViewModels
             }
         }
 
-        private ListViewSelectionMode _listSelectionMode = ListViewSelectionMode.None;
+        //private ListViewSelectionMode _listSelectionMode = ListViewSelectionMode.None;
 
-        public ListViewSelectionMode ListSelectionMode
-        {
-            get { return _listSelectionMode; }
-            set { Set(ref _listSelectionMode, value); }
-        }
+        //public ListViewSelectionMode ListSelectionMode
+        //{
+        //    get { return _listSelectionMode; }
+        //    set { Set(ref _listSelectionMode, value); }
+        //}
 
-        private bool _isEditMode = false;
+        //private bool _isEditMode = false;
 
-        public bool IsEditMode
-        {
-            get { return _isEditMode; }
-            set { Set(ref _isEditMode, value); }
-        }
+        //public bool IsEditMode
+        //{
+        //    get { return _isEditMode; }
+        //    set { Set(ref _isEditMode, value); }
+        //}
 
-        public ICommand OnEditMode
-        {
-            get
-            {
-                return new RelayCommand(() =>
-                {
-                    ListSelectionMode = ListSelectionMode == ListViewSelectionMode.None ? ListViewSelectionMode.Multiple : ListViewSelectionMode.None;
-                    IsEditMode = ListSelectionMode == ListViewSelectionMode.None ? false : true;
-                });
-            }
-        }
+        //public ICommand OnEditMode
+        //{
+        //    get
+        //    {
+        //        return new RelayCommand(() =>
+        //        {
+        //            ListSelectionMode = ListSelectionMode == ListViewSelectionMode.None ? ListViewSelectionMode.Multiple : ListViewSelectionMode.None;
+        //            IsEditMode = ListSelectionMode == ListViewSelectionMode.None ? false : true;
+        //        });
+        //    }
+        //}
 
-        public ICommand OnAddItemCommand
-        {
-            get
-            {
-                return new RelayCommand(() =>
-                {
-                    //IsLoading = true;
-                    var count = _adaptiveGridView.SelectedItems.Count;
-                    for (int i = count - 1; i >= 0; i--)
-                    {
-                        var item = _adaptiveGridView.SelectedItems[i] as NormalAlbum;
-                        SQLiteService.AddUserAlbum(new UserAlbum { Name = item.Name, Owned = true });
-                    }
-                    Albums = CommonDataService.GetAllAlbums();
-                    IsEditMode = false;
-                    ListSelectionMode = ListViewSelectionMode.None;
-                    //IsLoading = false;
-                });
-            }
-        }
+        //public ICommand OnAddItemCommand
+        //{
+        //    get
+        //    {
+        //        return new RelayCommand(async() =>
+        //        {
+        //            //IsLoading = true;
+        //            var count = _adaptiveGridView.SelectedItems.Count;
+        //            for (int i = count - 1; i >= 0; i--)
+        //            {
+        //                var item = _adaptiveGridView.SelectedItems[i] as NormalAlbum;
+        //                SQLiteService.AddUserAlbum(new UserAlbum { Name = item.Name, Owned = true });
+        //            }
+        //            Albums = await CommonDataService.GetAllAlbums();
+        //            IsEditMode = false;
+        //            ListSelectionMode = ListViewSelectionMode.None;
+        //            //IsLoading = false;
+        //        });
+        //    }
+        //}
 
-        public ICommand OnUpdateCommand
-        {
-            get
-            {
-                return new RelayCommand(() =>
-                {
-                    //IsLoading = true;
-                    var count = _adaptiveGridView.SelectedItems.Count;
-                    for (int i = count - 1; i >= 0; i--)
-                    {
-                        var item = _adaptiveGridView.SelectedItems[i] as NormalAlbum;
-                        SQLiteService.AddUserAlbum(new UserAlbum { Name = item.Name, Owned = false });
-                    }
-                    Albums = CommonDataService.GetAllAlbums();
-                    IsEditMode = false;
-                    ListSelectionMode = ListViewSelectionMode.None;
-                    //IsLoading = false;
-                });
-            }
-        }
+        //public ICommand OnUpdateCommand
+        //{
+        //    get
+        //    {
+        //        return new RelayCommand(async() =>
+        //        {
+        //            //IsLoading = true;
+        //            var count = _adaptiveGridView.SelectedItems.Count;
+        //            for (int i = count - 1; i >= 0; i--)
+        //            {
+        //                var item = _adaptiveGridView.SelectedItems[i] as NormalAlbum;
+        //                SQLiteService.AddUserAlbum(new UserAlbum { Name = item.Name, Owned = false });
+        //            }
+        //            Albums = await CommonDataService.GetAllAlbums();
+        //            IsEditMode = false;
+        //            ListSelectionMode = ListViewSelectionMode.None;
+        //            //IsLoading = false;
+        //        });
+        //    }
+        //}
 
         private bool _isOwnedOn;
 
@@ -126,7 +126,7 @@ namespace AnimalCrossing.ViewModels
         {
             get
             {
-                return new RelayCommand<RoutedEventArgs>((args) =>
+                return new RelayCommand<RoutedEventArgs>(async (args) =>
                 {
                     var toggleSwitch = args.OriginalSource as ToggleSwitch;
                     IsOwnedOn = toggleSwitch.IsOn;
@@ -146,7 +146,7 @@ namespace AnimalCrossing.ViewModels
                     }
                     else
                     {
-                        Albums = Services.CommonDataService.GetAllAlbums();
+                        Albums = await Services.CommonDataService.GetAllAlbums();
                     }
                 });
             }
@@ -166,16 +166,16 @@ namespace AnimalCrossing.ViewModels
 
         private AdaptiveGridView _adaptiveGridView;
 
-        public void Initialize(AdaptiveGridView gridView)
+        public async Task Initialize(AdaptiveGridView gridView)
         {
             _adaptiveGridView = gridView;
-            LoadData();
+            await LoadDataAsync();
         }
 
-        public void LoadData()
+        public async Task LoadDataAsync()
         {
             //IsLoading = true;
-            Albums = Services.CommonDataService.GetAllAlbums();
+            Albums = await Services.CommonDataService.GetAllAlbums();
             //IsLoading = false;
         }
 

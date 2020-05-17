@@ -228,27 +228,27 @@ namespace AnimalCrossing.ViewModels
             SelectDataToLoad();
         }
 
-        private void SouthChecked(RoutedEventArgs obj)
+        private async void SouthChecked(RoutedEventArgs obj)
         {
             if (IsFishCheck)
             {
-                LoadSouthFishData();
+                await LoadSouthFishData();
             }
             else
             {
-                LoadSouthInsectData();
+                await LoadSouthInsectData();
             }
         }
 
-        private void NorthChecked(RoutedEventArgs obj)
+        private async void NorthChecked(RoutedEventArgs obj)
         {
             if (IsFishCheck)
             {
-                LoadNorthFishData();
+                await LoadNorthFishData();
             }
             else
             {
-                LoadNorthInsectData();
+                await LoadNorthInsectData();
             }
         }
 
@@ -306,27 +306,27 @@ namespace AnimalCrossing.ViewModels
             }
         }
 
-        private void InsectChecked(RoutedEventArgs obj)
+        private async void InsectChecked(RoutedEventArgs obj)
         {
             if (IsNorthCheck)
             {
-                LoadNorthInsectData();
+                await LoadNorthInsectData();
             }
             else
             {
-                LoadSouthInsectData();
+                await LoadSouthInsectData();
             }
         }
 
-        private void FishChecked(RoutedEventArgs obj)
+        private async void FishChecked(RoutedEventArgs obj)
         {
             if (IsNorthCheck)
             {
-                LoadNorthFishData();
+                await LoadNorthFishData();
             }
             else
             {
-                LoadSouthFishData();
+                await LoadSouthFishData();
             }
         }
 
@@ -341,11 +341,11 @@ namespace AnimalCrossing.ViewModels
         /// <summary>
         /// 加载北方鱼
         /// </summary>
-        private void LoadNorthFishData()
+        private async Task LoadNorthFishData()
         {
             List<NormalAnimal> animals = new List<NormalAnimal>();
 
-            var normalAnimals = CommonDataService.GetThisMonthFishes(out int bookCount, out int museumCount, CommonDataService.Hemisphere.North);
+            var normalAnimals = await CommonDataService.GetThisMonthFishes(CommonDataService.Hemisphere.North);
             foreach (var item in normalAnimals)
             {
                 animals.Add(item);
@@ -359,11 +359,11 @@ namespace AnimalCrossing.ViewModels
         /// <summary>
         /// 加载北方昆虫
         /// </summary>
-        private void LoadNorthInsectData()
+        private async Task LoadNorthInsectData()
         {
             List<NormalAnimal> animals = new List<NormalAnimal>();
 
-            var normalAnimals = CommonDataService.GetThisMonthInsects(out int bookCount, out int museumCount, CommonDataService.Hemisphere.North);
+            var normalAnimals = await CommonDataService.GetThisMonthInsects(CommonDataService.Hemisphere.North);
             foreach (var item in normalAnimals)
             {
                 animals.Add(item);
@@ -376,11 +376,11 @@ namespace AnimalCrossing.ViewModels
         /// <summary>
         /// 加载南方鱼
         /// </summary>
-        private void LoadSouthFishData()
+        private async Task LoadSouthFishData()
         {
             List<NormalAnimal> animals = new List<NormalAnimal>();
 
-            var normalAnimals = CommonDataService.GetThisMonthFishes(out int bookCount, out int museumCount, CommonDataService.Hemisphere.South);
+            var normalAnimals = await CommonDataService.GetThisMonthFishes(CommonDataService.Hemisphere.South);
             foreach (var item in normalAnimals)
             {
                 animals.Add(item);
@@ -393,10 +393,10 @@ namespace AnimalCrossing.ViewModels
         /// <summary>
         /// 加载南方昆虫
         /// </summary>
-        private void LoadSouthInsectData()
+        private async Task LoadSouthInsectData()
         {
             List<NormalAnimal> animals = new List<NormalAnimal>();
-            var normalAnimals = CommonDataService.GetThisMonthInsects(out int bookCount, out int museumCount, CommonDataService.Hemisphere.South);
+            var normalAnimals = await CommonDataService.GetThisMonthInsects(CommonDataService.Hemisphere.South);
             foreach (var item in normalAnimals)
             {
                 animals.Add(item);
@@ -409,28 +409,28 @@ namespace AnimalCrossing.ViewModels
         /// <summary>
         /// 选择加载何种数据
         /// </summary>
-        private void SelectDataToLoad()
+        private async void SelectDataToLoad()
         {
             if (IsFishCheck)
             {
                 if (IsNorthCheck)
                 {
-                    LoadNorthFishData();
+                    await LoadNorthFishData();
                 }
                 else
                 {
-                    LoadSouthFishData();
+                    await LoadSouthFishData();
                 }
             }
             else
             {
                 if (IsNorthCheck)
                 {
-                    LoadNorthInsectData();
+                    await LoadNorthInsectData();
                 }
                 else
                 {
-                    LoadSouthInsectData();
+                    await LoadSouthInsectData();
                 }
             }
         }

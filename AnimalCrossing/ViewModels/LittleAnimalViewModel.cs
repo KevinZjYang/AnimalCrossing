@@ -13,6 +13,7 @@ using Windows.UI.Input;
 using Windows.UI.Xaml;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AnimalCrossing.ViewModels
 {
@@ -162,14 +163,12 @@ namespace AnimalCrossing.ViewModels
             _detailImageEx = detailImageEx;
         }
 
-        public void LoadData()
+        public async Task LoadData()
         {
-            using (var con = SQLiteService.GetDbConnection())
-            {
-                var littleAnimals = con.Table<LittleAnimal>().ToList();
-                LittleAnimals = littleAnimals;
-                //LittleAnimalDeatil = LittleAnimals[0];
-            }
+            var con = await SQLiteService.GetDbConnection();
+            var littleAnimals = await con.Table<LittleAnimal>().ToListAsync();
+            LittleAnimals = littleAnimals;
+            //LittleAnimalDeatil = LittleAnimals[0];
 
             TodayIsWhoBrithday(LittleAnimals);
         }

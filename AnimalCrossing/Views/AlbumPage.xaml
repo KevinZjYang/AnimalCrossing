@@ -81,7 +81,6 @@
         <Grid Grid.Row="1">
             <controls:AdaptiveGridView x:Name="MainGridView"
                                        IsItemClickEnabled="True"
-                                       SelectionMode="{x:Bind ViewModel.ListSelectionMode,Mode=OneWay}"
                                        DesiredWidth="200"
                                        ItemHeight="200"
                                        animations:ReorderGridAnimation.Duration="500"

@@ -36,9 +36,9 @@ namespace AnimalCrossing.ViewModels
             }
         }
 
-        private void SouthChecked(RoutedEventArgs obj)
+        private async void SouthChecked(RoutedEventArgs obj)
         {
-            LoadSouthData();
+            await LoadSouthData();
         }
 
         private ICommand _northChecked;
@@ -55,9 +55,9 @@ namespace AnimalCrossing.ViewModels
             }
         }
 
-        private void NorthChecked(RoutedEventArgs obj)
+        private async void NorthChecked(RoutedEventArgs obj)
         {
-            LoadNorthData();
+            await LoadNorthData();
         }
 
         private ICommand _beginningEdit;
@@ -103,10 +103,10 @@ namespace AnimalCrossing.ViewModels
             }
         }
 
-        private void CellEditEnded(DataGridCellEditEndedEventArgs obj)
+        private async void CellEditEnded(DataGridCellEditEndedEventArgs obj)
         {
             var normal = (obj.Row as FrameworkElement).DataContext as NormalAnimal;
-            SQLiteService.AddUserFish(new UserFish { Name = normal.Name, Owned = normal.Owned, MuseumHave = normal.MuseumHave });
+            await SQLiteService.AddUserFish(new UserFish { Name = normal.Name, Owned = normal.Owned, MuseumHave = normal.MuseumHave });
             if (_beforeEditOwned == false && normal.Owned == true)
             {
                 BookCount += 1;
@@ -191,9 +191,15 @@ namespace AnimalCrossing.ViewModels
             };
         }
 
-        public void LoadData()
+        public async Task LoadDataAsync()
         {
-            SetDefaultHemisphere();
+            await SetDefaultHemisphere();
+
+            foreach (var item in Fishes)
+            {
+                if (item.MuseumHave) MuseumCount += 1;
+                if (item.Owned) BookCount += 1;
+            }
         }
 
         public void OnSorting(object sender, DataGridColumnEventArgs e)
@@ -363,37 +369,37 @@ namespace AnimalCrossing.ViewModels
             }
         }
 
-        private void LoadSouthData()
+        private async Task LoadSouthData()
         {
             Fishes.Clear();
             BookCount = 0;
             MuseumCount = 0;
 
-            var normalAnimals = CommonDataService.GetAllFishes(out int bookCount, out int museumCount, CommonDataService.Hemisphere.South);
-            BookCount = bookCount;
-            MuseumCount = museumCount;
+            var normalAnimals = await CommonDataService.GetAllFishes(CommonDataService.Hemisphere.South);
+            //BookCount = bookCount;
+            //MuseumCount = museumCount;
             foreach (var item in normalAnimals)
             {
                 Fishes.Add(item);
             }
         }
 
-        private void LoadNorthData()
+        private async Task LoadNorthData()
         {
             Fishes.Clear();
             BookCount = 0;
             MuseumCount = 0;
 
-            var normalAnimals = CommonDataService.GetAllFishes(out int bookCount, out int museumCount, CommonDataService.Hemisphere.North);
-            BookCount = bookCount;
-            MuseumCount = museumCount;
+            var normalAnimals = await CommonDataService.GetAllFishes(CommonDataService.Hemisphere.North);
+            //BookCount = bookCount;
+            //MuseumCount = museumCount;
             foreach (var item in normalAnimals)
             {
                 Fishes.Add(item);
             }
         }
 
-        private void SetDefaultHemisphere()
+        private async Task SetDefaultHemisphere()
         {
             var hemisphere = Helpers.SettingsHelper.GetLocalSetting(SettingsKey.DefaultHemisphereKey);
             if (hemisphere != null)
@@ -402,20 +408,20 @@ namespace AnimalCrossing.ViewModels
                 {
                     IsNorthCheck = true;
                     IsSouthCheck = false;
-                    LoadNorthData();
+                    await LoadNorthData();
                 }
                 else
                 {
                     IsNorthCheck = false;
                     IsSouthCheck = true;
-                    LoadSouthData();
+                    await LoadSouthData();
                 }
             }
             else
             {
                 IsNorthCheck = true;
                 IsSouthCheck = false;
-                LoadNorthData();
+                await LoadNorthData();
             }
         }
     }

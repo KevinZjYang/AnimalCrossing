@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
+using System.Threading.Tasks;
 
 namespace AnimalCrossing.ViewModels
 {
@@ -43,16 +44,14 @@ namespace AnimalCrossing.ViewModels
 
         public PlantViewModel()
         {
-            LoadData();
+            //LoadData();
         }
 
-        public void LoadData()
+        public async Task LoadData()
         {
-            using (var con = SQLiteService.GetDbConnection())
-            {
-                var plants = con.Table<Plant>().ToList();
-                Plants = plants;
-            }
+            var con = await SQLiteService.GetDbConnection();
+            var plants = await con.Table<Plant>().ToListAsync();
+            Plants = plants;
         }
 
         private void GridViewItemClick(ItemClickEventArgs obj)
