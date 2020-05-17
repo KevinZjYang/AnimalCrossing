@@ -56,7 +56,7 @@ namespace AnimalCrossing.Views
         {
             base.OnNavigatedTo(e);
             ViewModel.Initialize(MainGridView, detailImageControl);
-            ViewModel.LoadData();
+            ViewModel.LoadDataAsync();
         }
 
         private void SearchAutoBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)

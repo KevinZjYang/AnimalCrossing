@@ -130,9 +130,9 @@ namespace AnimalCrossing.Services
         private async Task StartupAsync()
         {
             await ThemeSelectorService.SetRequestedThemeAsync();
-            await DbUpdateService.DownloadIfAppropriateAsync().ConfigureAwait(false);
             await FirstRunDisplayService.ShowIfAppropriateAsync();
             await WhatsNewDisplayService.ShowIfAppropriateAsync();
+            await DbUpdateService.DownloadIfAppropriateAsync().ConfigureAwait(false);
         }
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()

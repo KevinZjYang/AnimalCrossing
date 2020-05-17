@@ -163,7 +163,7 @@ namespace AnimalCrossing.ViewModels
             _detailImageEx = detailImageEx;
         }
 
-        public async Task LoadData()
+        public async void LoadDataAsync()
         {
             var con = await SQLiteService.GetDbConnection();
             var littleAnimals = await con.Table<LittleAnimal>().ToListAsync();

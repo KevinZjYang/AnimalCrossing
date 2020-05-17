@@ -160,7 +160,7 @@
       <Version>12.0.3</Version>
     </PackageReference>
     <PackageReference Include="sqlite-net-pcl">
-      <Version>1.7.302-beta</Version>
+      <Version>1.7.335</Version>
     </PackageReference>
     <PackageReference Include="SQLite.Universal">
       <Version>3.28.0</Version>
