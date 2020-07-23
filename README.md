@@ -13,5 +13,6 @@ Win10商店地址：[https://www.microsoft.com/store/productId/9MZ26MR59V0D](htt
 - 基于本作的最新版大头菜价格预测；
 - 首页显示本月可获取的动物信息。
 
+使用Python从哔哩哔哩游戏WIKI获取数据并写入到数据库：[AnimalCrossingPy](https://github.com/KevinZjYang/AnimalCrossingPy)
 # 鸣谢
 [elxris](https://github.com/elxris/Turnip-Calculator)
