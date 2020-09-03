@@ -42,7 +42,7 @@
                     <hnControl:ImageEx Width="200"
                                        Grid.Row="0"
                                        CornerRadius="6"
-                                       EnableLazyLoading="False"
+                                       LazyLoadingEnabled="False"
                                        Source="{x:Bind NormalAnimals.Icon}" />
                     <TextBlock HorizontalAlignment="Center"
                                Grid.Row="1"

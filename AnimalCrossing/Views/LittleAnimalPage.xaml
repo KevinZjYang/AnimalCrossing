@@ -125,7 +125,7 @@
                               Background="{ThemeResource SystemControlHighlightListLowRevealBackgroundBrush}">
                             <hnControl:ImageEx Height="160"
                                                x:Name="connectedElement"
-                                               EnableLazyLoading="True"
+                                               LazyLoadingEnabled="True"
                                                Source="{x:Bind Image}"
                                                Margin="0,0,0,24" />
                             <TextBlock Text="{x:Bind Name}"
@@ -226,7 +226,7 @@
                             <hnControl:ImageEx x:Name="detailImageControl"
                                                Height="250"
                                                Margin="12,0,12,0"
-                                               EnableLazyLoading="False"
+                                               LazyLoadingEnabled="False"
                                                Source="{x:Bind ViewModel.LittleAnimalDeatil.Image}">
                             </hnControl:ImageEx>
                             <TextBlock Grid.Row="1"
@@ -356,7 +356,7 @@
                                         <DataTemplate x:DataType="x:String">
                                             <hnControl:ImageEx x:Name="HomeImage"
                                                                Stretch="Uniform"
-                                                               EnableLazyLoading="False"
+                                                               LazyLoadingEnabled="False"
                                                                Source="{Binding}">
                                                 <hnControl:ImageEx.LoadingTemplate>
                                                     <DataTemplate>

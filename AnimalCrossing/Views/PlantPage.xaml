@@ -42,7 +42,7 @@
                                     CornerRadius="6"
                                     Background="{ThemeResource SystemControlHighlightListLowRevealBackgroundBrush}">
                             <hnControl:ImageEx Width="120"
-                                               EnableLazyLoading="False"
+                                               LazyLoadingEnabled="False"
                                                Source="{x:Bind Image}"
                                                Background="{ThemeResource SystemControlHighlightListLowRevealBackgroundBrush}" />
                             <TextBlock Text="{x:Bind Name}"
