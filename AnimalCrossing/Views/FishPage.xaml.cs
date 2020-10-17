@@ -4,6 +4,7 @@ using AnimalCrossing.ViewModels;
 
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Windows.Web.UI.Interop;
 
 namespace AnimalCrossing.Views
 {

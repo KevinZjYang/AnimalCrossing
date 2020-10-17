@@ -189,6 +189,8 @@ namespace AnimalCrossing.ViewModels
             }
         }
 
+        public string DbVersion => SettingsHelper.GetLocalSetting(SettingsKey.DbVersionKey);
+
         public SettingsViewModel()
         {
         }

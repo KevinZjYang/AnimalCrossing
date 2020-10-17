@@ -130,6 +130,7 @@ namespace AnimalCrossing.ViewModels
                 {
                     var toggleSwitch = args.OriginalSource as ToggleSwitch;
                     IsOwnedOn = toggleSwitch.IsOn;
+                    Albums = await Services.CommonDataService.GetAllAlbums();
                     if (IsOwnedOn)
                     {
                         Albums = Albums.FindAll(delegate (NormalAlbum album)
@@ -143,10 +144,6 @@ namespace AnimalCrossing.ViewModels
                                 return true;
                             }
                         });
-                    }
-                    else
-                    {
-                        Albums = await Services.CommonDataService.GetAllAlbums();
                     }
                 });
             }

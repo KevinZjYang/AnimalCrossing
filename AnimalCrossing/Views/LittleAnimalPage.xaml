@@ -29,7 +29,7 @@
                            Margin="12,0,0,0"
                            VerticalAlignment="Bottom">
                     <Run>共</Run>
-                    <Run Text="{x:Bind ViewModel.LittleAnimals.Count}" />
+                    <Run Text="{x:Bind ViewModel.LittleAnimals.Count,Mode=OneWay}" />
                     <Run>个</Run>
                 </TextBlock>
             </StackPanel>
@@ -245,6 +245,9 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
                             <Grid Grid.Row="0">
@@ -300,7 +303,7 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Grid Style="{StaticResource TitleGridStyle}">
-                                    <TextBlock Text="目标"
+                                    <TextBlock Text="爱好"
                                                Style="{StaticResource TitleTbStyle}" />
                                 </Grid>
                                 <TextBlock Grid.Column="1"
@@ -313,6 +316,45 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Grid Style="{StaticResource TitleGridStyle}">
+                                    <TextBlock Text="风格偏好"
+                                               Style="{StaticResource TitleTbStyle}" />
+                                </Grid>
+                                <TextBlock Grid.Column="1"
+                                           Style="{StaticResource ContentTbStyle}"
+                                           Text="{x:Bind ViewModel.LittleAnimalDeatil.PersonalStyle}" />
+                            </Grid>
+                            <Grid Grid.Row="4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Style="{StaticResource TitleGridStyle}">
+                                    <TextBlock Text="喜爱颜色"
+                                               Style="{StaticResource TitleTbStyle}" />
+                                </Grid>
+                                <TextBlock Grid.Column="1"
+                                           Style="{StaticResource ContentTbStyle}"
+                                           Text="{x:Bind ViewModel.LittleAnimalDeatil.LikeColor}" />
+                            </Grid>
+                            <Grid Grid.Row="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Style="{StaticResource TitleGridStyle}">
+                                    <TextBlock Text="音高"
+                                               Style="{StaticResource TitleTbStyle}" />
+                                </Grid>
+                                <TextBlock Grid.Column="1"
+                                           Style="{StaticResource ContentTbStyle}"
+                                           Text="{x:Bind ViewModel.LittleAnimalDeatil.Pitch}" />
+                            </Grid>
+                            <Grid Grid.Row="6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Style="{StaticResource TitleGridStyle}">
                                     <TextBlock Text="座右铭"
                                                Style="{StaticResource TitleTbStyle}" />
                                 </Grid>
@@ -320,7 +362,7 @@
                                            Style="{StaticResource ContentTbStyle}"
                                            Text="{x:Bind ViewModel.LittleAnimalDeatil.Motto}" />
                             </Grid>
-                            <Grid Grid.Row="4">
+                            <Grid Grid.Row="7">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />

@@ -91,7 +91,9 @@
                 </RadioButton>
             </muxc:RadioButtons>
 
-            <Button Content="导出用户数据" Margin="0,8,0,0" Command="{x:Bind ViewModel.OutputDataCommand}"/>
+            <Button Content="导出用户数据"
+                    Margin="0,8,0,0"
+                    Command="{x:Bind ViewModel.OutputDataCommand}" />
             <Button Content="导入用户数据"
                     Margin="0,8,0,0"
                     Command="{x:Bind ViewModel.InputDataCommand}" />
@@ -103,6 +105,12 @@
             <StackPanel Margin="{StaticResource XSmallTopMargin}">
                 <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
                            Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}" />
+
+                <TextBlock Margin="{StaticResource XSmallTopMargin}">
+                    <Run>本地数据库版本：</Run>
+                    <Run Text="{x:Bind ViewModel.DbVersion,Mode=OneWay}"
+                         Foreground="{ThemeResource SystemAccentColor}" />
+                </TextBlock>
                 <TextBlock x:Uid="Settings_AboutDescription"
                            Margin="{StaticResource XSmallTopMargin}"
                            Style="{ThemeResource BodyTextBlockStyle}" />
