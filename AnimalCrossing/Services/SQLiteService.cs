@@ -24,6 +24,15 @@ namespace AnimalCrossing.Services
             await liteConnection.CreateTableAsync<Plant>();
             await liteConnection.CreateTableAsync<LittleAnimal>();
             await liteConnection.CreateTableAsync<Album>();
+            await liteConnection.CreateTableAsync<Accessories>();
+            await liteConnection.CreateTableAsync<Bag>();
+            await liteConnection.CreateTableAsync<Coat>();
+            await liteConnection.CreateTableAsync<Dress>();
+            await liteConnection.CreateTableAsync<Hat>();
+            await liteConnection.CreateTableAsync<Helmet>();
+            await liteConnection.CreateTableAsync<Pants>();
+            await liteConnection.CreateTableAsync<Shoe>();
+            await liteConnection.CreateTableAsync<Sock>();
             return liteConnection;
         }
 
